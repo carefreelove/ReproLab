@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "case": "inclusive-window",
+  "run_id": "4d830923189f",
+  "generated_at": "2026-11-13T15:37:49.611307+00:00",
+  "status": "completed",
+  "mode": "live_baseline",
+  "configuration": {
+    "mode": "live_baseline",
+    "namespace": "eval-8f9cd9fa0936499cbf19b457e2e3a70d:baseline:inclusive-window",
+    "skills": false
+  },
+  "request": "source.in_window(value, start, end) 的时间窗口应包含两个端点，结束时刻的记录被遗漏。参数为整数时间戳。",
+  "repository": "fixture/inclusive-window",
+  "buggy_commit": "a6d9cd52f42a2113ec00c1df75636a1dec1cd3eb",
+  "fixed_commit": "558e0fc0427d31f60a0d5504c31f04a3019d7a3c",
+  "source": "self_authored_fixture",
+  "stop_reason": "",
+  "elapsed_seconds": 0.0,
+  "plan": [],
+  "test_changes": [],
+  "prior_verifications": [],
+  "hypotheses": [],
+  "skills": [],
+  "experiments": [],
+  "submission": {
+    "summary": "单次生成对照",
+    "test_sha256": "2cbd1734de38a869b3dd9c5ebd3bba62c3733278ea72cd9f08520d14ed11c701",
+    "experiment": "baseline"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "2cbd1734de38a869b3dd9c5ebd3bba62c3733278ea72cd9f08520d14ed11c701",
+    "validations": [
+      {
+        "kind": "assertion_failure",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "0e9787f7e5a8d4a446aaddf8bd1be5ddca0973bc1e9079c6111cc1b8b4d066cc",
+        "failure_details": [
+          {
+            "test": "test_in_window_includes_end_boundary",
+            "message": "AssertionError: end 端点应包含在窗口内\nassert False is True\n +  where False = in_window(10, 5, 10)"
+          }
+        ],
+        "seconds": 0.239,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-78dd850fd60dca58a429",
+        "junit": "ar-9eb4de2046e0693ebe61"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "0e9787f7e5a8d4a446aaddf8bd1be5ddca0973bc1e9079c6111cc1b8b4d066cc",
+        "failure_details": [
+          {
+            "test": "test_in_window_includes_end_boundary",
+            "message": "AssertionError: end 端点应包含在窗口内\nassert False is True\n +  where False = in_window(10, 5, 10)"
+          }
+        ],
+        "seconds": 0.234,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-78dd850fd60dca58a429",
+        "junit": "ar-b11d7340b9f181be2b80"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "0e9787f7e5a8d4a446aaddf8bd1be5ddca0973bc1e9079c6111cc1b8b4d066cc",
+        "failure_details": [
+          {
+            "test": "test_in_window_includes_end_boundary",
+            "message": "AssertionError: end 端点应包含在窗口内\nassert False is True\n +  where False = in_window(10, 5, 10)"
+          }
+        ],
+        "seconds": 0.233,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-78dd850fd60dca58a429",
+        "junit": "ar-9cd2881b8a12c29fcc34"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.23,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-bcd13931f4bb287db80f",
+        "junit": "ar-1c1efe31ebeac0878b9f"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.232,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-bcd13931f4bb287db80f",
+        "junit": "ar-c9479d0e879fd65458a9"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.224,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-bcd13931f4bb287db80f",
+        "junit": "ar-388b8c7d91465ccd4ec5"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-01b4cf6bf6a3685bf188",
+      "category": "validation_junit",
+      "sha256": "00233c5687c77ca0daa2afd0bf7fc51dd6c883d45afd2444eb8b516e104292fe",
+      "bytes": 1065
+    },
+    {
+      "id": "ar-01ebbaa02b96d05c5fe7",
+      "category": "validation_junit",
+      "sha256": "01ebbaa02b96d05c5fe76714224d2e0d866d61cd3040cd7db6b59d1f1922789d",
+      "bytes": 1065
+    },
+    {
+      "id": "ar-02381f3f5ae0b94c5492",
+      "category": "validation_junit",
+      "sha256": "d3ef819ae4ee443d87b5e34fc003922bc73806579574a5c30fe2e3abd07d367f",
+      "bytes": 1065
+    },
+    {
+      "id": "ar-1380294ca2da33e9d1e7",
+      "category": "private_validation_junit",
+      "sha256": "d8e552c862785d259c959448b142faa8d133a7a18286f28408fc43a8ed188733",
+      "bytes": 441
+    },
+    {
+      "id": "ar-1c1efe31ebeac0878b9f",
+      "category": "private_validation_junit",
+      "sha256": "376f9beacdc82db88f311c111085e0aaed64751c347d163e0159daed3618bc20",
+      "bytes": 441
+    },
+    {
+      "id": "ar-1d44d1715345bb90df6f",
+      "category": "validation_junit",
+      "sha256": "1d44d1715345bb90df6fdcbc90853961ff38205552814a4105b48facf0c10d1e",
+      "bytes": 441
+    },
+    {
+      "id": "ar-24865f09b7041046975f",
+      "category": "validation_junit",
+      "sha256": "24865f09b7041046975fe0922d61647236efcc95f27e102cfc7b772bfb868d36",
+      "bytes": 441
+    },
+    {
+      "id": "ar-388b8c7d91465ccd4ec5",
+      "category": "private_validation_junit",
+      "sha256": "afddd64d04b81e74b163ae634b557f09d0c42dc14890401fba17f29133705957",
+      "bytes": 441
+    },
+    {
+      "id": "ar-78dd850fd60dca58a429",
+      "category": "validation_log",
+      "sha256": "fb9b6638bec092a0fec36c7faf18b05bad72e5945718f5c729907449c77799e8",
+      "bytes": 905
+    },
+    {
+      "id": "ar-82d2091feb475baa70b4",
+      "category": "private_validation_junit",
+      "sha256": "eb77e3496ef83f8c9a7df89d95ea0a0ac6fd729dd3403fd50ad3a9fcd8e69588",
+      "bytes": 441
+    },
+    {
+      "id": "ar-9966c68eace7afba75fa",
+      "category": "private_validation_junit",
+      "sha256": "c1772bf171fe672b0491fe23ea4ab2002ab1f1129359bb29573e3efd171d62f8",
+      "bytes": 441
+    },
+    {
+      "id": "ar-9cd2881b8a12c29fcc34",
+      "category": "validation_junit",
+      "sha256": "c2111a53e5aa5e6a71bd63a8828eec0d78754a15f53c50d29fe7312f1c7aa1b3",
+      "bytes": 1065
+    },
+    {
+      "id": "ar-9eb4de2046e0693ebe61",
+      "category": "validation_junit",
+      "sha256": "553292ea9d823065988aeae5e1ba8ac2304ff185f04bf17d96fc58a471ad797d",
+      "bytes": 1065
+    },
+    {
+      "id": "ar-b11d7340b9f181be2b80",
+      "category": "validation_junit",
+      "sha256": "8b81e9ad66109a4f811e832a7b0229b68b900ead76be8f1eb65cbe4fc6314eec",
+      "bytes": 1065
+    },
+    {
+      "id": "ar-bcd13931f4bb287db80f",
+      "category": "private_validation_log",
+      "sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e",
+      "bytes": 98
+    },
+    {
+      "id": "ar-c9479d0e879fd65458a9",
+      "category": "private_validation_junit",
+      "sha256": "9239500cc63fc6b505768b7072b4e22636f6437bebfdbef2baca4446af90f314",
+      "bytes": 441
+    },
+    {
+      "id": "ar-cb8c45e82ce945a17393",
+      "category": "validation_junit",
+      "sha256": "cb8c45e82ce945a173932d5e4100ecc31a76eb11c19ee809fc1acfb4aa10e74c",
+      "bytes": 1065
+    },
+    {
+      "id": "ar-e15fd10c7f8cc391751b",
+      "category": "validation_junit",
+      "sha256": "e15fd10c7f8cc391751b2ed24c06950a4aa0f247cc7a732c7b3a42fdf90f9f3e",
+      "bytes": 441
+    },
+    {
+      "id": "ar-ef4496a9759016345767",
+      "category": "validation_junit",
+      "sha256": "4045d4edcd041772a47d1265b11f2d31f2dda21a4020a9a5f2b49601f4399d2e",
+      "bytes": 1065
+    },
+    {
+      "id": "ar-fb9b6638bec092a0fec3",
+      "category": "validation_log",
+      "sha256": "fb9b6638bec092a0fec36c7faf18b05bad72e5945718f5c729907449c77799e8",
+      "bytes": 905
+    },
+    {
+      "id": "ar-fcd476841e8af121ff90",
+      "category": "validation_log",
+      "sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e",
+      "bytes": 98
+    },
+    {
+      "id": "ar-ff6edb3d24dca6b2e0d3",
+      "category": "validation_junit",
+      "sha256": "ff6edb3d24dca6b2e0d363515aaaca7666672c77ecef8d73f6c9b29a165ba899",
+      "bytes": 1065
+    }
+  ],
+  "statistics": {
+    "model_calls": 1,
+    "input_tokens": 400,
+    "output_tokens": 187,
+    "estimated_cost_cny": 0.002756,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

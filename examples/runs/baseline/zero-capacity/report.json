@@ -1,0 +1,317 @@
+{
+  "schema_version": "1.0",
+  "case": "zero-capacity",
+  "run_id": "40554a8d863c",
+  "generated_at": "2026-11-13T15:37:59.416715+00:00",
+  "status": "completed",
+  "mode": "live_baseline",
+  "configuration": {
+    "mode": "live_baseline",
+    "namespace": "eval-8f9cd9fa0936499cbf19b457e2e3a70d:baseline:zero-capacity",
+    "skills": false
+  },
+  "request": "source.chunks(items, n) 返回分块列表。约定 n=0 返回空列表，n<0 抛出 ValueError。当前零容量失败。",
+  "repository": "fixture/zero-capacity",
+  "buggy_commit": "387999a3392af7c4baf1b9d98433308e85bb7a33",
+  "fixed_commit": "7be14f48646d64dc13bba72eefbcce92464fab1c",
+  "source": "self_authored_fixture",
+  "stop_reason": "",
+  "elapsed_seconds": 0.0,
+  "plan": [],
+  "test_changes": [],
+  "prior_verifications": [],
+  "hypotheses": [],
+  "skills": [],
+  "experiments": [],
+  "submission": {
+    "summary": "单次生成对照",
+    "test_sha256": "7706ada1b314150c8f212cdbe63c9d4ca984cc4411316683ef2079b52b1a22c1",
+    "experiment": "baseline"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "7706ada1b314150c8f212cdbe63c9d4ca984cc4411316683ef2079b52b1a22c1",
+    "validations": [
+      {
+        "kind": "target_exception",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "bcfa9a9cfdbb93cb041ed6f6ed93e94a70ba3e82c5f042316bb525b410f2489a",
+        "failure_details": [
+          {
+            "test": "test_chunks_zero_returns_empty_list",
+            "message": "ValueError: range() arg 3 must not be zero"
+          },
+          {
+            "test": "test_chunks_negative_raises_value_error",
+            "message": "Failed: DID NOT RAISE ValueError"
+          }
+        ],
+        "seconds": 0.241,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-c02144d069681980b55c",
+        "junit": "ar-1de048cf7c7e7b6d4a24"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "bcfa9a9cfdbb93cb041ed6f6ed93e94a70ba3e82c5f042316bb525b410f2489a",
+        "failure_details": [
+          {
+            "test": "test_chunks_zero_returns_empty_list",
+            "message": "ValueError: range() arg 3 must not be zero"
+          },
+          {
+            "test": "test_chunks_negative_raises_value_error",
+            "message": "Failed: DID NOT RAISE ValueError"
+          }
+        ],
+        "seconds": 0.238,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-c02144d069681980b55c",
+        "junit": "ar-6d485801ad6f7bd7a6ea"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "bcfa9a9cfdbb93cb041ed6f6ed93e94a70ba3e82c5f042316bb525b410f2489a",
+        "failure_details": [
+          {
+            "test": "test_chunks_zero_returns_empty_list",
+            "message": "ValueError: range() arg 3 must not be zero"
+          },
+          {
+            "test": "test_chunks_negative_raises_value_error",
+            "message": "Failed: DID NOT RAISE ValueError"
+          }
+        ],
+        "seconds": 0.234,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-c02144d069681980b55c",
+        "junit": "ar-976a16fa418a20ed4538"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.235,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-7a4bfbe1e423b5d3b338",
+        "junit": "ar-c3980683eb40b20f3ede"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.242,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-bcd13931f4bb287db80f",
+        "junit": "ar-14a6db63a7bc7d858cb9"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.26,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-bcd13931f4bb287db80f",
+        "junit": "ar-95f0214930190fe57bec"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-005c861ebbc854cec4e1",
+      "category": "validation_log",
+      "sha256": "28d093fc0e01b895eea94bbc20b79334ef6e25458b41e05f87ab57b114a1c22d",
+      "bytes": 1407
+    },
+    {
+      "id": "ar-105dc6ed1941289dac50",
+      "category": "validation_junit",
+      "sha256": "105dc6ed1941289dac50897977b86787e834fd634f0fadea0a46bd6d8e846983",
+      "bytes": 1419
+    },
+    {
+      "id": "ar-1096b440ce4780356f44",
+      "category": "private_validation_junit",
+      "sha256": "6792bdc920696013bf0d6bb8fc15304a65f0ee29d778e9905ccd6be6d004c6ac",
+      "bytes": 444
+    },
+    {
+      "id": "ar-14a6db63a7bc7d858cb9",
+      "category": "private_validation_junit",
+      "sha256": "ac41c9a4eecacca299baee19ca1f645245a7ee9d2c375151e176dd2f7077fb81",
+      "bytes": 444
+    },
+    {
+      "id": "ar-1de048cf7c7e7b6d4a24",
+      "category": "validation_junit",
+      "sha256": "887dde888affc52351338bc1ba31f581079341cb3791e78a3f393504432d6094",
+      "bytes": 1419
+    },
+    {
+      "id": "ar-388a73f1b5709726d33c",
+      "category": "validation_junit",
+      "sha256": "388a73f1b5709726d33c034e0b4ad59013b039d1f632470e11559694199d7c13",
+      "bytes": 1419
+    },
+    {
+      "id": "ar-68d8d0e1f109769875b8",
+      "category": "validation_junit",
+      "sha256": "c59de3fc5c809eb7fc6465618c7a028b565de6b8ef3b5c70b337a958f3e6f18d",
+      "bytes": 1419
+    },
+    {
+      "id": "ar-6bb77ea1c6dcdbc61156",
+      "category": "validation_junit",
+      "sha256": "6bb77ea1c6dcdbc6115681696f77010280f916c52c948691c99a0590c6254280",
+      "bytes": 444
+    },
+    {
+      "id": "ar-6d485801ad6f7bd7a6ea",
+      "category": "validation_junit",
+      "sha256": "a00235bc39711f8edcd52a074119f1e343f53b1346b9afd87c4c863068ff9fad",
+      "bytes": 1419
+    },
+    {
+      "id": "ar-72164260f2c35d8713bf",
+      "category": "private_validation_junit",
+      "sha256": "423b979a286af74199099f245d80fff338e5ffe72dfb262bda48b1e407efa3af",
+      "bytes": 444
+    },
+    {
+      "id": "ar-77d0cc072afd020171e7",
+      "category": "validation_junit",
+      "sha256": "77d0cc072afd020171e7829dc5e348e145ca86af3ec90150df7de8daace27539",
+      "bytes": 444
+    },
+    {
+      "id": "ar-7a4bfbe1e423b5d3b338",
+      "category": "private_validation_log",
+      "sha256": "f9991bfc1c7ebd12bb16ce56e1cf3117618ca286795cd280e4f6ac597c67ff48",
+      "bytes": 98
+    },
+    {
+      "id": "ar-898d7ba5dfd164c197d0",
+      "category": "validation_log",
+      "sha256": "898d7ba5dfd164c197d0943b08a1865f0f4d651a664fde550b2639dbc0e1a0ab",
+      "bytes": 1407
+    },
+    {
+      "id": "ar-8de01a0d305e6f90181e",
+      "category": "validation_junit",
+      "sha256": "2cf1372834ae592bcbbecc2408150e08bf737a2bafd0f4d9137513ffe2808374",
+      "bytes": 1419
+    },
+    {
+      "id": "ar-95f0214930190fe57bec",
+      "category": "private_validation_junit",
+      "sha256": "a7aa2c54c3f55aef64610780378b3852349ddd2eefc8b7c158d2a297b2c53291",
+      "bytes": 444
+    },
+    {
+      "id": "ar-976a16fa418a20ed4538",
+      "category": "validation_junit",
+      "sha256": "2e799a34942ccc10bae47490e5ca0c4c7331fd26d9d490edcfe55ec655a6479a",
+      "bytes": 1419
+    },
+    {
+      "id": "ar-bcd13931f4bb287db80f",
+      "category": "private_validation_log",
+      "sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e",
+      "bytes": 98
+    },
+    {
+      "id": "ar-c02144d069681980b55c",
+      "category": "validation_log",
+      "sha256": "898d7ba5dfd164c197d0943b08a1865f0f4d651a664fde550b2639dbc0e1a0ab",
+      "bytes": 1407
+    },
+    {
+      "id": "ar-c026f2f669e887c7cf86",
+      "category": "validation_junit",
+      "sha256": "c026f2f669e887c7cf8609babe2cfdf2574971cef0b9ed849eb556027c267eaf",
+      "bytes": 444
+    },
+    {
+      "id": "ar-c3980683eb40b20f3ede",
+      "category": "private_validation_junit",
+      "sha256": "41e3ef0e7cd8f231651c49b687f20624f3101e79feabf835ceb7c8aa1a5f8596",
+      "bytes": 444
+    },
+    {
+      "id": "ar-c575c7a2bbdd79dea130",
+      "category": "validation_junit",
+      "sha256": "c1fcb3cc64fdc7e4e903a6d3f3e295b60fb45e30a777b4ab4768ebb45fe6c0bc",
+      "bytes": 1419
+    },
+    {
+      "id": "ar-c75f6b4e916c606334c5",
+      "category": "validation_junit",
+      "sha256": "c75f6b4e916c606334c5399062a0454ed3fbf8f92e048024c26864701d8a46db",
+      "bytes": 1419
+    },
+    {
+      "id": "ar-f79fd3b265dab52e562e",
+      "category": "private_validation_junit",
+      "sha256": "be1610deee94c73c5f491846d790debb0aa5e94275a3b67d98bce0ba8a642bcb",
+      "bytes": 444
+    },
+    {
+      "id": "ar-fcd476841e8af121ff90",
+      "category": "validation_log",
+      "sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e",
+      "bytes": 98
+    }
+  ],
+  "statistics": {
+    "model_calls": 1,
+    "input_tokens": 415,
+    "output_tokens": 140,
+    "estimated_cost_cny": 0.00234,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "schema_version": "1.0",
+  "case": "empty-mean",
+  "run_id": "e75c14b1a885",
+  "generated_at": "2026-11-13T15:37:44.641721+00:00",
+  "status": "completed",
+  "mode": "live",
+  "configuration": {
+    "mode": "live",
+    "namespace": "eval-8f9cd9fa0936499cbf19b457e2e3a70d:full:empty-mean",
+    "skills": true,
+    "reflection": true,
+    "variant": "full"
+  },
+  "request": "source.mean([]) 应返回 0，非空输入返回算术平均值。当前空列表会失败，请生成测试。",
+  "repository": "fixture/empty-mean",
+  "buggy_commit": "0bb06820d5dbd4aeeba094a435744772a2a76f51",
+  "fixed_commit": "50a825ee574abf95dd1ba5bb3a70bbb55a7fd307",
+  "source": "self_authored_fixture",
+  "stop_reason": "",
+  "elapsed_seconds": 15.413,
+  "plan": [
+    {
+      "task": "定位 source.mean 实现与空列表处理逻辑",
+      "status": "done",
+      "evidence": [
+        "ar-32de8499db8aaf3b757f"
+      ]
+    },
+    {
+      "task": "激活 boundary-analysis 技能获取复现规范",
+      "status": "done",
+      "evidence": []
+    },
+    {
+      "task": "记录假设并编写 pytest 复现测试（空列表返回0，非空返回均值）",
+      "status": "done",
+      "evidence": [
+        "ar-c9c426a9dca79826e84e"
+      ]
+    },
+    {
+      "task": "运行测试确认目标行为被触发并提交复现",
+      "status": "in_progress",
+      "evidence": [
+        "ar-c9c426a9dca79826e84e",
+        "ar-26bbb75205572622e945"
+      ]
+    }
+  ],
+  "test_changes": [
+    {
+      "path": "test_mean.py",
+      "at": "2026-11-13T15:19:17.194834+00:00",
+      "diff": "--- before/test_mean.py\n+++ after/test_mean.py\n@@ -0,0 +1,24 @@\n+import pytest\n+\n+from source import mean\n+\n+\n+def test_mean_empty_list_returns_zero():\n+    \"\"\"契约：空输入应返回 0，而不是抛异常。\"\"\"\n+    assert mean([]) == 0\n+\n+\n+@pytest.mark.parametrize(\n+    \"values, expected\",\n+    [\n+        ([5], 5),\n+        ([1, 2, 3], 2),\n+        ([-1, 1], 0),\n+        ([0, 0, 0], 0),\n+        ([1.5, 2.5], 2.0),\n+        ([-3, -1], -2),\n+    ],\n+)\n+def test_mean_non_empty_returns_arithmetic_mean(values, expected):\n+    \"\"\"正常值校验：非空输入返回算术平均值。\"\"\"\n+    assert mean(values) == pytest.approx(expected)\n"
+    }
+  ],
+  "prior_verifications": [],
+  "hypotheses": [
+    {
+      "id": "h1-empty-mean",
+      "claim": "source.mean 直接执行 sum(values)/len(values)，空列表时 len 为 0 触发 ZeroDivisionError，而契约要求返回 0；非空输入应返回算术平均值。",
+      "expected": "mean([]) 返回 0（当前实现抛 ZeroDivisionError）；非空参数化用例全部通过。",
+      "status": "supported",
+      "evidence": [
+        "ar-c9c426a9dca79826e84e",
+        "ar-26bbb75205572622e945"
+      ],
+      "next_action": "目标行为已触发（空列表 ZeroDivisionError，6 个非空用例通过），提交复现。"
+    }
+  ],
+  "skills": [
+    {
+      "name": "boundary-analysis",
+      "description": "调查空输入、零、负数、大数、时间端点与十进制精度问题，构造边界参数化测试。",
+      "sha256": "9fdd5d488abcb74e2bbf0fcbe0ae89363135a7af187052c509d8c5a928a04e53",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "5a375bb37055e2b6c56dfbaa8ea1cff70f1ffa30dcb260a49a2ddfdd6612a9e4"
+        },
+        {
+          "path": "scripts/__pycache__/boundaries.cpython-312.pyc",
+          "sha256": "217121c2a97c53c19428e2b215aafc5b65d4a814af6a4520e127818d2fa7f464"
+        },
+        {
+          "path": "scripts/boundaries.py",
+          "sha256": "e52098bcbeb60c4e837bb2ec44d5d238e585312e231fa2790b01ae61785f42c7"
+        }
+      ],
+      "reason": "缺陷涉及空列表边界输入，需要边界参数化测试策略"
+    }
+  ],
+  "experiments": [
+    {
+      "operation_id": "call_00_sh2t8NtkU2fajY2yH3nN7413",
+      "id": "ex-3e57841db53f",
+      "hypothesis": "h1-empty-mean",
+      "test_sha256": "5d057516966b02d5cd66d24303a032dc8e502c2b154b06b9d3490010f5c01c79",
+      "status": "completed",
+      "result": {
+        "kind": "assertion_failure",
+        "collected": 7,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+        "seconds": 0.278
+      },
+      "log": "ar-c9c426a9dca79826e84e",
+      "junit": "ar-26bbb75205572622e945"
+    }
+  ],
+  "submission": {
+    "summary": "复现 source.mean 空列表缺陷。source.py 中 mean 直接返回 sum(values)/len(values)，无空输入分支。测试 test_mean.py 含 7 个用例：test_mean_empty_list_returns_zero 断言 mean([]) == 0（契约要求），实际抛 ZeroDivisionError: division by zero（source.py:2），失败；另有 6 个非空参数化用例（单元素、正数、正负抵消、全零、浮点、全负）断言算术平均值，全部通过，证明缺陷仅限空输入边界而非整体计算错误。运行结果：1 failed, 6 passed。剩余不确定性：契约未说明空输入是否应返回整数 0 还是 0.0，测试用 == 0 对两者均成立；未覆盖 None/生成器等非列表输入。",
+    "test_sha256": "5d057516966b02d5cd66d24303a032dc8e502c2b154b06b9d3490010f5c01c79",
+    "experiment": "ex-3e57841db53f"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "5d057516966b02d5cd66d24303a032dc8e502c2b154b06b9d3490010f5c01c79",
+    "validations": [
+      {
+        "kind": "target_exception",
+        "collected": 7,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+        "failure_details": [
+          {
+            "test": "test_mean_empty_list_returns_zero",
+            "message": "ZeroDivisionError: division by zero"
+          }
+        ],
+        "seconds": 0.262,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-5be982c03683064bac4a",
+        "junit": "ar-5057014595071edb78cf"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 7,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+        "failure_details": [
+          {
+            "test": "test_mean_empty_list_returns_zero",
+            "message": "ZeroDivisionError: division by zero"
+          }
+        ],
+        "seconds": 0.231,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-5be982c03683064bac4a",
+        "junit": "ar-caa04d2d62b7c9fb9d0a"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 7,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+        "failure_details": [
+          {
+            "test": "test_mean_empty_list_returns_zero",
+            "message": "ZeroDivisionError: division by zero"
+          }
+        ],
+        "seconds": 0.237,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-5be982c03683064bac4a",
+        "junit": "ar-4540e658cbc13099bb1d"
+      },
+      {
+        "kind": "passed",
+        "collected": 7,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.23,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-1d305b4f74decc77c989",
+        "junit": "ar-2e8852a02c4a339fff23"
+      },
+      {
+        "kind": "passed",
+        "collected": 7,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.23,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-1d305b4f74decc77c989",
+        "junit": "ar-378fffab859d2a3efebf"
+      },
+      {
+        "kind": "passed",
+        "collected": 7,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.242,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-1d305b4f74decc77c989",
+        "junit": "ar-b83274549b685a78dcbc"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-1d305b4f74decc77c989",
+      "category": "private_validation_log",
+      "sha256": "f82ef5dfe7698ffb764de054a81d190d7df4e7119218d436d12350d7af175f80",
+      "bytes": 98
+    },
+    {
+      "id": "ar-26bbb75205572622e945",
+      "category": "junit",
+      "sha256": "26bbb75205572622e9453d790f6a7ae5cc4c02f550a1de70131c347a16e7c30b",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-273c28d7ed378ab2ebb1",
+      "category": "private_validation_junit",
+      "sha256": "c98e43f7a4ebadc96ce952404751ec51c95429132b72b9cc6108e4a4920ef836",
+      "bytes": 993
+    },
+    {
+      "id": "ar-2e8852a02c4a339fff23",
+      "category": "private_validation_junit",
+      "sha256": "0fcd244df541ac68eefe06c197b94152622f35d8f426cfa3ae1b90614a2c9fe0",
+      "bytes": 993
+    },
+    {
+      "id": "ar-32de8499db8aaf3b757f",
+      "category": "source",
+      "sha256": "32de8499db8aaf3b757fe023862411e735e01cff04b8351e7adec4b25867bcd1",
+      "bytes": 60
+    },
+    {
+      "id": "ar-3767dba213160ed6eaf1",
+      "category": "validation_junit",
+      "sha256": "3767dba213160ed6eaf109a5b2f037d0e4a8e2225a5d17b3bb643f6fa2e1e059",
+      "bytes": 993
+    },
+    {
+      "id": "ar-378fffab859d2a3efebf",
+      "category": "private_validation_junit",
+      "sha256": "625e56d7c50563f79d8d11d3cc04343574278a7af305f3c946583ac4befbf6f4",
+      "bytes": 993
+    },
+    {
+      "id": "ar-4540e658cbc13099bb1d",
+      "category": "validation_junit",
+      "sha256": "e4e9e16f61b77666a149807cad230d5bdafda72d4ae590d585664d37c3083640",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-4c73a77b9ed74702f6f6",
+      "category": "validation_junit",
+      "sha256": "5341b6a75921f1c21dca735aaee55d442ca204cd119e67780f924efd16430ffe",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-5057014595071edb78cf",
+      "category": "validation_junit",
+      "sha256": "449afdc805fd5196629a673b5c3c6e15bcd1e66ba45ff83caf33962d97970070",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-50b44caf69a97bd8d452",
+      "category": "validation_junit",
+      "sha256": "50b44caf69a97bd8d4520cac113134332bc76657a7f9bb5875a2e711518d4d90",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-5be982c03683064bac4a",
+      "category": "validation_log",
+      "sha256": "c9c426a9dca79826e84e945e334671c39738823c55bf8c65aff471c9363ce708",
+      "bytes": 910
+    },
+    {
+      "id": "ar-660637c6d0ca98a876ab",
+      "category": "private_validation_junit",
+      "sha256": "3ebe3dc4152295cbeaa259b69d5f11c33b7c3d3b2bea66f36843fd09df669ef8",
+      "bytes": 993
+    },
+    {
+      "id": "ar-77b743fb7a027f4ab1fe",
+      "category": "validation_junit",
+      "sha256": "77b743fb7a027f4ab1fe81cfe332ea280ff73a2790e0dc68303dc9d8064f167c",
+      "bytes": 993
+    },
+    {
+      "id": "ar-7cc80e22adf6c3c2ad0c",
+      "category": "validation_junit",
+      "sha256": "7cc80e22adf6c3c2ad0c20b9131d6f4ff6d6e15567db9b2be86462e2e67dd986",
+      "bytes": 993
+    },
+    {
+      "id": "ar-93f91a4aeb457b4ff264",
+      "category": "private_validation_junit",
+      "sha256": "dc31c21458a2f5ff135e634c98feeed78a698806b12a5dfcfcbd7794f5a97281",
+      "bytes": 993
+    },
+    {
+      "id": "ar-950ac0ddb8c068b2f5f5",
+      "category": "validation_junit",
+      "sha256": "51c1d0457f7ddeca17d5193db583668853b4224c279c1804f5492e999c232072",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-9b589e5b7341ad78a3ca",
+      "category": "validation_junit",
+      "sha256": "9b589e5b7341ad78a3ca47e4469d42549f721c4676dc8d9aa98e23bbac1b8682",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-b83274549b685a78dcbc",
+      "category": "private_validation_junit",
+      "sha256": "c042d0ef7a0643555af6ef5c46bc9113f163a950bf1f8085acfeb364b214253a",
+      "bytes": 993
+    },
+    {
+      "id": "ar-c9c426a9dca79826e84e",
+      "category": "validation_log",
+      "sha256": "c9c426a9dca79826e84e945e334671c39738823c55bf8c65aff471c9363ce708",
+      "bytes": 910
+    },
+    {
+      "id": "ar-caa04d2d62b7c9fb9d0a",
+      "category": "validation_junit",
+      "sha256": "d24b1873512877acbfe3a699595c10a077c753c6d3af28956e9114640395f2dc",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-cd55772405a29af2097e",
+      "category": "validation_junit",
+      "sha256": "cd55772405a29af2097eafdb3078aaa195348966afb8a25e289dec109fb0af50",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-dc37f258598654ff8183",
+      "category": "validation_junit",
+      "sha256": "f3d9bcad9880a44d2296d7412709bca16dad4c166a4e91824dd46f68c4c685ee",
+      "bytes": 1545
+    },
+    {
+      "id": "ar-f82ef5dfe7698ffb764d",
+      "category": "validation_log",
+      "sha256": "f82ef5dfe7698ffb764de054a81d190d7df4e7119218d436d12350d7af175f80",
+      "bytes": 98
+    }
+  ],
+  "statistics": {
+    "model_calls": 9,
+    "input_tokens": 44163,
+    "output_tokens": 1547,
+    "estimated_cost_cny": 0.120845,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

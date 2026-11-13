@@ -1,0 +1,399 @@
+{
+  "schema_version": "1.0",
+  "case": "shared-state",
+  "run_id": "62af73fb0a05",
+  "generated_at": "2026-11-13T15:38:12.545687+00:00",
+  "status": "completed",
+  "mode": "live",
+  "configuration": {
+    "mode": "live",
+    "namespace": "eval-579d76338f214986b4fd1d7f4ee9e78a:no_skills:shared-state",
+    "skills": false,
+    "reflection": true,
+    "variant": "no_skills"
+  },
+  "request": "source.Bucket 的不同实例应拥有独立的 items 列表。调用 add(value) 后另一个实例也出现了数据。",
+  "repository": "fixture/shared-state",
+  "buggy_commit": "76bd021083c1d479ddea1694a62cb2fd82fa4433",
+  "fixed_commit": "fd9adfe6843405e6b6a8e59204702f2bfa71d233",
+  "source": "self_authored_fixture",
+  "stop_reason": "",
+  "elapsed_seconds": 12.571,
+  "plan": [
+    {
+      "task": "定位 source.Bucket 类定义与 items 初始化方式",
+      "status": "done",
+      "evidence": [
+        "ar-2af5a23e11ad64ba7a1a"
+      ]
+    },
+    {
+      "task": "记录假设：items 为类级可变默认值导致实例共享",
+      "status": "done",
+      "evidence": [
+        "ar-812b746081ea3e0295f9"
+      ]
+    },
+    {
+      "task": "编写复现测试：两个实例 add 后互不影响",
+      "status": "done",
+      "evidence": []
+    },
+    {
+      "task": "运行测试并核对错误类别，更新假设证据",
+      "status": "done",
+      "evidence": [
+        "ar-812b746081ea3e0295f9",
+        "ar-6b4641d0300981ce182b"
+      ]
+    },
+    {
+      "task": "提交复现",
+      "status": "in_progress",
+      "evidence": []
+    }
+  ],
+  "test_changes": [
+    {
+      "path": "test_bucket_items_isolation.py",
+      "at": "2026-11-13T15:28:40.544285+00:00",
+      "diff": "--- before/test_bucket_items_isolation.py\n+++ after/test_bucket_items_isolation.py\n@@ -0,0 +1,20 @@\n+from source import Bucket\n+\n+\n+def test_instances_have_independent_items():\n+    b1 = Bucket()\n+    b2 = Bucket()\n+\n+    b1.add(1)\n+    b2.add(2)\n+\n+    assert b1.items == [1]\n+    assert b2.items == [2]\n+\n+\n+def test_new_instance_starts_empty_after_other_instance_add():\n+    b1 = Bucket()\n+    b1.add(\"x\")\n+\n+    b2 = Bucket()\n+    assert b2.items == []\n"
+    }
+  ],
+  "prior_verifications": [],
+  "hypotheses": [
+    {
+      "id": "h1",
+      "claim": "source.Bucket 的 items 是类级可变列表，add() 通过 self.items.append 修改类属性，导致所有实例共享同一列表",
+      "expected": "两个独立实例分别 add 后，各自 items 只包含自己的值；缺陷版本中 b2.items 会包含 b1 添加的值",
+      "status": "supported",
+      "evidence": [
+        "ar-812b746081ea3e0295f9",
+        "ar-6b4641d0300981ce182b"
+      ],
+      "next_action": "证据已足：两个测试均 assertion_failure，b1.items 为 [1,2]、新实例 items 为 [1,2,'x']，确认类级共享；提交复现"
+    }
+  ],
+  "skills": [],
+  "experiments": [
+    {
+      "operation_id": "call_00_dCHPArv4yDCE8lLzutd56059",
+      "id": "ex-e03dd496f22e",
+      "hypothesis": "h1",
+      "test_sha256": "9660940e7161eb33c9f0898e0ec0f04c94273b3fda7ac35facceea16fdb8fab1",
+      "status": "completed",
+      "result": {
+        "kind": "assertion_failure",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "c24cc244de5297de9f690fd5ab8c804f44c4589d6603f6a36cf84acdea9c9604",
+        "failure_details": [
+          {
+            "test": "test_instances_have_independent_items",
+            "message": "assert [1, 2] == [1]\n  \n  Left contains one more item: 2\n  Use -v to get more diff"
+          },
+          {
+            "test": "test_new_instance_starts_empty_after_other_instance_add",
+            "message": "AssertionError: assert [1, 2, 'x'] == []\n  \n  Left contains 3 more items, first extra item: 1\n  Use -v to get more diff"
+          }
+        ],
+        "seconds": 0.272
+      },
+      "log": "ar-812b746081ea3e0295f9",
+      "junit": "ar-6b4641d0300981ce182b"
+    }
+  ],
+  "submission": {
+    "summary": "复现 source.Bucket 实例间 items 共享缺陷。根因：source.py 中 items = [] 为类级可变属性，add() 通过 self.items.append 修改类属性，所有实例共用同一列表。测试 test_bucket_items_isolation.py 含两个用例：(1) b1.add(1)、b2.add(2) 后断言 b1.items == [1] 且 b2.items == [2]；(2) 一个实例 add 后新建实例断言 items == []。缺陷版本两用例均 assertion_failure（实际 b1.items 为 [1,2]，新实例 items 为 [1,2,'x']），非导入或收集错误。修复方向：在 __init__ 中初始化 self.items = []。剩余不确定性：无。",
+    "test_sha256": "9660940e7161eb33c9f0898e0ec0f04c94273b3fda7ac35facceea16fdb8fab1",
+    "experiment": "ex-e03dd496f22e"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "9660940e7161eb33c9f0898e0ec0f04c94273b3fda7ac35facceea16fdb8fab1",
+    "validations": [
+      {
+        "kind": "assertion_failure",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "c24cc244de5297de9f690fd5ab8c804f44c4589d6603f6a36cf84acdea9c9604",
+        "failure_details": [
+          {
+            "test": "test_instances_have_independent_items",
+            "message": "assert [1, 2] == [1]\n  \n  Left contains one more item: 2\n  Use -v to get more diff"
+          },
+          {
+            "test": "test_new_instance_starts_empty_after_other_instance_add",
+            "message": "AssertionError: assert [1, 2, 'x'] == []\n  \n  Left contains 3 more items, first extra item: 1\n  Use -v to get more diff"
+          }
+        ],
+        "seconds": 0.243,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-38dcfe85a48cacb8548b",
+        "junit": "ar-8c8bd6c5ecf07e0e024b"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "c24cc244de5297de9f690fd5ab8c804f44c4589d6603f6a36cf84acdea9c9604",
+        "failure_details": [
+          {
+            "test": "test_instances_have_independent_items",
+            "message": "assert [1, 2] == [1]\n  \n  Left contains one more item: 2\n  Use -v to get more diff"
+          },
+          {
+            "test": "test_new_instance_starts_empty_after_other_instance_add",
+            "message": "AssertionError: assert [1, 2, 'x'] == []\n  \n  Left contains 3 more items, first extra item: 1\n  Use -v to get more diff"
+          }
+        ],
+        "seconds": 0.233,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-38dcfe85a48cacb8548b",
+        "junit": "ar-31c0e4a1a5676d6ef607"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "c24cc244de5297de9f690fd5ab8c804f44c4589d6603f6a36cf84acdea9c9604",
+        "failure_details": [
+          {
+            "test": "test_instances_have_independent_items",
+            "message": "assert [1, 2] == [1]\n  \n  Left contains one more item: 2\n  Use -v to get more diff"
+          },
+          {
+            "test": "test_new_instance_starts_empty_after_other_instance_add",
+            "message": "AssertionError: assert [1, 2, 'x'] == []\n  \n  Left contains 3 more items, first extra item: 1\n  Use -v to get more diff"
+          }
+        ],
+        "seconds": 0.229,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-38dcfe85a48cacb8548b",
+        "junit": "ar-e3f800d41a40f4296ad3"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.232,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-bcd13931f4bb287db80f",
+        "junit": "ar-47ec389e736ae87e14e5"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.234,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-bcd13931f4bb287db80f",
+        "junit": "ar-44423cec6c4fbcf83dd5"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.232,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-bcd13931f4bb287db80f",
+        "junit": "ar-96277b1fc4dc093f3e7d"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-13e34020048091934274",
+      "category": "private_validation_junit",
+      "sha256": "9286fae623df7caf032ecc1dfbf32ede6f77304be6acc7c9d3248b314b53282e",
+      "bytes": 486
+    },
+    {
+      "id": "ar-1cfb79c1eefff9491d27",
+      "category": "validation_junit",
+      "sha256": "5ddc213383002b94cc4fa2304e4f6c6834cff9b5f751969dbc5dc1e1f6bf974b",
+      "bytes": 1504
+    },
+    {
+      "id": "ar-2af5a23e11ad64ba7a1a",
+      "category": "source",
+      "sha256": "64f766069bf608f68543f5cf05088e6e0d520f16c28c316205fa1182d75cf9be",
+      "bytes": 99
+    },
+    {
+      "id": "ar-2e8ce6e0987018c8e82d",
+      "category": "private_validation_junit",
+      "sha256": "1573c9de3049a7de1843aa1b27c8b55414f886c71c54b8b9fafe67e0e2f9ee59",
+      "bytes": 486
+    },
+    {
+      "id": "ar-31c0e4a1a5676d6ef607",
+      "category": "validation_junit",
+      "sha256": "71a3555ee110c86dec8ee23a7e546c4f5e01fdb9158fc2b29df6f579b7a71e4d",
+      "bytes": 1504
+    },
+    {
+      "id": "ar-38dcfe85a48cacb8548b",
+      "category": "validation_log",
+      "sha256": "0e9b69ca8576113b849b79410feddc34bf1ad6ba41fcb7b0d53554301d02de67",
+      "bytes": 1315
+    },
+    {
+      "id": "ar-44423cec6c4fbcf83dd5",
+      "category": "private_validation_junit",
+      "sha256": "3bb7fd17c272f4f2ad1bf43a07cf8440594488cea1187d99e11ded02ce7d928a",
+      "bytes": 486
+    },
+    {
+      "id": "ar-47ec389e736ae87e14e5",
+      "category": "private_validation_junit",
+      "sha256": "fcf48db536139ff40be5eacd6f5aa563b5287e680fbedb2ae86e22555ff7fa42",
+      "bytes": 486
+    },
+    {
+      "id": "ar-4f7d9caa7081d14e718b",
+      "category": "validation_junit",
+      "sha256": "37fcd5fb7563e72a45f07620b52c972db1cb4bb3d18261ab012c2ee415a1c8e9",
+      "bytes": 1504
+    },
+    {
+      "id": "ar-593e942c348c5ed5552c",
+      "category": "validation_log",
+      "sha256": "63ddd3bf1385d5766e834bdfe9dbc5113a725dd1fb6f83de61befaf528465427",
+      "bytes": 1315
+    },
+    {
+      "id": "ar-5cee64002eff969873e5",
+      "category": "validation_junit",
+      "sha256": "12432eeb7416f125880f1f2f04c2be3457a6924b2b9c29a24ab9e549bcb53010",
+      "bytes": 1504
+    },
+    {
+      "id": "ar-641c1b9e3269186c0f26",
+      "category": "validation_junit",
+      "sha256": "983c1192bdf5e60531254c395c5682f9bc58d70f4967034273b55ea4be41fd4f",
+      "bytes": 1504
+    },
+    {
+      "id": "ar-6730e14a7848839d646e",
+      "category": "private_validation_junit",
+      "sha256": "d214475691a94eb0b6723ee48b30e7408a0aa13aabca584788954cf44166d04f",
+      "bytes": 486
+    },
+    {
+      "id": "ar-6b4641d0300981ce182b",
+      "category": "junit",
+      "sha256": "8ac6618cdd3700047062ada54092d314ecf33bde96335f34e30869a051b42b46",
+      "bytes": 1504
+    },
+    {
+      "id": "ar-812b746081ea3e0295f9",
+      "category": "test_log",
+      "sha256": "0e9b69ca8576113b849b79410feddc34bf1ad6ba41fcb7b0d53554301d02de67",
+      "bytes": 1315
+    },
+    {
+      "id": "ar-8c8bd6c5ecf07e0e024b",
+      "category": "validation_junit",
+      "sha256": "c6e49f3806a9b60940193c415802df120ae536af0fc732f2ee40a19aef146b35",
+      "bytes": 1504
+    },
+    {
+      "id": "ar-96277b1fc4dc093f3e7d",
+      "category": "private_validation_junit",
+      "sha256": "75ac3bdfe56525c402d9394b2749e5dc8dd0be997d178cfbadf3b41c3968c032",
+      "bytes": 486
+    },
+    {
+      "id": "ar-9d1202e05d394a2ed679",
+      "category": "private_validation_junit",
+      "sha256": "2d97b21cbe42f71942a85931b36cc05cbc275eb32e55c74c99ae07da2990c9d6",
+      "bytes": 486
+    },
+    {
+      "id": "ar-bcd13931f4bb287db80f",
+      "category": "private_validation_log",
+      "sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e",
+      "bytes": 98
+    },
+    {
+      "id": "ar-ca3d98823911a7f46b69",
+      "category": "private_validation_junit",
+      "sha256": "939fdb6ab599c0d8a8e85f49b62eb4725685082c297abb0fe2fc305c4f4a5b64",
+      "bytes": 486
+    },
+    {
+      "id": "ar-d26fb44e3a8f544c13cd",
+      "category": "private_validation_junit",
+      "sha256": "b97c9786cc0906f0e00f48cf1580a6a445af8170495b8f5c33e95e69c8694173",
+      "bytes": 486
+    },
+    {
+      "id": "ar-e27dc2f486dfab95d296",
+      "category": "validation_junit",
+      "sha256": "3246a6c71407b79aee33eaf61832af62c06963b7caa253a599aaf1ff3d226e5c",
+      "bytes": 1504
+    },
+    {
+      "id": "ar-e3f800d41a40f4296ad3",
+      "category": "validation_junit",
+      "sha256": "1f8081f273388d4a551da84baf53829725be4aa5f51d09d83c46cf25aed74fb0",
+      "bytes": 1504
+    },
+    {
+      "id": "ar-f3c9d4633b64be26eb1d",
+      "category": "validation_junit",
+      "sha256": "9ee8a94d6c1850871127cdd6c5b923cc16167c97d79b06a995e9302d870ad986",
+      "bytes": 1504
+    }
+  ],
+  "statistics": {
+    "model_calls": 7,
+    "input_tokens": 27087,
+    "output_tokens": 1390,
+    "estimated_cost_cny": 0.078356,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

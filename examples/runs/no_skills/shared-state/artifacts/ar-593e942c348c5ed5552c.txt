@@ -1,0 +1,36 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+____________________ test_instances_have_independent_items _____________________
+
+    def test_instances_have_independent_items():
+        b1 = Bucket()
+        b2 = Bucket()
+    
+        b1.add(1)
+        b2.add(2)
+    
+>       assert b1.items == [1]
+E       assert [1, 2] == [1]
+E         
+E         Left contains one more item: 2
+E         Use -v to get more diff
+
+/tests/test_bucket_items_isolation.py:11: AssertionError
+___________ test_new_instance_starts_empty_after_other_instance_add ____________
+
+    def test_new_instance_starts_empty_after_other_instance_add():
+        b1 = Bucket()
+        b1.add("x")
+    
+        b2 = Bucket()
+>       assert b2.items == []
+E       AssertionError: assert [1, 2, 'x'] == []
+E         
+E         Left contains 3 more items, first extra item: 1
+E         Use -v to get more diff
+
+/tests/test_bucket_items_isolation.py:20: AssertionError
+=========================== short test summary info ============================
+FAILED test_bucket_items_isolation.py::test_instances_have_independent_items
+FAILED test_bucket_items_isolation.py::test_new_instance_starts_empty_after_other_instance_add
+2 failed in 0.02s

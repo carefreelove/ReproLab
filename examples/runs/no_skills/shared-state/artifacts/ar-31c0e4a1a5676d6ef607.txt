@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="0.013" timestamp="2026-11-13T15:38:11.380884+00:00" hostname="6564dafbbb38"><testcase classname="test_bucket_items_isolation" name="test_instances_have_independent_items" time="0.000"><failure message="assert [1, 2] == [1]&#10;  &#10;  Left contains one more item: 2&#10;  Use -v to get more diff">def test_instances_have_independent_items():
+        b1 = Bucket()
+        b2 = Bucket()
+    
+        b1.add(1)
+        b2.add(2)
+    
+&gt;       assert b1.items == [1]
+E       assert [1, 2] == [1]
+E         
+E         Left contains one more item: 2
+E         Use -v to get more diff
+
+/tests/test_bucket_items_isolation.py:11: AssertionError</failure></testcase><testcase classname="test_bucket_items_isolation" name="test_new_instance_starts_empty_after_other_instance_add" time="0.000"><failure message="AssertionError: assert [1, 2, 'x'] == []&#10;  &#10;  Left contains 3 more items, first extra item: 1&#10;  Use -v to get more diff">def test_new_instance_starts_empty_after_other_instance_add():
+        b1 = Bucket()
+        b1.add("x")
+    
+        b2 = Bucket()
+&gt;       assert b2.items == []
+E       AssertionError: assert [1, 2, 'x'] == []
+E         
+E         Left contains 3 more items, first extra item: 1
+E         Use -v to get more diff
+
+/tests/test_bucket_items_isolation.py:20: AssertionError</failure></testcase></testsuite></testsuites>

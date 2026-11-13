@@ -1,0 +1,28 @@
+{
+  "content": "",
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_00_85lBYosyp37DuDgL7bBl7481",
+      "function": {
+        "arguments": "{\"content\": \"import pytest\\n\\nfrom source import mean\\n\\n\\ndef test_mean_empty_list_returns_zero():\\n    assert mean([]) == 0\\n\\n\\ndef test_mean_non_empty_list_returns_arithmetic_mean():\\n    assert mean([1, 2, 3, 4]) == pytest.approx(2.5)\\n    assert mean([10]) == pytest.approx(10)\\n\"}",
+        "name": "deliver_test"
+      },
+      "type": "function",
+      "index": 0
+    }
+  ],
+  "extra": {
+    "actions": [
+      {
+        "id": "call_00_85lBYosyp37DuDgL7bBl7481",
+        "name": "deliver_test",
+        "arguments": {
+          "content": "import pytest\n\nfrom source import mean\n\n\ndef test_mean_empty_list_returns_zero():\n    assert mean([]) == 0\n\n\ndef test_mean_non_empty_list_returns_arithmetic_mean():\n    assert mean([1, 2, 3, 4]) == pytest.approx(2.5)\n    assert mean([10]) == pytest.approx(10)\n"
+        }
+      }
+    ],
+    "cost": 0.0002538,
+    "ticket": "249d5f48cfd4490c8d95d57a5d368bc3"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0",
+  "case": "empty-mean",
+  "run_id": "dbceb84fdb6b",
+  "generated_at": "2026-11-13T15:38:35.340360+00:00",
+  "status": "partial",
+  "mode": "live",
+  "configuration": {
+    "mode": "live",
+    "namespace": "eval-555372367cd54e9b8bf6b50c81fc74be:full:empty-mean",
+    "skills": true,
+    "reflection": true,
+    "variant": "full"
+  },
+  "request": "source.mean([]) 应返回 0，非空输入返回算术平均值。当前空列表会失败，请生成测试。",
+  "repository": "fixture/empty-mean",
+  "buggy_commit": "0bb06820d5dbd4aeeba094a435744772a2a76f51",
+  "fixed_commit": "50a825ee574abf95dd1ba5bb3a70bbb55a7fd307",
+  "source": "self_authored_fixture",
+  "stop_reason": "no_progress · 相同动作与结果连续出现三次，已保存调查缺口",
+  "elapsed_seconds": 17.471,
+  "plan": [
+    {
+      "task": "定位 source.mean 的真实实现与相关源码",
+      "status": "done",
+      "evidence": [
+        "source.py:1-2 mean(values) = sum(values)/len(values)"
+      ]
+    },
+    {
+      "task": "激活 boundary-analysis skill 获取复现方法",
+      "status": "done",
+      "evidence": [
+        "boundary-analysis SKILL.md 已加载"
+      ]
+    },
+    {
+      "task": "记录假设并编写空列表与非空列表的复现测试",
+      "status": "done",
+      "evidence": [
+        "test_mean_boundary.py 已写入"
+      ]
+    },
+    {
+      "task": "运行测试、查看真实错误类别并更新假设证据",
+      "status": "done",
+      "evidence": [
+        "ex-0b94afba7114: 1 failed, 6 passed",
+        "ar-2e90d32d3fe1e273a966: ZeroDivisionError at source.py:2"
+      ]
+    },
+    {
+      "task": "提交复现测试",
+      "status": "in_progress",
+      "evidence": []
+    }
+  ],
+  "test_changes": [
+    {
+      "path": "test_mean_boundary.py",
+      "at": "2026-11-13T14:43:52.928286+00:00",
+      "diff": "--- before/test_mean_boundary.py\n+++ after/test_mean_boundary.py\n@@ -0,0 +1,24 @@\n+import pytest\n+\n+from source import mean\n+\n+\n+def test_mean_empty_list_returns_zero():\n+    \"\"\"契约：空输入应返回 0，而不是抛异常。\"\"\"\n+    assert mean([]) == 0\n+\n+\n+@pytest.mark.parametrize(\n+    \"values, expected\",\n+    [\n+        ([5], 5),\n+        ([1, 2, 3], 2),\n+        ([0, 0], 0),\n+        ([-1, 1], 0),\n+        ([-2, -4], -3),\n+        ([1.5, 2.5], 2.0),\n+    ],\n+)\n+def test_mean_non_empty_returns_arithmetic_mean(values, expected):\n+    \"\"\"正常值校验：非空输入返回算术平均值。\"\"\"\n+    assert mean(values) == pytest.approx(expected)\n"
+    }
+  ],
+  "prior_verifications": [],
+  "hypotheses": [
+    {
+      "id": "h1-empty-mean",
+      "claim": "source.mean([]) 未处理空输入边界，直接执行 sum([])/len([]) 触发 ZeroDivisionError，而契约要求返回 0。",
+      "expected": "mean([]) 返回 0；当前实现抛出 ZeroDivisionError，测试失败。",
+      "status": "active",
+      "evidence": [],
+      "next_action": "编写参数化测试：空列表断言 == 0，非空列表断言算术平均值。"
+    }
+  ],
+  "skills": [
+    {
+      "name": "boundary-analysis",
+      "description": "调查空输入、零、负数、大数、时间端点与十进制精度问题，构造边界参数化测试。",
+      "sha256": "9fdd5d488abcb74e2bbf0fcbe0ae89363135a7af187052c509d8c5a928a04e53",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "5a375bb37055e2b6c56dfbaa8ea1cff70f1ffa30dcb260a49a2ddfdd6612a9e4"
+        },
+        {
+          "path": "scripts/__pycache__/boundaries.cpython-312.pyc",
+          "sha256": "217121c2a97c53c19428e2b215aafc5b65d4a814af6a4520e127818d2fa7f464"
+        },
+        {
+          "path": "scripts/boundaries.py",
+          "sha256": "e52098bcbeb60c4e837bb2ec44d5d238e585312e231fa2790b01ae61785f42c7"
+        }
+      ],
+      "reason": "缺陷涉及空列表边界输入，需要边界参数化测试方法"
+    }
+  ],
+  "experiments": [
+    {
+      "operation_id": "call_00_XvmpiDyx48EZApqqtXr45003",
+      "id": "ex-0b94afba7114",
+      "hypothesis": "h1-empty-mean",
+      "test_sha256": "e9c3104c34f9fd473bfa6ded2b8da2e674b5aa134054d270932226a317c09f05",
+      "status": "completed",
+      "result": {
+        "kind": "assertion_failure",
+        "collected": 7,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+        "seconds": 0.306
+      },
+      "log": "ar-2e90d32d3fe1e273a966",
+      "junit": "ar-3a13c4775b69b5a9cbd2"
+    }
+  ],
+  "submission": null,
+  "verification": null,
+  "artifacts": [
+    {
+      "id": "ar-2e90d32d3fe1e273a966",
+      "category": "test_log",
+      "sha256": "2e90d32d3fe1e273a9662e0646f017352d276ee09cb6ccf2be77b215626bf9e6",
+      "bytes": 919
+    },
+    {
+      "id": "ar-32de8499db8aaf3b757f",
+      "category": "source",
+      "sha256": "32de8499db8aaf3b757fe023862411e735e01cff04b8351e7adec4b25867bcd1",
+      "bytes": 60
+    },
+    {
+      "id": "ar-3a13c4775b69b5a9cbd2",
+      "category": "junit",
+      "sha256": "3a13c4775b69b5a9cbd291c29ffa07a974aad82335e1a2934af3ace9f15f0b87",
+      "bytes": 1617
+    }
+  ],
+  "statistics": {
+    "model_calls": 11,
+    "input_tokens": 60453,
+    "output_tokens": 2232,
+    "estimated_cost_cny": 0.166517,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

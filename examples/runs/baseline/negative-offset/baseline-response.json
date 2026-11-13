@@ -1,0 +1,28 @@
+{
+  "content": "",
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_00_PG0HkAIYpZBP5qw57Sxe7817",
+      "function": {
+        "arguments": "{\"content\": \"import pytest\\n\\nfrom source import paginate\\n\\n\\ndef test_paginate_rejects_negative_offset():\\n    items = [1, 2, 3, 4, 5]\\n    with pytest.raises(ValueError):\\n        paginate(items, -1, 2)\\n\"}",
+        "name": "deliver_test"
+      },
+      "type": "function",
+      "index": 0
+    }
+  ],
+  "extra": {
+    "actions": [
+      {
+        "id": "call_00_PG0HkAIYpZBP5qw57Sxe7817",
+        "name": "deliver_test",
+        "arguments": {
+          "content": "import pytest\n\nfrom source import paginate\n\n\ndef test_paginate_rejects_negative_offset():\n    items = [1, 2, 3, 4, 5]\n    with pytest.raises(ValueError):\n        paginate(items, -1, 2)\n"
+        }
+      }
+    ],
+    "cost": 0.00023579999999999999,
+    "ticket": "753478fdc1284e8386c428ec6ef23c1c"
+  }
+}

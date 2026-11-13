@@ -1,0 +1,359 @@
+{
+  "schema_version": "1.0",
+  "case": "chunked-even",
+  "run_id": "91d2caae0f70",
+  "generated_at": "2026-11-13T15:38:07.013513+00:00",
+  "status": "completed",
+  "mode": "live_baseline",
+  "configuration": {
+    "mode": "live_baseline",
+    "namespace": "eval-8f9cd9fa0936499cbf19b457e2e3a70d:baseline:chunked-even",
+    "skills": false
+  },
+  "request": "more_itertools.chunked_even(iterable, n) 在 n=0 时应得到空结果且不消耗输入迭代器；n<0 时应抛出 ValueError 且不消耗输入。请验证边界及迭代器状态。",
+  "repository": "more-itertools/more-itertools",
+  "buggy_commit": "20c4ee5c63f8f8c35a37aee3b69d95cd2450c09a",
+  "fixed_commit": "08dca284ba5446a026afdc34067b658f9da989eb",
+  "source": "https://github.com/more-itertools/more-itertools/pull/1342",
+  "stop_reason": "",
+  "elapsed_seconds": 0.0,
+  "plan": [],
+  "test_changes": [],
+  "prior_verifications": [],
+  "hypotheses": [],
+  "skills": [],
+  "experiments": [],
+  "submission": {
+    "summary": "单次生成对照",
+    "test_sha256": "6f08b2f74d37dd26e2c8f437038bfc910918a16d40936bed297c78c2b31d5b5c",
+    "experiment": "baseline"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "6f08b2f74d37dd26e2c8f437038bfc910918a16d40936bed297c78c2b31d5b5c",
+    "validations": [
+      {
+        "kind": "target_exception",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "b4a44659666e7e61a23a543b366753963a38dbf97a64d0f244c2ffbad9cb05df",
+        "failure_details": [
+          {
+            "test": "test_chunked_even_n_zero_returns_empty_without_consuming",
+            "message": "ValueError: Step for islice() must be a positive integer or None."
+          },
+          {
+            "test": "test_chunked_even_n_negative_raises_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_reproducer.TrackingIterator object at 0xADDRESS>.consumed"
+          }
+        ],
+        "seconds": 0.321,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-70923fcb836608d8b2ef",
+        "junit": "ar-e1e9f989aa24810ee117"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "b4a44659666e7e61a23a543b366753963a38dbf97a64d0f244c2ffbad9cb05df",
+        "failure_details": [
+          {
+            "test": "test_chunked_even_n_zero_returns_empty_without_consuming",
+            "message": "ValueError: Step for islice() must be a positive integer or None."
+          },
+          {
+            "test": "test_chunked_even_n_negative_raises_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_reproducer.TrackingIterator object at 0xADDRESS>.consumed"
+          }
+        ],
+        "seconds": 0.313,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-24f041d65d77a58d3056",
+        "junit": "ar-8de74a7ab265639632c9"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 2,
+        "exit_code": 1,
+        "failure_signature": "b4a44659666e7e61a23a543b366753963a38dbf97a64d0f244c2ffbad9cb05df",
+        "failure_details": [
+          {
+            "test": "test_chunked_even_n_zero_returns_empty_without_consuming",
+            "message": "ValueError: Step for islice() must be a positive integer or None."
+          },
+          {
+            "test": "test_chunked_even_n_negative_raises_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_reproducer.TrackingIterator object at 0xADDRESS>.consumed"
+          }
+        ],
+        "seconds": 0.318,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-0ae1fed2f18615154322",
+        "junit": "ar-91cf9e39f14742c340bd"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.293,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-425d71e8cdf0361c1fac",
+        "junit": "ar-309f97ee72afa0946ff3"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.289,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-425d71e8cdf0361c1fac",
+        "junit": "ar-92ca882f1e466f1c7958"
+      },
+      {
+        "kind": "passed",
+        "collected": 2,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.283,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-ae67159ef7243c223102",
+        "junit": "ar-a3a215530cd32e81b675"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-0ae1fed2f18615154322",
+      "category": "validation_log",
+      "sha256": "d78cca76b7bb8f774feeb072212d93c7c5fbdcd239722bcfaf0d1a1baab446e7",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-14610857a731298e1f03",
+      "category": "baseline_log",
+      "sha256": "14610857a731298e1f030331fc0d89584919542a7651dcf403a22ba6631c2265",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-148248f9dd01df7a75ed",
+      "category": "private_validation_junit",
+      "sha256": "16e3db1ffea33826d870ed8b4d3d12b3425004f3e5765b8a7a90a9f98839d969",
+      "bytes": 479
+    },
+    {
+      "id": "ar-184c5107758502b477d6",
+      "category": "validation_log",
+      "sha256": "184c5107758502b477d62892fee4e4f5fc4c937e220db111039f4eee56aa8c19",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-24f041d65d77a58d3056",
+      "category": "validation_log",
+      "sha256": "eeb3c21300557e372afa04eeaf321117a9c9f22bb56d1f6fb1dae96827b06bfd",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-309f97ee72afa0946ff3",
+      "category": "private_validation_junit",
+      "sha256": "d4eb57068dcf4f8c1360bd0a21ea56364db1985d9771a6b158cf2776beb6784f",
+      "bytes": 479
+    },
+    {
+      "id": "ar-425d71e8cdf0361c1fac",
+      "category": "private_validation_log",
+      "sha256": "cdf8d13a3f141b449c7d92c9b86d6fd681de17445a1d661236b92f93860eafac",
+      "bytes": 98
+    },
+    {
+      "id": "ar-5840a600be91e5260193",
+      "category": "private_validation_junit",
+      "sha256": "d150e64d26bbf6cf7a2a83f9b3c5eb4f17bc185c1502de130c609d7193ba45d6",
+      "bytes": 479
+    },
+    {
+      "id": "ar-6228ca8ad5c704ad9fdd",
+      "category": "validation_junit",
+      "sha256": "6228ca8ad5c704ad9fdd18df15b5bb22d2a78e90cb1d371e0a535dbc62feb17f",
+      "bytes": 479
+    },
+    {
+      "id": "ar-70923fcb836608d8b2ef",
+      "category": "validation_log",
+      "sha256": "15aa36adb54cb5f274847e64b33cb2117149ba26d46f6b0113263cc445f4b2b2",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-8461825d8d6a149fba37",
+      "category": "validation_junit",
+      "sha256": "8461825d8d6a149fba3762f8c900c76b34837d9916ea19dcbed49599cadca2a7",
+      "bytes": 2621
+    },
+    {
+      "id": "ar-8de74a7ab265639632c9",
+      "category": "validation_junit",
+      "sha256": "5b95223af5ba51df00de58343d08f50be74f4a5c362bb6c71794e78e2212b1c6",
+      "bytes": 2621
+    },
+    {
+      "id": "ar-91cf9e39f14742c340bd",
+      "category": "validation_junit",
+      "sha256": "7451c43f3500a6d7b480509199625c6a05339328cacd33f428600aff032f3fb1",
+      "bytes": 2621
+    },
+    {
+      "id": "ar-9298c892a057712e16a1",
+      "category": "validation_log",
+      "sha256": "df9f89f505822402777a6da4a206f4461f9f4002ac2579da4d907084960a6402",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-92ca882f1e466f1c7958",
+      "category": "private_validation_junit",
+      "sha256": "5372e3cad5138638e8e52c1f1803e08cae452ac725c64f286e37b86a3d2adccc",
+      "bytes": 479
+    },
+    {
+      "id": "ar-9e2c643ce758c8b2a226",
+      "category": "validation_junit",
+      "sha256": "9e2c643ce758c8b2a2264ecd30ec7c4b8ae9d80297caf82f0ab73545db6040ad",
+      "bytes": 479
+    },
+    {
+      "id": "ar-9faf50485d124e2802d8",
+      "category": "validation_junit",
+      "sha256": "9faf50485d124e2802d8a6daed8d2072a05e70558ac09a5508256686e76b9b32",
+      "bytes": 2621
+    },
+    {
+      "id": "ar-a3a215530cd32e81b675",
+      "category": "private_validation_junit",
+      "sha256": "6e66b6d6d034f893b752c4f5610105593bb56d763c7ddc4ba2c36eb56484eee7",
+      "bytes": 479
+    },
+    {
+      "id": "ar-a665801e35cd1a7a37f1",
+      "category": "validation_junit",
+      "sha256": "af7c7f59dbde202d1bef9889bb65e9af3a86017f8dfd36fffeb76780b3a27c7a",
+      "bytes": 2621
+    },
+    {
+      "id": "ar-a838e14b6d2062fd3cb3",
+      "category": "validation_log",
+      "sha256": "0d2612d36d801abe4170290efcea80be397f06bfe66bc80bd542b284d70596d0",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-ae67159ef7243c223102",
+      "category": "private_validation_log",
+      "sha256": "149e983c325e1215d8fe411fd58fb9c0fa38bc5dfa119c4a6a92d44ee61e3e10",
+      "bytes": 98
+    },
+    {
+      "id": "ar-b9fd347e302d259fe9d9",
+      "category": "validation_junit",
+      "sha256": "b9fd347e302d259fe9d91db93ebaab3c2ccbab80a8f8c0c04ad6cb37e873de80",
+      "bytes": 479
+    },
+    {
+      "id": "ar-bcc1f1ae4182d18ff5f8",
+      "category": "validation_log",
+      "sha256": "bcc1f1ae4182d18ff5f8f59f9ee8a9c40d11a711eb65120c509cf234048b6e73",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-c16bd4b677accdd44279",
+      "category": "private_validation_junit",
+      "sha256": "19b93dfc7b90c6a8eb1e17f2a678d7d66d0875b19c71337d52278f8f3c169ce2",
+      "bytes": 479
+    },
+    {
+      "id": "ar-cdf8d13a3f141b449c7d",
+      "category": "validation_log",
+      "sha256": "cdf8d13a3f141b449c7d92c9b86d6fd681de17445a1d661236b92f93860eafac",
+      "bytes": 98
+    },
+    {
+      "id": "ar-d2be3dc6260cb6b0e005",
+      "category": "validation_junit",
+      "sha256": "811e36745af03602fe0227d78631ae73a29c7fb14df03a48d9f9874370691424",
+      "bytes": 2621
+    },
+    {
+      "id": "ar-d526b8b4976f8607a1e0",
+      "category": "validation_log",
+      "sha256": "d526b8b4976f8607a1e07e661be51c7d2b6c79419ab92b4cf953b4a6b95f0ff1",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-e041be588fbd12e7ab15",
+      "category": "validation_junit",
+      "sha256": "4592b17e58507a5514c4127214df02b4c56e70b162083294a307e6b67aa2cf0c",
+      "bytes": 2621
+    },
+    {
+      "id": "ar-e1e9f989aa24810ee117",
+      "category": "validation_junit",
+      "sha256": "2d6c82313514a4f90c32d7290c836bc19fcbdf4578dfdb11ddc181591788731e",
+      "bytes": 2621
+    },
+    {
+      "id": "ar-e23124fc150d28499ef6",
+      "category": "validation_log",
+      "sha256": "c7c52867ae514fd25a0b31ebdbbefac895c814fa5a9c8e1c3d39d05942a5e607",
+      "bytes": 2429
+    },
+    {
+      "id": "ar-e8d65c25074592c95eba",
+      "category": "validation_junit",
+      "sha256": "e8d65c25074592c95eba7c7f153f429129eb8b838559e995f19fdf1ceacefaea",
+      "bytes": 2621
+    }
+  ],
+  "statistics": {
+    "model_calls": 1,
+    "input_tokens": 3711,
+    "output_tokens": 305,
+    "estimated_cost_cny": 0.011835,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

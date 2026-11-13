@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "case": "decimal-money",
+  "run_id": "98851c0cba1d",
+  "generated_at": "2026-11-13T15:38:02.992648+00:00",
+  "status": "completed",
+  "mode": "live_baseline",
+  "configuration": {
+    "mode": "live_baseline",
+    "namespace": "eval-8f9cd9fa0936499cbf19b457e2e3a70d:baseline:decimal-money",
+    "skills": false
+  },
+  "request": "source.money(amount) 接收十进制字符串，按 ROUND_HALF_UP 保留两位返回 Decimal。输入 2.675 的结果应为 Decimal(\"2.68\")。",
+  "repository": "fixture/decimal-money",
+  "buggy_commit": "9b2fcdc3fee7270931948c087d1bf9965439a0d5",
+  "fixed_commit": "2be85ebe8c93d4508d50f5b8e8facae8cdbfe030",
+  "source": "self_authored_fixture",
+  "stop_reason": "",
+  "elapsed_seconds": 0.0,
+  "plan": [],
+  "test_changes": [],
+  "prior_verifications": [],
+  "hypotheses": [],
+  "skills": [],
+  "experiments": [],
+  "submission": {
+    "summary": "单次生成对照",
+    "test_sha256": "d9e8731bf436515b5401ba7af688bc1de26682d97f85473db26df7d811e8f7a3",
+    "experiment": "baseline"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "d9e8731bf436515b5401ba7af688bc1de26682d97f85473db26df7d811e8f7a3",
+    "validations": [
+      {
+        "kind": "assertion_failure",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "0b586f40d752ebcdbfd602e6e7f6e1e85a2cf992d065befefe8579f14574c306",
+        "failure_details": [
+          {
+            "test": "test_money_rounds_half_up",
+            "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')\n +  where Decimal('2.67') = money('2.675')\n +  and   Decimal('2.68') = Decimal('2.68')"
+          }
+        ],
+        "seconds": 0.283,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-65301cec36b063bf3c50",
+        "junit": "ar-b1e55b08e5c9657a272a"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "0b586f40d752ebcdbfd602e6e7f6e1e85a2cf992d065befefe8579f14574c306",
+        "failure_details": [
+          {
+            "test": "test_money_rounds_half_up",
+            "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')\n +  where Decimal('2.67') = money('2.675')\n +  and   Decimal('2.68') = Decimal('2.68')"
+          }
+        ],
+        "seconds": 0.269,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-65301cec36b063bf3c50",
+        "junit": "ar-2a458c625bf9537ceba1"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "0b586f40d752ebcdbfd602e6e7f6e1e85a2cf992d065befefe8579f14574c306",
+        "failure_details": [
+          {
+            "test": "test_money_rounds_half_up",
+            "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')\n +  where Decimal('2.67') = money('2.675')\n +  and   Decimal('2.68') = Decimal('2.68')"
+          }
+        ],
+        "seconds": 0.276,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-65301cec36b063bf3c50",
+        "junit": "ar-03e6b24a8d8b49f57757"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.262,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-4345ce69385b70e05c50",
+        "junit": "ar-65465e7036f2d2c0daa4"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.262,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-4345ce69385b70e05c50",
+        "junit": "ar-c19e22ccb8e5c6803e8f"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.257,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-4345ce69385b70e05c50",
+        "junit": "ar-a95b08b91739518f5908"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-03e6b24a8d8b49f57757",
+      "category": "validation_junit",
+      "sha256": "73ae00d1ae31452761cb520f40598966e6caf1b13877aac274e8ea95d4f1478a",
+      "bytes": 881
+    },
+    {
+      "id": "ar-170e61f71bb68a623d91",
+      "category": "validation_junit",
+      "sha256": "170e61f71bb68a623d91a921a158b482df03ccca8f9f0ac6d3068de9182b5543",
+      "bytes": 334
+    },
+    {
+      "id": "ar-1febbd0ce456f943ae43",
+      "category": "validation_junit",
+      "sha256": "1febbd0ce456f943ae4396c8c3caa65327bac4f270962b4a8828b571d8c2a782",
+      "bytes": 334
+    },
+    {
+      "id": "ar-2a458c625bf9537ceba1",
+      "category": "validation_junit",
+      "sha256": "7b49e24854122033d918a764304c9947e1cc48058208821544bf0b220e2403e3",
+      "bytes": 881
+    },
+    {
+      "id": "ar-30b391cf17f3eba562a4",
+      "category": "validation_junit",
+      "sha256": "30b391cf17f3eba562a40f8010329f7390a989593978e8d2606cc95f1426af89",
+      "bytes": 334
+    },
+    {
+      "id": "ar-4345ce69385b70e05c50",
+      "category": "private_validation_log",
+      "sha256": "4bcefcc9f6c645923b9993ccf73ad92e6b400ca25458ea14e095857fc2131342",
+      "bytes": 98
+    },
+    {
+      "id": "ar-4bcefcc9f6c645923b99",
+      "category": "validation_log",
+      "sha256": "4bcefcc9f6c645923b9993ccf73ad92e6b400ca25458ea14e095857fc2131342",
+      "bytes": 98
+    },
+    {
+      "id": "ar-65301cec36b063bf3c50",
+      "category": "validation_log",
+      "sha256": "e5855772b2a52ee6507a5734f4e4b7060269e778eb811db5c1b872e22d5664ae",
+      "bytes": 781
+    },
+    {
+      "id": "ar-65465e7036f2d2c0daa4",
+      "category": "private_validation_junit",
+      "sha256": "de192fe6f58794f3a295de7a7e1a46ec62db5b28b2e23e87f5eaebae9becfeee",
+      "bytes": 334
+    },
+    {
+      "id": "ar-6b6317179e032f1551ae",
+      "category": "validation_junit",
+      "sha256": "6b6317179e032f1551ae236535d1377236b564420843459947b6ce33afb304aa",
+      "bytes": 881
+    },
+    {
+      "id": "ar-6d16d11ef0731e417293",
+      "category": "validation_junit",
+      "sha256": "6d16d11ef0731e417293e8e8538d7ad1c777beb9c8d6b9e37930f1391cfa3435",
+      "bytes": 881
+    },
+    {
+      "id": "ar-9edc9fba43fd4c74f544",
+      "category": "private_validation_junit",
+      "sha256": "126e490605786edf5692e548b1ffcf114a908fc21898191ef7396309cc0c606a",
+      "bytes": 334
+    },
+    {
+      "id": "ar-a173bec78e4f01797347",
+      "category": "validation_junit",
+      "sha256": "85f99423317ac8bd8741c2c5980dbe06a03b7038c1414887cfdf02cb44f6819a",
+      "bytes": 881
+    },
+    {
+      "id": "ar-a95b08b91739518f5908",
+      "category": "private_validation_junit",
+      "sha256": "14da8ef311a2d0adfe6cd6ca06b29845aac27a8404b6bbcf0d466104590e13b8",
+      "bytes": 334
+    },
+    {
+      "id": "ar-b1e55b08e5c9657a272a",
+      "category": "validation_junit",
+      "sha256": "27907927780da20f893e19de8e7fb34e0060baf19e2165f6674993c85e79d5fe",
+      "bytes": 881
+    },
+    {
+      "id": "ar-ba1a1a1046d60a0b8243",
+      "category": "validation_junit",
+      "sha256": "ba1a1a1046d60a0b8243497f226bd1062ff0391f6cc42116c526eefc15733be3",
+      "bytes": 881
+    },
+    {
+      "id": "ar-baaeb8f3a0032b9a91cc",
+      "category": "private_validation_junit",
+      "sha256": "a4f681702855e8dd10610da93748538e227e4d28eb2f1f7f2c02e187bbe8fed8",
+      "bytes": 334
+    },
+    {
+      "id": "ar-c19e22ccb8e5c6803e8f",
+      "category": "private_validation_junit",
+      "sha256": "9ae7cab1277e8edc611af5e3c73e504dbee116c735fcbb1f325fcae714e1b38b",
+      "bytes": 334
+    },
+    {
+      "id": "ar-df87377ac5ebdf16faea",
+      "category": "validation_junit",
+      "sha256": "3c5b193ccb171debfb7b7477030767ddc321ea928548bb13e366551bd134d82f",
+      "bytes": 881
+    },
+    {
+      "id": "ar-e5855772b2a52ee6507a",
+      "category": "validation_log",
+      "sha256": "e5855772b2a52ee6507a5734f4e4b7060269e778eb811db5c1b872e22d5664ae",
+      "bytes": 781
+    },
+    {
+      "id": "ar-f9168cc4384ddc84819d",
+      "category": "private_validation_junit",
+      "sha256": "e01812b57d688f68362fd24684ad4c7e12a432dabaf9761c9281642e44b6012f",
+      "bytes": 334
+    },
+    {
+      "id": "ar-f9d203fccbd50d65b5bf",
+      "category": "validation_junit",
+      "sha256": "8c3b4de933a4068c593271a3c813ecf6c81790135b0c7748d396f2353d6ba8e3",
+      "bytes": 881
+    }
+  ],
+  "statistics": {
+    "model_calls": 1,
+    "input_tokens": 418,
+    "output_tokens": 97,
+    "estimated_cost_cny": 0.001935,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

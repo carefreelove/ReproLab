@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.012" timestamp="2026-11-13T15:36:38.862822+00:00" hostname="6180b99b7b89"><testcase classname="test_reproducer" name="test_bucket_instances_have_independent_items" time="0.000"><failure message="AssertionError: Bucket instances must not share the class-level items list&#10;assert ['x'] == []&#10;  &#10;  Left contains one more item: 'x'&#10;  Use -v to get more diff">def test_bucket_instances_have_independent_items():
+        a = Bucket()
+        b = Bucket()
+    
+        a.add("x")
+    
+        assert a.items == ["x"]
+&gt;       assert b.items == [], "Bucket instances must not share the class-level items list"
+E       AssertionError: Bucket instances must not share the class-level items list
+E       assert ['x'] == []
+E         
+E         Left contains one more item: 'x'
+E         Use -v to get more diff
+
+/tests/test_reproducer.py:11: AssertionError</failure></testcase></testsuite></testsuites>

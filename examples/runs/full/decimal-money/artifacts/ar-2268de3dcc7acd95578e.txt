@@ -1,0 +1,4 @@
+1: from decimal import Decimal
+2: 
+3: def money(amount):
+4:     return Decimal(str(round(float(amount), 2)))

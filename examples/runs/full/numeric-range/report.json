@@ -1,0 +1,824 @@
+{
+  "schema_version": "1.0",
+  "case": "numeric-range",
+  "run_id": "09c0a152402a",
+  "generated_at": "2026-11-13T15:38:09.062505+00:00",
+  "status": "completed",
+  "mode": "live",
+  "configuration": {
+    "mode": "live",
+    "namespace": "eval-8f9cd9fa0936499cbf19b457e2e3a70d:full:numeric-range",
+    "skills": true,
+    "reflection": true,
+    "variant": "full"
+  },
+  "request": "more_itertools.numeric_range 的等值比较和 hash 应支持元素数量超过 sys.maxsize 的有效范围，与内置 range 行为一致。numeric_range(10**30) 的比较和哈希当前抛出 OverflowError；显式 len() 仍可抛出 OverflowError。",
+  "repository": "more-itertools/more-itertools",
+  "buggy_commit": "08dca284ba5446a026afdc34067b658f9da989eb",
+  "fixed_commit": "f42daddf205f335fea6e200dad46049f33e71221",
+  "source": "https://github.com/more-itertools/more-itertools/pull/1345",
+  "stop_reason": "",
+  "elapsed_seconds": 43.871,
+  "plan": [
+    {
+      "task": "定位 numeric_range 的 __eq__/__hash__/__len__ 实现",
+      "status": "done",
+      "evidence": [
+        "ar-064cf53d4dfa4c8c073d"
+      ]
+    },
+    {
+      "task": "激活 boundary-analysis 与 pytest-reproduction 技能",
+      "status": "done",
+      "evidence": []
+    },
+    {
+      "task": "编写复现测试：numeric_range(10**30) 的 == 与 hash 不应抛 OverflowError，len() 仍抛",
+      "status": "done",
+      "evidence": []
+    },
+    {
+      "task": "运行测试并确认错误类别，更新假设证据",
+      "status": "done",
+      "evidence": [
+        "ar-918d704a4788160b5da3"
+      ]
+    },
+    {
+      "task": "提交复现",
+      "status": "in_progress",
+      "evidence": []
+    }
+  ],
+  "test_changes": [
+    {
+      "path": "test_numeric_range_huge_eq_hash.py",
+      "at": "2026-11-13T15:21:38.888688+00:00",
+      "diff": "--- before/test_numeric_range_huge_eq_hash.py\n+++ after/test_numeric_range_huge_eq_hash.py\n@@ -0,0 +1,58 @@\n+\"\"\"numeric_range 的等值比较与 hash 应支持元素数量超过 sys.maxsize 的范围。\n+\n+内置 range 的 == 与 hash 不依赖 len()，因此 range(10**30) 可以正常比较与哈希；\n+numeric_range 应保持一致。显式 len() 仍允许抛 OverflowError。\n+\"\"\"\n+\n+import sys\n+\n+import pytest\n+\n+from more_itertools import numeric_range\n+\n+HUGE = 10**30\n+\n+\n+def test_small_range_eq_and_hash_still_work():\n+    # 正常值校验：小范围行为不变\n+    a = numeric_range(0, 10, 2)\n+    b = numeric_range(0, 10, 2)\n+    assert a == b\n+    assert hash(a) == hash(b)\n+    assert a != numeric_range(0, 10, 3)\n+    assert len(a) == 5\n+\n+\n+def test_huge_range_equality_does_not_overflow():\n+    a = numeric_range(HUGE)\n+    b = numeric_range(HUGE)\n+    # 与内置 range 一致：等值比较不应抛 OverflowError\n+    assert a == b\n+    assert not (a != b)\n+\n+\n+def test_huge_range_inequality_does_not_overflow():\n+    a = numeric_range(HUGE)\n+    assert a != numeric_range(HUGE, 2 * HUGE)\n+    assert a != numeric_range(HUGE, step=2)\n+\n+\n+def test_huge_range_hash_does_not_overflow():\n+    a = numeric_range(HUGE)\n+    b = numeric_range(HUGE)\n+    h = hash(a)\n+    assert isinstance(h, int)\n+    assert h == hash(b)\n+\n+\n+def test_huge_range_len_still_raises_overflow():\n+    # 显式 len() 仍可抛 OverflowError（与内置 range 一致）\n+    with pytest.raises(OverflowError):\n+        len(numeric_range(HUGE))\n+    with pytest.raises(OverflowError):\n+        len(range(HUGE))\n+\n+\n+def test_huge_range_usable_as_dict_key():\n+    d = {numeric_range(HUGE): 'value'}\n+    assert d[numeric_range(HUGE)] == 'value'\n"
+    },
+    {
+      "path": "test_numeric_range_huge_eq_hash.py",
+      "at": "2026-11-13T15:27:04.658250+00:00",
+      "diff": "--- before/test_numeric_range_huge_eq_hash.py\n+++ after/test_numeric_range_huge_eq_hash.py\n@@ -1,7 +1,11 @@\n-\"\"\"numeric_range 的等值比较与 hash 应支持元素数量超过 sys.maxsize 的范围。\n+\"\"\"numeric_range 在元素数量超过 sys.maxsize 时的等值比较与哈希。\n \n 内置 range 的 == 与 hash 不依赖 len()，因此 range(10**30) 可以正常比较与哈希；\n-numeric_range 应保持一致。显式 len() 仍允许抛 OverflowError。\n+numeric_range 的 __eq__/__hash__ 却直接调用 len(self)，在 _len > sys.maxsize 时\n+触发 OverflowError: cannot fit 'int' into an index-sized integer。\n+\n+注意：numeric_range 只接受位置参数（__init__(self, *args)），step 必须作为第三个\n+位置参数传入。\n \"\"\"\n \n import sys\n@@ -11,16 +15,17 @@\n from more_itertools import numeric_range\n \n HUGE = 10**30\n+assert HUGE > sys.maxsize\n \n \n-def test_small_range_eq_and_hash_still_work():\n-    # 正常值校验：小范围行为不变\n+def test_small_range_baseline():\n+    \"\"\"正常值校验：小范围行为不受影响。\"\"\"\n     a = numeric_range(0, 10, 2)\n     b = numeric_range(0, 10, 2)\n+    assert len(a) == 5\n     assert a == b\n     assert hash(a) == hash(b)\n     assert a != numeric_range(0, 10, 3)\n-    assert len(a) == 5\n \n \n def test_huge_range_equality_does_not_overflow():\n@@ -34,7 +39,7 @@\n def test_huge_range_inequality_does_not_overflow():\n     a = numeric_range(HUGE)\n     assert a != numeric_range(HUGE, 2 * HUGE)\n-    assert a != numeric_range(HUGE, step=2)\n+    assert a != numeric_range(HUGE, 2 * HUGE, 2)\n \n \n def test_huge_range_hash_does_not_overflow():\n@@ -42,17 +47,18 @@\n     b = numeric_range(HUGE)\n     h = hash(a)\n     assert isinstance(h, int)\n+    # 等值对象必须哈希一致\n     assert h == hash(b)\n-\n-\n-def test_huge_range_len_still_raises_overflow():\n-    # 显式 len() 仍可抛 OverflowError（与内置 range 一致）\n-    with pytest.raises(OverflowError):\n-        len(numeric_range(HUGE))\n-    with pytest.raises(OverflowError):\n-        len(range(HUGE))\n \n \n def test_huge_range_usable_as_dict_key():\n     d = {numeric_range(HUGE): 'value'}\n     assert d[numeric_range(HUGE)] == 'value'\n+\n+\n+def test_huge_range_len_still_overflows():\n+    \"\"\"显式 len() 仍可抛 OverflowError（与内置 range 一致）。\"\"\"\n+    with pytest.raises(OverflowError):\n+        len(numeric_range(HUGE))\n+    with pytest.raises(OverflowError):\n+        len(range(HUGE))\n"
+    }
+  ],
+  "prior_verifications": [
+    {
+      "verdict": "inconclusive",
+      "reason": "双版本验证或重复稳定性检查未满足，需结合实验日志复核",
+      "test_sha256": "4450dedc46d01a94d2db8affe55d81804d9ccd59e923c2019ad10845fbb624bd",
+      "validations": [
+        {
+          "kind": "target_exception",
+          "collected": 6,
+          "skipped": 0,
+          "failed": 4,
+          "exit_code": 1,
+          "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+          "failure_details": [
+            {
+              "test": "test_huge_range_equality_does_not_overflow",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            },
+            {
+              "test": "test_huge_range_inequality_does_not_overflow",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            },
+            {
+              "test": "test_huge_range_hash_does_not_overflow",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            },
+            {
+              "test": "test_huge_range_usable_as_dict_key",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            }
+          ],
+          "seconds": 0.367,
+          "variant": "buggy",
+          "attempt": 1,
+          "log": "ar-1c4694868d0a8045dcd4",
+          "junit": "ar-765955d7cb61f1674f3a"
+        },
+        {
+          "kind": "target_exception",
+          "collected": 6,
+          "skipped": 0,
+          "failed": 4,
+          "exit_code": 1,
+          "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+          "failure_details": [
+            {
+              "test": "test_huge_range_equality_does_not_overflow",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            },
+            {
+              "test": "test_huge_range_inequality_does_not_overflow",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            },
+            {
+              "test": "test_huge_range_hash_does_not_overflow",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            },
+            {
+              "test": "test_huge_range_usable_as_dict_key",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            }
+          ],
+          "seconds": 0.326,
+          "variant": "buggy",
+          "attempt": 2,
+          "log": "ar-362c4aaa6dcdfd333372",
+          "junit": "ar-2eb4f8e5d49534937eed"
+        },
+        {
+          "kind": "target_exception",
+          "collected": 6,
+          "skipped": 0,
+          "failed": 4,
+          "exit_code": 1,
+          "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+          "failure_details": [
+            {
+              "test": "test_huge_range_equality_does_not_overflow",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            },
+            {
+              "test": "test_huge_range_inequality_does_not_overflow",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            },
+            {
+              "test": "test_huge_range_hash_does_not_overflow",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            },
+            {
+              "test": "test_huge_range_usable_as_dict_key",
+              "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+            }
+          ],
+          "seconds": 0.336,
+          "variant": "buggy",
+          "attempt": 3,
+          "log": "ar-1c4694868d0a8045dcd4",
+          "junit": "ar-93592f6d3b7248cea817"
+        },
+        {
+          "kind": "test_error",
+          "collected": 6,
+          "skipped": 0,
+          "failed": 1,
+          "exit_code": 1,
+          "failure_signature": "2f2038b8424356e03759a2acd839b77cf26b5117044ce3e12ee49050d75b156e",
+          "failure_details": [
+            {
+              "test": "test_huge_range_inequality_does_not_overflow",
+              "message": "TypeError: numeric_range.__init__() got an unexpected keyword argument 'step'"
+            }
+          ],
+          "seconds": 0.267,
+          "variant": "fixed",
+          "attempt": 1,
+          "log": "ar-6456fc85337f4f2f8d5c",
+          "junit": "ar-385b074136d40c368c8b"
+        },
+        {
+          "kind": "test_error",
+          "collected": 6,
+          "skipped": 0,
+          "failed": 1,
+          "exit_code": 1,
+          "failure_signature": "2f2038b8424356e03759a2acd839b77cf26b5117044ce3e12ee49050d75b156e",
+          "failure_details": [
+            {
+              "test": "test_huge_range_inequality_does_not_overflow",
+              "message": "TypeError: numeric_range.__init__() got an unexpected keyword argument 'step'"
+            }
+          ],
+          "seconds": 0.256,
+          "variant": "fixed",
+          "attempt": 2,
+          "log": "ar-6456fc85337f4f2f8d5c",
+          "junit": "ar-ea0c0b18f8dceac3185f"
+        },
+        {
+          "kind": "test_error",
+          "collected": 6,
+          "skipped": 0,
+          "failed": 1,
+          "exit_code": 1,
+          "failure_signature": "2f2038b8424356e03759a2acd839b77cf26b5117044ce3e12ee49050d75b156e",
+          "failure_details": [
+            {
+              "test": "test_huge_range_inequality_does_not_overflow",
+              "message": "TypeError: numeric_range.__init__() got an unexpected keyword argument 'step'"
+            }
+          ],
+          "seconds": 0.26,
+          "variant": "fixed",
+          "attempt": 3,
+          "log": "ar-6456fc85337f4f2f8d5c",
+          "junit": "ar-582f95e92c856fb7978b"
+        }
+      ]
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "h1",
+      "claim": "numeric_range.__eq__ 与 __hash__ 直接调用 len(self)，而 __len__ 返回 _len；当元素数量超过 sys.maxsize 时，Sequence/len 协议抛出 OverflowError，导致 == 与 hash 失败。内置 range 的 == 与 hash 不依赖 len()，因此不抛异常。",
+      "expected": "numeric_range(10**30) == numeric_range(10**30) 返回 True，hash(numeric_range(10**30)) 返回 int 且与等值对象一致；len(numeric_range(10**30)) 抛 OverflowError。",
+      "status": "supported",
+      "evidence": [
+        "ar-918d704a4788160b5da3"
+      ],
+      "next_action": "已确认：4 个目标用例在 more.py:2379/2414 抛 OverflowError，小范围与 len() 用例通过。提交复现。"
+    },
+    {
+      "id": "h2",
+      "claim": "修正为位置参数后，numeric_range(10**30) 的 ==、!=、hash、dict 键均在 more.py:2379/2414 的 len(self) 处抛 OverflowError；小范围基线与 len() 抛 OverflowError 的用例通过，说明缺陷定位在 __eq__/__hash__ 依赖 len() 而非 self._len。",
+      "expected": "4 个目标用例失败于 OverflowError，2 个对照用例通过。",
+      "status": "supported",
+      "evidence": [
+        "ar-0a12216b4828754d2545",
+        "ar-1eda8c6f3cf0e8628510"
+      ],
+      "next_action": "目标行为已触发，提交复现。"
+    }
+  ],
+  "skills": [
+    {
+      "name": "boundary-analysis",
+      "description": "调查空输入、零、负数、大数、时间端点与十进制精度问题，构造边界参数化测试。",
+      "sha256": "9fdd5d488abcb74e2bbf0fcbe0ae89363135a7af187052c509d8c5a928a04e53",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "5a375bb37055e2b6c56dfbaa8ea1cff70f1ffa30dcb260a49a2ddfdd6612a9e4"
+        },
+        {
+          "path": "scripts/__pycache__/boundaries.cpython-312.pyc",
+          "sha256": "217121c2a97c53c19428e2b215aafc5b65d4a814af6a4520e127818d2fa7f464"
+        },
+        {
+          "path": "scripts/boundaries.py",
+          "sha256": "e52098bcbeb60c4e837bb2ec44d5d238e585312e231fa2790b01ae61785f42c7"
+        }
+      ],
+      "reason": "缺陷涉及超过 sys.maxsize 的大数边界"
+    },
+    {
+      "name": "pytest-reproduction",
+      "description": "将 Python 缺陷转为 pytest 测试。用于首次构造复现、fixture 与目标断言设计。",
+      "sha256": "1454c3bfcc04589d58f88c486053dadcd71730623505543cae57a414894eb618",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "849f65f12af4a293e957dd1da33b7d7577daad89ed37138fb1b044b64a98d4da"
+        },
+        {
+          "path": "assets/__pycache__/test_template.cpython-312-pytest-9.2.0.pyc",
+          "sha256": "282632558cf6e0b55234fa3f733d4584b6bb7bf9d411d00a10304b167082f79f"
+        },
+        {
+          "path": "assets/__pycache__/test_template.cpython-312.pyc",
+          "sha256": "0c5107382e1cd1fe362d596ee3d8e7c7fbdbcfc717a0b6d9118fdf8322942592"
+        },
+        {
+          "path": "assets/test_template.py",
+          "sha256": "4acd27c521b7faae00eac0128ff77cc8fe25167588f1968497931d044ef26c10"
+        },
+        {
+          "path": "references/assertions.md",
+          "sha256": "83b15e7c7cac582348a79ed93b5d987402553ad053d274757841ecd2ac0a11ef"
+        }
+      ],
+      "reason": "需要构造 pytest 复现测试"
+    }
+  ],
+  "experiments": [
+    {
+      "operation_id": "call_00_iBtForydacQQ7bRktkBz8844",
+      "id": "ex-b63285d6e55b",
+      "hypothesis": "h2",
+      "test_sha256": "956be75f0fec991b91573feb1bdbf835a08ffa3ff41c4bd64116ce7d7d4dc35f",
+      "status": "completed",
+      "result": {
+        "kind": "target_exception",
+        "collected": 6,
+        "skipped": 0,
+        "failed": 4,
+        "exit_code": 1,
+        "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+        "failure_details": [
+          {
+            "test": "test_huge_range_equality_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_inequality_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_hash_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_usable_as_dict_key",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          }
+        ],
+        "seconds": 0.404
+      },
+      "log": "ar-0a12216b4828754d2545",
+      "junit": "ar-1eda8c6f3cf0e8628510"
+    },
+    {
+      "operation_id": "call_00_KtAlWIMmNkO8N6FEIOYT5717",
+      "id": "ex-c87ce2ea340b",
+      "hypothesis": "h1",
+      "test_sha256": "4450dedc46d01a94d2db8affe55d81804d9ccd59e923c2019ad10845fbb624bd",
+      "status": "completed",
+      "result": {
+        "kind": "target_exception",
+        "collected": 6,
+        "skipped": 0,
+        "failed": 4,
+        "exit_code": 1,
+        "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+        "seconds": 0.362
+      },
+      "log": "ar-918d704a4788160b5da3",
+      "junit": "ar-5b6f52e59213e695e323"
+    }
+  ],
+  "submission": {
+    "summary": "复现 more_itertools.numeric_range 在元素数量超过 sys.maxsize 时 __eq__/__hash__ 抛 OverflowError 的缺陷。\n\n根因：more.py 中 numeric_range.__eq__（第 2379 行）与 __hash__（第 2414 行）直接调用 len(self)，而 __len__ 返回 self._len；当 _len > sys.maxsize 时，len() 协议抛出 OverflowError: cannot fit 'int' into an index-sized integer。内置 range 的 == 与 hash 不依赖 len()，因此 range(10**30) 可正常比较与哈希。self._len 本身是普通 int，可直接用于比较与哈希。\n\n测试（test_numeric_range_huge_eq_hash.py，6 个用例）：\n- 通过（对照）：小范围 numeric_range(0,10,2) 的 len/==/hash/!= 正常；len(numeric_range(10**30)) 与 len(range(10**30)) 均抛 OverflowError（符合用户预期，用 pytest.raises）。\n- 失败（目标缺陷）：numeric_range(10**30) 的 ==、!=、hash、作为 dict 键均抛 OverflowError，分别定位在 more.py:2379 与 2414。\n\n注意：numeric_range 只接受位置参数（__init__(self, *args)），step 必须作为第三个位置参数传入；早期一次尝试因使用 step= 关键字导致签名错误，已排除（非业务缺陷）。\n\n剩余不确定性：修复后 hash 值是否需与内置 range 完全一致未做断言，仅断言等值对象哈希一致且为 int；未覆盖 Decimal/Fraction 等非 int 类型的大数场景。",
+    "test_sha256": "956be75f0fec991b91573feb1bdbf835a08ffa3ff41c4bd64116ce7d7d4dc35f",
+    "experiment": "ex-b63285d6e55b"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "956be75f0fec991b91573feb1bdbf835a08ffa3ff41c4bd64116ce7d7d4dc35f",
+    "validations": [
+      {
+        "kind": "target_exception",
+        "collected": 6,
+        "skipped": 0,
+        "failed": 4,
+        "exit_code": 1,
+        "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+        "failure_details": [
+          {
+            "test": "test_huge_range_equality_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_inequality_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_hash_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_usable_as_dict_key",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          }
+        ],
+        "seconds": 0.361,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-ffb554e7b3dd4c301493",
+        "junit": "ar-b65f3a3ffe128f568fe0"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 6,
+        "skipped": 0,
+        "failed": 4,
+        "exit_code": 1,
+        "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+        "failure_details": [
+          {
+            "test": "test_huge_range_equality_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_inequality_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_hash_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_usable_as_dict_key",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          }
+        ],
+        "seconds": 0.357,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-ffb554e7b3dd4c301493",
+        "junit": "ar-a930560c4e8df18612c2"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 6,
+        "skipped": 0,
+        "failed": 4,
+        "exit_code": 1,
+        "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+        "failure_details": [
+          {
+            "test": "test_huge_range_equality_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_inequality_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_hash_does_not_overflow",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          },
+          {
+            "test": "test_huge_range_usable_as_dict_key",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          }
+        ],
+        "seconds": 0.335,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-7086711bc306a81ba997",
+        "junit": "ar-b6b8390ff62521ff9c00"
+      },
+      {
+        "kind": "passed",
+        "collected": 6,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.254,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-f03796438cb3308bbe9d",
+        "junit": "ar-0f38d2ddb27afcfa5daf"
+      },
+      {
+        "kind": "passed",
+        "collected": 6,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.251,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-f03796438cb3308bbe9d",
+        "junit": "ar-26a18a3a639bffaac048"
+      },
+      {
+        "kind": "passed",
+        "collected": 6,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.256,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-528c6bf44ea38a24176d",
+        "junit": "ar-84c97dc08d11ca93c9fa"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-006421c5b970057c9187",
+      "category": "private_validation_junit",
+      "sha256": "c36c7f6cf4b58b632a714479357267116bc115246882da4d149fbab812d67716",
+      "bytes": 928
+    },
+    {
+      "id": "ar-064cf53d4dfa4c8c073d",
+      "category": "source",
+      "sha256": "064cf53d4dfa4c8c073d9ab8a88612ba3a1f7ee064f1dcd06cdd17ec6532a657",
+      "bytes": 5782
+    },
+    {
+      "id": "ar-08f356bdb496c87eeeea",
+      "category": "private_validation_junit",
+      "sha256": "ff6ab5dce281e0fb5756c29c479367fe2e0486f0349af298cc8436142af9f5bf",
+      "bytes": 928
+    },
+    {
+      "id": "ar-0a12216b4828754d2545",
+      "category": "test_log",
+      "sha256": "2bd37509a2ec5dfbc40ac71a91bb3f5633f0790444f155d793e989c0d85783cd",
+      "bytes": 4525
+    },
+    {
+      "id": "ar-0eba3c87388404ad44e3",
+      "category": "private_validation_junit",
+      "sha256": "9eb31763e571be7a9b8cd24c437e686066d90b8f0b5b0a9d85bac2a9f51f80fb",
+      "bytes": 928
+    },
+    {
+      "id": "ar-0f38d2ddb27afcfa5daf",
+      "category": "private_validation_junit",
+      "sha256": "efa2467e6032bcb39957defc77a267a4f1ef14ebf47be1395028817b3ddcc4bc",
+      "bytes": 928
+    },
+    {
+      "id": "ar-1932f11dc905f58dc55b",
+      "category": "validation_junit",
+      "sha256": "5e90e42bffca7e71b809179c8236e0a26fb8e877fe1194de9fcb55bc7b118dff",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-1b4b0bb4a69210d80bcc",
+      "category": "private_validation_junit",
+      "sha256": "7e291a564df4a439e8af3d227b0ff67113b750855c3f3d4022cc19d7e0d5a613",
+      "bytes": 928
+    },
+    {
+      "id": "ar-1c4694868d0a8045dcd4",
+      "category": "validation_log",
+      "sha256": "918d704a4788160b5da3c31cfe956df00a831f061e461a0dc5673b733bb94af4",
+      "bytes": 4525
+    },
+    {
+      "id": "ar-1eda8c6f3cf0e8628510",
+      "category": "junit",
+      "sha256": "12a5f32cfe89233a8be920c004bc6497041808909c078f4a0ba7906f440b96dd",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-26a18a3a639bffaac048",
+      "category": "private_validation_junit",
+      "sha256": "532331ddd0ddf38543383e6f25b648b60bdf782cb71480a22c8f6e066a2e4518",
+      "bytes": 928
+    },
+    {
+      "id": "ar-28683031522d5be90bd9",
+      "category": "validation_log",
+      "sha256": "28683031522d5be90bd9442ec6c2e11de6a71479c52b662a217fbba3fdd7ecec",
+      "bytes": 4525
+    },
+    {
+      "id": "ar-2eb4f8e5d49534937eed",
+      "category": "validation_junit",
+      "sha256": "88c5f536327d153f61d1678df735f5ec42375815ccae43146510fbcb89cd9ea1",
+      "bytes": 4937
+    },
+    {
+      "id": "ar-342ef784c7cedc589357",
+      "category": "source",
+      "sha256": "be04f08265dadffb5ca94b15d5b15bc4745f1e30298f084aee69969ed412a260",
+      "bytes": 1291
+    },
+    {
+      "id": "ar-362c4aaa6dcdfd333372",
+      "category": "validation_log",
+      "sha256": "28683031522d5be90bd9442ec6c2e11de6a71479c52b662a217fbba3fdd7ecec",
+      "bytes": 4525
+    },
+    {
+      "id": "ar-385b074136d40c368c8b",
+      "category": "private_validation_junit",
+      "sha256": "20f97b9e27b101186e67396774f13bb33f7b3f239c9522083140f78fa48c3a65",
+      "bytes": 1439
+    },
+    {
+      "id": "ar-45adcd20c86f79b0b05e",
+      "category": "source",
+      "sha256": "5ac1aff8aa7cf75300baae9e166cc170ec11645fb0f29d8e8718da7fac488e44",
+      "bytes": 1007
+    },
+    {
+      "id": "ar-4a10e57cc82fcf64d7d6",
+      "category": "private_validation_junit",
+      "sha256": "4a10e57cc82fcf64d7d6a03e562d92c64836cb964ca8d3ea3e5f95a0e363e103",
+      "bytes": 1439
+    },
+    {
+      "id": "ar-4f6db6f39dc67df3a3f2",
+      "category": "source",
+      "sha256": "4f6db6f39dc67df3a3f237a45f9f63aabc113649a1eb55ec67bfbf7881cdcaef",
+      "bytes": 3517
+    },
+    {
+      "id": "ar-528c6bf44ea38a24176d",
+      "category": "private_validation_log",
+      "sha256": "a4ce3c4d2d126cf54794b588fe0568dcf174b80e68913316f73e0da7b9f1c64b",
+      "bytes": 98
+    },
+    {
+      "id": "ar-582f95e92c856fb7978b",
+      "category": "private_validation_junit",
+      "sha256": "f0cc60e76cab3dbfb38a336112aa7b5fc680fd9e709542dbf2e6eb2f815c4d3b",
+      "bytes": 1439
+    },
+    {
+      "id": "ar-59cb73604d04f4b4ebf0",
+      "category": "validation_junit",
+      "sha256": "31e78b022976c7d641aeb845de17540f58fc3bd5a2ba3ea6db6e447d6a75ebdb",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-5a121f1d827046480d6d",
+      "category": "private_validation_junit",
+      "sha256": "fd1fd8c3be69c1846eb231f911497bf56fc77c16543e66bc0e2fe962ab9cdb41",
+      "bytes": 928
+    },
+    {
+      "id": "ar-5b6f52e59213e695e323",
+      "category": "junit",
+      "sha256": "5b6f52e59213e695e323e8e74652c853fb53b5e6635744ba74a59e8e92cd86c6",
+      "bytes": 4937
+    },
+    {
+      "id": "ar-5e5d9fcfaabb0d6efc5d",
+      "category": "validation_junit",
+      "sha256": "5e5d9fcfaabb0d6efc5da27308cc184f25e2b6a4d058f805ef3f43b936a5007c",
+      "bytes": 4937
+    },
+    {
+      "id": "ar-6456fc85337f4f2f8d5c",
+      "category": "private_validation_log",
+      "sha256": "e042cd6791d0d587fe9376496fd42857095581acfdfd29cd87feb5419aeb85fb",
+      "bytes": 817
+    },
+    {
+      "id": "ar-7086711bc306a81ba997",
+      "category": "validation_log",
+      "sha256": "2bd37509a2ec5dfbc40ac71a91bb3f5633f0790444f155d793e989c0d85783cd",
+      "bytes": 4525
+    },
+    {
+      "id": "ar-765955d7cb61f1674f3a",
+      "category": "validation_junit",
+      "sha256": "4fd12468e4d43f989d38d1513ec168adb6099a0d37961585261177bbb1ff485a",
+      "bytes": 4937
+    },
+    {
+      "id": "ar-7c6a0d15245da05b122f",
+      "category": "validation_log",
+      "sha256": "fb06021921bf6a08283ae3b73517b590a9f9cca36b2bf7456d5869bfd8d8e8b3",
+      "bytes": 4525
+    },
+    {
+      "id": "ar-7ded84d4ad9506beaebc",
+      "category": "validation_junit",
+      "sha256": "09ba305bfa1aaf20410fe751524a3fd4c607151c425775750b859391bb92d130",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-84c97dc08d11ca93c9fa",
+      "category": "private_validation_junit",
+      "sha256": "480aba5854a7d67cec19505faa44f73f0d6f4e791299271020a6cbcd47b4c125",
+      "bytes": 928
+    },
+    {
+      "id": "ar-918d704a4788160b5da3",
+      "category": "validation_log",
+      "sha256": "918d704a4788160b5da3c31cfe956df00a831f061e461a0dc5673b733bb94af4",
+      "bytes": 4525
+    },
+    {
+      "id": "ar-93592f6d3b7248cea817",
+      "category": "validation_junit",
+      "sha256": "deecd59d01d6d28c56b9cd33fae9e5feb9139faa0b41e8e6afab64af34ed2be9",
+      "bytes": 4937
+    },
+    {
+      "id": "ar-a563728779e88cdd1b8a",
+      "category": "validation_log",
+      "sha256": "cc931b213ae9a68725cef06d2a6cf7df3ed3051fbd45f75455b3ecc0fa95e2dc",
+      "bytes": 4525
+    },
+    {
+      "id": "ar-a930560c4e8df18612c2",
+      "category": "validation_junit",
+      "sha256": "117b6fa397be8195dac6f31f01982d74527b4110988b018a18437c492a6da821",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-a96362e64af9b4176510",
+      "category": "validation_junit",
+      "sha256": "c0f6b642adb57c6506ce3be51a5edcffba0451eca9366e70cf41883c2a22ea6c",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-b65f3a3ffe128f568fe0",
+      "category": "validation_junit",
+      "sha256": "33a4e1d8b9012d9b71ddf728ef6d435ecf2267ce7687d5fe71819b92fe7fc900",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-b6b8390ff62521ff9c00",
+      "category": "validation_junit",
+      "sha256": "6a1b86be886316711b861f4957791d7cbed3fd85193834733975d1754f907adf",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-b743304ad72e2016bb7b",
+      "category": "source",
+      "sha256": "064cf53d4dfa4c8c073d9ab8a88612ba3a1f7ee064f1dcd06cdd17ec6532a657",
+      "bytes": 5782
+    },
+    {
+      "id": "ar-b9903baa2b77e7e5714d",
+      "category": "validation_junit",
+      "sha256": "8c2f02f3f39577687199db9f64202720a86f850d2c0b33650f4312b63759f268",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-bf3fb9876853937ed405",
+      "category": "validation_junit",
+      "sha256": "fe6898614c17b916ed6eebd51768281534ad7e47b0f4b2ae12b13edd23096d3d",
+      "bytes": 4917
+    },
+    {
+      "id": "ar-c769ee2090c3adc175de",
+      "category": "private_validation_junit",
+      "sha256": "c769ee2090c3adc175de58c3da4390f1ce230b2107250a425f18ee04dc9ae5c5",
+      "bytes": 1439
+    },
+    {
+      "id": "ar-cf3b0bb83764f5a3ca50",
+      "category": "validation_junit",
+      "sha256": "cf3b0bb83764f5a3ca506bcb8ed6976d54d52501027d413b811141bcfad38c62",
+      "bytes": 4937
+    },
+    {
+      "id": "ar-d17a019fb0e1a9dca14b",
+      "category": "validation_junit",
+      "sha256": "d17a019fb0e1a9dca14bb2558bff20c618a3fc8795139c7e16226e8d23ddf7d1",
+      "bytes": 4937
+    },
+    {
+      "id": "ar-dca7bb298d42951ca4a6",
+      "category": "private_validation_junit",
+      "sha256": "dca7bb298d42951ca4a6589595e5ed25bd603349b2ed161459c6055975a8c9ca",
+      "bytes": 1439
+    },
+    {
+      "id": "ar-e042cd6791d0d587fe93",
+      "category": "private_validation_log",
+      "sha256": "e042cd6791d0d587fe9376496fd42857095581acfdfd29cd87feb5419aeb85fb",
+      "bytes": 817
+    },
+    {
+      "id": "ar-e093d3a3790b36b0c024",
+      "category": "private_validation_junit",
+      "sha256": "4105150027a573cb35ce81ed92043be4203de762e24e14e7f4b592b884844251",
+      "bytes": 928
+    },
+    {
+      "id": "ar-ea0c0b18f8dceac3185f",
+      "category": "private_validation_junit",
+      "sha256": "dea6e0077f6db0fc8d75274f0321b30661618a65bea88d09253baedfb1f57a1c",
+      "bytes": 1439
+    },
+    {
+      "id": "ar-f03796438cb3308bbe9d",
+      "category": "private_validation_log",
+      "sha256": "d5be81bbe49b412357ba177be7fae47b32ba70b563d2a01ec6ee15df362cc215",
+      "bytes": 98
+    },
+    {
+      "id": "ar-ffb554e7b3dd4c301493",
+      "category": "validation_log",
+      "sha256": "74b7fd5ddab26451b0eb5c447d6c7c58b53d44350f98bea555c8a07f5a055964",
+      "bytes": 4525
+    }
+  ],
+  "statistics": {
+    "model_calls": 21,
+    "input_tokens": 228227,
+    "output_tokens": 4086,
+    "estimated_cost_cny": 0.58698,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

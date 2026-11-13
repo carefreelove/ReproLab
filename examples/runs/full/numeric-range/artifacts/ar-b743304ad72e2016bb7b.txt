@@ -1,0 +1,145 @@
+2276: class numeric_range(Sequence):
+2277:     """An extension of the built-in ``range()`` function whose arguments can
+2278:     be any orderable numeric type.
+2279: 
+2280:     With only *stop* specified, *start* defaults to ``0`` and *step*
+2281:     defaults to ``1``. The output items will match the type of *stop*:
+2282: 
+2283:         >>> list(numeric_range(3.5))
+2284:         [0.0, 1.0, 2.0, 3.0]
+2285: 
+2286:     With only *start* and *stop* specified, *step* defaults to ``1``, typed
+2287:     to match *stop* - *start*. The output items will match the type of
+2288:     ``start + step``:
+2289: 
+2290:         >>> from decimal import Decimal
+2291:         >>> start = Decimal('2.1')
+2292:         >>> stop = Decimal('5.1')
+2293:         >>> list(numeric_range(start, stop))
+2294:         [Decimal('2.1'), Decimal('3.1'), Decimal('4.1')]
+2295: 
+2296:     With *start*, *stop*, and *step*  specified the output items will match
+2297:     the type of ``start + step``:
+2298: 
+2299:         >>> from fractions import Fraction
+2300:         >>> start = Fraction(1, 2)  # Start at 1/2
+2301:         >>> stop = Fraction(5, 2)  # End at 5/2
+2302:         >>> step = Fraction(1, 2)  # Count by 1/2
+2303:         >>> list(numeric_range(start, stop, step))
+2304:         [Fraction(1, 2), Fraction(1, 1), Fraction(3, 2), Fraction(2, 1)]
+2305: 
+2306:     If *step* is zero, ``ValueError`` is raised. Negative steps are supported:
+2307: 
+2308:         >>> list(numeric_range(3, -1, -1.0))
+2309:         [3.0, 2.0, 1.0, 0.0]
+2310: 
+2311:     Be aware of the limitations of floating-point numbers; the representation
+2312:     of the yielded numbers may be surprising.
+2313: 
+2314:     ``datetime.datetime`` objects can be used for *start* and *stop*, if *step*
+2315:     is a ``datetime.timedelta`` object:
+2316: 
+2317:         >>> import datetime
+2318:         >>> start = datetime.datetime(2019, 1, 1)
+2319:         >>> stop = datetime.datetime(2019, 1, 3)
+2320:         >>> step = datetime.timedelta(days=1)
+2321:         >>> items = iter(numeric_range(start, stop, step))
+2322:         >>> next(items)
+2323:         datetime.datetime(2019, 1, 1, 0, 0)
+2324:         >>> next(items)
+2325:         datetime.datetime(2019, 1, 2, 0, 0)
+2326: 
+2327:     """
+2328: 
+2329:     _EMPTY_HASH = hash(range(0, 0))
+2330: 
+2331:     def __init__(self, *args):
+2332:         argc = len(args)
+2333:         if argc == 1:
+2334:             (self._stop,) = args
+2335:             self._start = type(self._stop)(0)
+2336:             self._step = type(self._stop - self._start)(1)
+2337:         elif argc == 2:
+2338:             self._start, self._stop = args
+2339:             self._step = type(self._stop - self._start)(1)
+2340:         elif argc == 3:
+2341:             self._start, self._stop, self._step = args
+2342:         elif argc == 0:
+2343:             raise TypeError(
+2344:                 f'numeric_range expected at least 1 argument, got {argc}'
+2345:             )
+2346:         else:
+2347:             raise TypeError(
+2348:                 f'numeric_range expected at most 3 arguments, got {argc}'
+2349:             )
+2350: 
+2351:         self._zero = type(self._step)(0)
+2352:         if self._step == self._zero:
+2353:             raise ValueError('numeric_range() arg 3 must not be zero')
+2354:         self._growing = self._step > self._zero
+2355: 
+2356:     def __bool__(self):
+2357:         if self._growing:
+2358:             return self._start < self._stop
+2359:         else:
+2360:             return self._start > self._stop
+2361: 
+2362:     def __contains__(self, elem):
+2363:         try:
+2364:             self.index(elem)
+2365:         except ValueError:
+2366:             return False
+2367:         return True
+2368: 
+2369:     def __eq__(self, other):
+2370:         # numeric_range object equality is intended to mirror the built-in range
+2371:         # object's equality.
+2372:         # https://github.com/python/cpython/blob/f5c4880151b609e0a0a0b05c292d36b18038c061/Objects/rangeobject.c#L499
+2373:         if not isinstance(other, numeric_range):
+2374:             return False
+2375: 
+2376:         if self is other:
+2377:             return True
+2378: 
+2379:         len_self = len(self)
+2380:         if len_self != len(other):
+2381:             return False
+2382: 
+2383:         if not len_self:
+2384:             return True
+2385: 
+2386:         if self._start != other._start:
+2387:             return False
+2388: 
+2389:         if len_self == 1:
+2390:             return True
+2391: 
+2392:         return self._step == other._step
+2393: 
+2394:     def __getitem__(self, key):
+2395:         if isinstance(key, int):
+2396:             return self._get_by_index(key)
+2397:         elif isinstance(key, slice):
+2398:             start_idx, stop_idx, step_idx = key.indices(self._len)
+2399:             return numeric_range(
+2400:                 self._start + start_idx * self._step,
+2401:                 self._start + stop_idx * self._step,
+2402:                 self._step * step_idx,
+2403:             )
+2404:         else:
+2405:             raise TypeError(
+2406:                 'numeric range indices must be '
+2407:                 f'integers or slices, not {type(key).__name__}'
+2408:             )
+2409: 
+2410:     def __hash__(self):
+2411:         # numeric_range hashing is intended to mirror the built-in range object's
+2412:         # hashing.
+2413:         # https://github.com/python/cpython/blob/f5c4880151b609e0a0a0b05c292d36b18038c061/Objects/rangeobject.c#L570
+2414:         len_self = len(self)
+2415:         if not len_self:
+2416:             return hash((len_self, None, None))
+2417:         if len_self == 1:
+2418:             return hash((len_self, self._start, None))
+2419:         return hash((len_self, self._start, self._step))
+2420: 

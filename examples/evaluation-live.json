@@ -1,0 +1,2417 @@
+{
+  "results": [
+    {
+      "case": "empty-mean",
+      "variant": "full",
+      "run_id": "e75c14b1a885",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "5d057516966b02d5cd66d24303a032dc8e502c2b154b06b9d3490010f5c01c79",
+        "validations": [
+          {
+            "kind": "target_exception",
+            "collected": 7,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+            "failure_details": [
+              {
+                "test": "test_mean_empty_list_returns_zero",
+                "message": "ZeroDivisionError: division by zero"
+              }
+            ],
+            "seconds": 0.262,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-5be982c03683064bac4a",
+            "junit": "ar-5057014595071edb78cf"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 7,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+            "failure_details": [
+              {
+                "test": "test_mean_empty_list_returns_zero",
+                "message": "ZeroDivisionError: division by zero"
+              }
+            ],
+            "seconds": 0.231,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-5be982c03683064bac4a",
+            "junit": "ar-caa04d2d62b7c9fb9d0a"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 7,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+            "failure_details": [
+              {
+                "test": "test_mean_empty_list_returns_zero",
+                "message": "ZeroDivisionError: division by zero"
+              }
+            ],
+            "seconds": 0.237,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-5be982c03683064bac4a",
+            "junit": "ar-4540e658cbc13099bb1d"
+          },
+          {
+            "kind": "passed",
+            "collected": 7,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.23,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-1d305b4f74decc77c989",
+            "junit": "ar-2e8852a02c4a339fff23"
+          },
+          {
+            "kind": "passed",
+            "collected": 7,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.23,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-1d305b4f74decc77c989",
+            "junit": "ar-378fffab859d2a3efebf"
+          },
+          {
+            "kind": "passed",
+            "collected": 7,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.242,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-1d305b4f74decc77c989",
+            "junit": "ar-b83274549b685a78dcbc"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 9,
+        "input_tokens": 44163,
+        "output_tokens": 1547,
+        "estimated_cost_cny": 0.120845,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 15.413,
+      "baseline": {
+        "run_id": "b50f31f7f80e",
+        "status": "completed",
+        "verification": {
+          "verdict": "verified",
+          "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+          "test_sha256": "d4a82066636a0296a821ef04dcabe9154d3984bd5657da51da9bcf6645307d91",
+          "validations": [
+            {
+              "kind": "target_exception",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+              "failure_details": [
+                {
+                  "test": "test_mean_empty_list_returns_zero",
+                  "message": "ZeroDivisionError: division by zero"
+                }
+              ],
+              "seconds": 0.233,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 1,
+              "log": "ar-5825513e2069b4a4f6a6",
+              "junit": "ar-a4619c0c4c049a72c17b"
+            },
+            {
+              "kind": "target_exception",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+              "failure_details": [
+                {
+                  "test": "test_mean_empty_list_returns_zero",
+                  "message": "ZeroDivisionError: division by zero"
+                }
+              ],
+              "seconds": 0.237,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 2,
+              "log": "ar-5825513e2069b4a4f6a6",
+              "junit": "ar-af95ff4bfb61e564080d"
+            },
+            {
+              "kind": "target_exception",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+              "failure_details": [
+                {
+                  "test": "test_mean_empty_list_returns_zero",
+                  "message": "ZeroDivisionError: division by zero"
+                }
+              ],
+              "seconds": 0.229,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 3,
+              "log": "ar-5825513e2069b4a4f6a6",
+              "junit": "ar-e42f85e1e38b05484b76"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.234,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 1,
+              "log": "ar-bcd13931f4bb287db80f",
+              "junit": "ar-c66a021c43fef6e3e24c"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.241,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 2,
+              "log": "ar-bcd13931f4bb287db80f",
+              "junit": "ar-5f5b13dc9f00f3f2dba1"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.231,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 3,
+              "log": "ar-bcd13931f4bb287db80f",
+              "junit": "ar-3960ddb68799807b3744"
+            }
+          ]
+        },
+        "statistics": {
+          "model_calls": 1,
+          "input_tokens": 394,
+          "output_tokens": 113,
+          "estimated_cost_cny": 0.002031,
+          "global_accounted_cny": 4.665886,
+          "global_unconfirmed_calls": 0,
+          "price_date": "2026-11-13",
+          "input_cny_per_million": 2.4,
+          "output_cny_per_million": 9.6,
+          "usd_conversion": 8
+        },
+        "information_access": "同模型、原始问题及至多12 KB相关源码，一次生成，无工具反馈",
+        "elapsed_seconds": 0.0,
+        "experiments": 0,
+        "skills": [],
+        "tool_errors": 0,
+        "repeated_experiments": 0
+      },
+      "skills": [
+        "boundary-analysis"
+      ],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "inclusive-window",
+      "variant": "full",
+      "run_id": "33e1cc1835fd",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "6b63e32395fd14c10ade85e670dcbb1a465f9abd94b4adc88bacb39fa088cdea",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 18,
+            "skipped": 0,
+            "failed": 5,
+            "exit_code": 1,
+            "failure_signature": "31dce13905cdd3f0742388eb1be213710d7b8a7b1e44434213422025b63fa364",
+            "failure_details": [
+              {
+                "test": "test_in_window_includes_both_endpoints[10-0-10-True]",
+                "message": "assert False is True\n +  where False = in_window(10, 0, 10)"
+              },
+              {
+                "test": "test_in_window_includes_both_endpoints[-5--10--5-True]",
+                "message": "assert False is True\n +  where False = in_window(-5, -10, -5)"
+              },
+              {
+                "test": "test_in_window_includes_both_endpoints[7-7-7-True]",
+                "message": "assert False is True\n +  where False = in_window(7, 7, 7)"
+              },
+              {
+                "test": "test_in_window_includes_both_endpoints[1099511627876-1099511627776-1099511627876-True]",
+                "message": "assert False is True\n +  where False = in_window(1099511627876, 1099511627776, 1099511627876)"
+              },
+              {
+                "test": "test_in_window_end_boundary_explicit",
+                "message": "assert False is True\n +  where False = in_window(1700000600, 1700000000, 1700000600)"
+              }
+            ],
+            "seconds": 0.238,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-443dbb97651edc4c6cbc",
+            "junit": "ar-b3d631cbd0b6005b65f0"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 18,
+            "skipped": 0,
+            "failed": 5,
+            "exit_code": 1,
+            "failure_signature": "31dce13905cdd3f0742388eb1be213710d7b8a7b1e44434213422025b63fa364",
+            "failure_details": [
+              {
+                "test": "test_in_window_includes_both_endpoints[10-0-10-True]",
+                "message": "assert False is True\n +  where False = in_window(10, 0, 10)"
+              },
+              {
+                "test": "test_in_window_includes_both_endpoints[-5--10--5-True]",
+                "message": "assert False is True\n +  where False = in_window(-5, -10, -5)"
+              },
+              {
+                "test": "test_in_window_includes_both_endpoints[7-7-7-True]",
+                "message": "assert False is True\n +  where False = in_window(7, 7, 7)"
+              },
+              {
+                "test": "test_in_window_includes_both_endpoints[1099511627876-1099511627776-1099511627876-True]",
+                "message": "assert False is True\n +  where False = in_window(1099511627876, 1099511627776, 1099511627876)"
+              },
+              {
+                "test": "test_in_window_end_boundary_explicit",
+                "message": "assert False is True\n +  where False = in_window(1700000600, 1700000000, 1700000600)"
+              }
+            ],
+            "seconds": 0.239,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-443dbb97651edc4c6cbc",
+            "junit": "ar-6b6638e09f5799c87fff"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 18,
+            "skipped": 0,
+            "failed": 5,
+            "exit_code": 1,
+            "failure_signature": "31dce13905cdd3f0742388eb1be213710d7b8a7b1e44434213422025b63fa364",
+            "failure_details": [
+              {
+                "test": "test_in_window_includes_both_endpoints[10-0-10-True]",
+                "message": "assert False is True\n +  where False = in_window(10, 0, 10)"
+              },
+              {
+                "test": "test_in_window_includes_both_endpoints[-5--10--5-True]",
+                "message": "assert False is True\n +  where False = in_window(-5, -10, -5)"
+              },
+              {
+                "test": "test_in_window_includes_both_endpoints[7-7-7-True]",
+                "message": "assert False is True\n +  where False = in_window(7, 7, 7)"
+              },
+              {
+                "test": "test_in_window_includes_both_endpoints[1099511627876-1099511627776-1099511627876-True]",
+                "message": "assert False is True\n +  where False = in_window(1099511627876, 1099511627776, 1099511627876)"
+              },
+              {
+                "test": "test_in_window_end_boundary_explicit",
+                "message": "assert False is True\n +  where False = in_window(1700000600, 1700000000, 1700000600)"
+              }
+            ],
+            "seconds": 0.249,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-443dbb97651edc4c6cbc",
+            "junit": "ar-1b816e9534d649e0c137"
+          },
+          {
+            "kind": "passed",
+            "collected": 18,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.234,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-a0cb27eb8142539badb1",
+            "junit": "ar-845a4667bc8a90c8fcbf"
+          },
+          {
+            "kind": "passed",
+            "collected": 18,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.234,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-a0cb27eb8142539badb1",
+            "junit": "ar-eb2ed531b4481fae30e7"
+          },
+          {
+            "kind": "passed",
+            "collected": 18,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.237,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-a0cb27eb8142539badb1",
+            "junit": "ar-f4012807c3073cdbe534"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 9,
+        "input_tokens": 49565,
+        "output_tokens": 1922,
+        "estimated_cost_cny": 0.13741,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 17.916,
+      "baseline": {
+        "run_id": "4d830923189f",
+        "status": "completed",
+        "verification": {
+          "verdict": "verified",
+          "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+          "test_sha256": "2cbd1734de38a869b3dd9c5ebd3bba62c3733278ea72cd9f08520d14ed11c701",
+          "validations": [
+            {
+              "kind": "assertion_failure",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "0e9787f7e5a8d4a446aaddf8bd1be5ddca0973bc1e9079c6111cc1b8b4d066cc",
+              "failure_details": [
+                {
+                  "test": "test_in_window_includes_end_boundary",
+                  "message": "AssertionError: end 端点应包含在窗口内\nassert False is True\n +  where False = in_window(10, 5, 10)"
+                }
+              ],
+              "seconds": 0.239,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 1,
+              "log": "ar-78dd850fd60dca58a429",
+              "junit": "ar-9eb4de2046e0693ebe61"
+            },
+            {
+              "kind": "assertion_failure",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "0e9787f7e5a8d4a446aaddf8bd1be5ddca0973bc1e9079c6111cc1b8b4d066cc",
+              "failure_details": [
+                {
+                  "test": "test_in_window_includes_end_boundary",
+                  "message": "AssertionError: end 端点应包含在窗口内\nassert False is True\n +  where False = in_window(10, 5, 10)"
+                }
+              ],
+              "seconds": 0.234,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 2,
+              "log": "ar-78dd850fd60dca58a429",
+              "junit": "ar-b11d7340b9f181be2b80"
+            },
+            {
+              "kind": "assertion_failure",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "0e9787f7e5a8d4a446aaddf8bd1be5ddca0973bc1e9079c6111cc1b8b4d066cc",
+              "failure_details": [
+                {
+                  "test": "test_in_window_includes_end_boundary",
+                  "message": "AssertionError: end 端点应包含在窗口内\nassert False is True\n +  where False = in_window(10, 5, 10)"
+                }
+              ],
+              "seconds": 0.233,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 3,
+              "log": "ar-78dd850fd60dca58a429",
+              "junit": "ar-9cd2881b8a12c29fcc34"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.23,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 1,
+              "log": "ar-bcd13931f4bb287db80f",
+              "junit": "ar-1c1efe31ebeac0878b9f"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.232,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 2,
+              "log": "ar-bcd13931f4bb287db80f",
+              "junit": "ar-c9479d0e879fd65458a9"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.224,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 3,
+              "log": "ar-bcd13931f4bb287db80f",
+              "junit": "ar-388b8c7d91465ccd4ec5"
+            }
+          ]
+        },
+        "statistics": {
+          "model_calls": 1,
+          "input_tokens": 400,
+          "output_tokens": 187,
+          "estimated_cost_cny": 0.002756,
+          "global_accounted_cny": 4.665886,
+          "global_unconfirmed_calls": 0,
+          "price_date": "2026-11-13",
+          "input_cny_per_million": 2.4,
+          "output_cny_per_million": 9.6,
+          "usd_conversion": 8
+        },
+        "information_access": "同模型、原始问题及至多12 KB相关源码，一次生成，无工具反馈",
+        "elapsed_seconds": 0.0,
+        "experiments": 0,
+        "skills": [],
+        "tool_errors": 0,
+        "repeated_experiments": 0
+      },
+      "skills": [
+        "boundary-analysis"
+      ],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "shared-state",
+      "variant": "full",
+      "run_id": "92f2557cd43c",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "ad9725e563fcef3c097f100aa303c3d804c27d9971a2da043bfc6c3bea6bf43a",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "a392c99d63afdae3f187b60b62a820a9aa04bfb6710b0a97e92ec1ed02232034",
+            "failure_details": [
+              {
+                "test": "test_new_instance_starts_with_empty_items",
+                "message": "assert [1] == []\n  \n  Left contains one more item: 1\n  Use -v to get more diff"
+              },
+              {
+                "test": "test_two_instances_keep_independent_items",
+                "message": "AssertionError: assert [1, 'x', 'y'] == ['x']\n  \n  At index 0 diff: 1 != 'x'\n  Left contains 2 more items, first extra item: 'x'\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.246,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-f0e87d32ba1755971030",
+            "junit": "ar-66b370524f91f399d897"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "a392c99d63afdae3f187b60b62a820a9aa04bfb6710b0a97e92ec1ed02232034",
+            "failure_details": [
+              {
+                "test": "test_new_instance_starts_with_empty_items",
+                "message": "assert [1] == []\n  \n  Left contains one more item: 1\n  Use -v to get more diff"
+              },
+              {
+                "test": "test_two_instances_keep_independent_items",
+                "message": "AssertionError: assert [1, 'x', 'y'] == ['x']\n  \n  At index 0 diff: 1 != 'x'\n  Left contains 2 more items, first extra item: 'x'\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.237,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-f0e87d32ba1755971030",
+            "junit": "ar-95f8fdfd80acd1c52c94"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "a392c99d63afdae3f187b60b62a820a9aa04bfb6710b0a97e92ec1ed02232034",
+            "failure_details": [
+              {
+                "test": "test_new_instance_starts_with_empty_items",
+                "message": "assert [1] == []\n  \n  Left contains one more item: 1\n  Use -v to get more diff"
+              },
+              {
+                "test": "test_two_instances_keep_independent_items",
+                "message": "AssertionError: assert [1, 'x', 'y'] == ['x']\n  \n  At index 0 diff: 1 != 'x'\n  Left contains 2 more items, first extra item: 'x'\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.236,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-f0e87d32ba1755971030",
+            "junit": "ar-d455cc9d8a8d10a5c8a9"
+          },
+          {
+            "kind": "passed",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.228,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-bcd13931f4bb287db80f",
+            "junit": "ar-a7a4758ecfdd16d5121a"
+          },
+          {
+            "kind": "passed",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.233,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-bcd13931f4bb287db80f",
+            "junit": "ar-9785c42728c5ad862532"
+          },
+          {
+            "kind": "passed",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.226,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-bcd13931f4bb287db80f",
+            "junit": "ar-f7141ad6bfbabbd2de13"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 9,
+        "input_tokens": 45480,
+        "output_tokens": 1698,
+        "estimated_cost_cny": 0.125455,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 15.976,
+      "baseline": {
+        "run_id": "f1f2d6902788",
+        "status": "completed",
+        "verification": {
+          "verdict": "verified",
+          "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+          "test_sha256": "d4c24898818185c57d441f081e6153dab301a65508635853b81b732a2af831d8",
+          "validations": [
+            {
+              "kind": "assertion_failure",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "b6643559d5e243c8aab98ec1c27e8415159fd39ab18a38465223700c178fc49e",
+              "failure_details": [
+                {
+                  "test": "test_bucket_instances_have_independent_items",
+                  "message": "AssertionError: Bucket instances must not share the class-level items list\nassert ['x'] == []\n  \n  Left contains one more item: 'x'\n  Use -v to get more diff"
+                }
+              ],
+              "seconds": 0.236,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 1,
+              "log": "ar-8dad259de5cd474eab47",
+              "junit": "ar-44e0e8b7690d488a18dd"
+            },
+            {
+              "kind": "assertion_failure",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "b6643559d5e243c8aab98ec1c27e8415159fd39ab18a38465223700c178fc49e",
+              "failure_details": [
+                {
+                  "test": "test_bucket_instances_have_independent_items",
+                  "message": "AssertionError: Bucket instances must not share the class-level items list\nassert ['x'] == []\n  \n  Left contains one more item: 'x'\n  Use -v to get more diff"
+                }
+              ],
+              "seconds": 0.234,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 2,
+              "log": "ar-8dad259de5cd474eab47",
+              "junit": "ar-ca780032f7614cbcab5f"
+            },
+            {
+              "kind": "assertion_failure",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "b6643559d5e243c8aab98ec1c27e8415159fd39ab18a38465223700c178fc49e",
+              "failure_details": [
+                {
+                  "test": "test_bucket_instances_have_independent_items",
+                  "message": "AssertionError: Bucket instances must not share the class-level items list\nassert ['x'] == []\n  \n  Left contains one more item: 'x'\n  Use -v to get more diff"
+                }
+              ],
+              "seconds": 0.236,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 3,
+              "log": "ar-8dad259de5cd474eab47",
+              "junit": "ar-0e2c5a9af170699a3f61"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.224,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 1,
+              "log": "ar-4345ce69385b70e05c50",
+              "junit": "ar-5993f9b632523f483c9c"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.239,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 2,
+              "log": "ar-4345ce69385b70e05c50",
+              "junit": "ar-b75f9192cb16c43cede9"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.235,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 3,
+              "log": "ar-4345ce69385b70e05c50",
+              "junit": "ar-586c4a74f4b36b4a5392"
+            }
+          ]
+        },
+        "statistics": {
+          "model_calls": 1,
+          "input_tokens": 400,
+          "output_tokens": 100,
+          "estimated_cost_cny": 0.00192,
+          "global_accounted_cny": 4.665886,
+          "global_unconfirmed_calls": 0,
+          "price_date": "2026-11-13",
+          "input_cny_per_million": 2.4,
+          "output_cny_per_million": 9.6,
+          "usd_conversion": 8
+        },
+        "information_access": "同模型、原始问题及至多12 KB相关源码，一次生成，无工具反馈",
+        "elapsed_seconds": 0.0,
+        "experiments": 0,
+        "skills": [],
+        "tool_errors": 0,
+        "repeated_experiments": 0
+      },
+      "skills": [
+        "iterator-state"
+      ],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "negative-offset",
+      "variant": "full",
+      "run_id": "41cf6076a730",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "2aa501e959d905bb50c47dd02b58fc9fc89dacac232a0fb60f00e231ec8e3ba6",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "09efb41143760eca77d595aa0f4b4adf6183c45c388b733330cc3aece9bf59cf",
+            "failure_details": [
+              {
+                "test": "test_paginate_rejects_negative_offset[-1]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_paginate_rejects_negative_offset[-2]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_paginate_rejects_negative_offset[-3]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_paginate_rejects_negative_offset[-100]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              }
+            ],
+            "seconds": 0.241,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-47080343e7c90ea0f56d",
+            "junit": "ar-cf862a9c69ee05a32ae0"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "09efb41143760eca77d595aa0f4b4adf6183c45c388b733330cc3aece9bf59cf",
+            "failure_details": [
+              {
+                "test": "test_paginate_rejects_negative_offset[-1]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_paginate_rejects_negative_offset[-2]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_paginate_rejects_negative_offset[-3]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_paginate_rejects_negative_offset[-100]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              }
+            ],
+            "seconds": 0.235,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-47080343e7c90ea0f56d",
+            "junit": "ar-ce7cfcdb050cc0ab494f"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "09efb41143760eca77d595aa0f4b4adf6183c45c388b733330cc3aece9bf59cf",
+            "failure_details": [
+              {
+                "test": "test_paginate_rejects_negative_offset[-1]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_paginate_rejects_negative_offset[-2]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_paginate_rejects_negative_offset[-3]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_paginate_rejects_negative_offset[-100]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              }
+            ],
+            "seconds": 0.256,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-47080343e7c90ea0f56d",
+            "junit": "ar-1ea5c6cc6f0a7955fb79"
+          },
+          {
+            "kind": "passed",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.235,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-44178ab1921cea90da50",
+            "junit": "ar-91ebe088e4783e099987"
+          },
+          {
+            "kind": "passed",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.231,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-44178ab1921cea90da50",
+            "junit": "ar-8190a8aacc92f120a707"
+          },
+          {
+            "kind": "passed",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.228,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-44178ab1921cea90da50",
+            "junit": "ar-1ff50473c7a32bbaaa2d"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 9,
+        "input_tokens": 44480,
+        "output_tokens": 1502,
+        "estimated_cost_cny": 0.121174,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 15.509,
+      "baseline": {
+        "run_id": "56f1b60a5bdd",
+        "status": "completed",
+        "verification": {
+          "verdict": "verified",
+          "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+          "test_sha256": "232ed5adcd9ec2d23f6ff73f1c9e7f72cac92c368e14429799b8e727f691f354",
+          "validations": [
+            {
+              "kind": "assertion_failure",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "075f473972aa9d8fb179c4d02a8d79056dda270bcfa09818225170ea250bb011",
+              "failure_details": [
+                {
+                  "test": "test_paginate_rejects_negative_offset",
+                  "message": "Failed: DID NOT RAISE ValueError"
+                }
+              ],
+              "seconds": 0.239,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 1,
+              "log": "ar-c3cc4af55505748a2c3d",
+              "junit": "ar-a10724be124f4b4b9721"
+            },
+            {
+              "kind": "assertion_failure",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "075f473972aa9d8fb179c4d02a8d79056dda270bcfa09818225170ea250bb011",
+              "failure_details": [
+                {
+                  "test": "test_paginate_rejects_negative_offset",
+                  "message": "Failed: DID NOT RAISE ValueError"
+                }
+              ],
+              "seconds": 0.232,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 2,
+              "log": "ar-c3cc4af55505748a2c3d",
+              "junit": "ar-1e7189b732c943283acc"
+            },
+            {
+              "kind": "assertion_failure",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "075f473972aa9d8fb179c4d02a8d79056dda270bcfa09818225170ea250bb011",
+              "failure_details": [
+                {
+                  "test": "test_paginate_rejects_negative_offset",
+                  "message": "Failed: DID NOT RAISE ValueError"
+                }
+              ],
+              "seconds": 0.234,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 3,
+              "log": "ar-c3cc4af55505748a2c3d",
+              "junit": "ar-3081dc1acdaef12ef666"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.233,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 1,
+              "log": "ar-4345ce69385b70e05c50",
+              "junit": "ar-7c0ebb5dbd5c96b37c51"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.231,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 2,
+              "log": "ar-4345ce69385b70e05c50",
+              "junit": "ar-9db65813e9e78fc4a94f"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.226,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 3,
+              "log": "ar-6a1e33f60202cf3b0c2e",
+              "junit": "ar-9000dbd5e7d9facf4ea4"
+            }
+          ]
+        },
+        "statistics": {
+          "model_calls": 1,
+          "input_tokens": 402,
+          "output_tokens": 96,
+          "estimated_cost_cny": 0.001887,
+          "global_accounted_cny": 4.665886,
+          "global_unconfirmed_calls": 0,
+          "price_date": "2026-11-13",
+          "input_cny_per_million": 2.4,
+          "output_cny_per_million": 9.6,
+          "usd_conversion": 8
+        },
+        "information_access": "同模型、原始问题及至多12 KB相关源码，一次生成，无工具反馈",
+        "elapsed_seconds": 0.0,
+        "experiments": 0,
+        "skills": [],
+        "tool_errors": 0,
+        "repeated_experiments": 0
+      },
+      "skills": [
+        "boundary-analysis"
+      ],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "zero-capacity",
+      "variant": "full",
+      "run_id": "49b0c3a63102",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "d7c948e5fa1041095b27c39c7487e4e079a667b2b8e41306d1929125114e26ca",
+        "validations": [
+          {
+            "kind": "target_exception",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "fd8f34170a2f266db6299d6802bf933c0809b06920427f977c09f5ed5ce3e8b9",
+            "failure_details": [
+              {
+                "test": "test_chunks_zero_returns_empty_list",
+                "message": "ValueError: range() arg 3 must not be zero"
+              },
+              {
+                "test": "test_chunks_zero_on_empty_input",
+                "message": "ValueError: range() arg 3 must not be zero"
+              },
+              {
+                "test": "test_chunks_negative_raises_value_error[-1]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_chunks_negative_raises_value_error[-3]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              }
+            ],
+            "seconds": 0.238,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-a00f57df874198e95243",
+            "junit": "ar-38d56dbdc8dacdf452c4"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "fd8f34170a2f266db6299d6802bf933c0809b06920427f977c09f5ed5ce3e8b9",
+            "failure_details": [
+              {
+                "test": "test_chunks_zero_returns_empty_list",
+                "message": "ValueError: range() arg 3 must not be zero"
+              },
+              {
+                "test": "test_chunks_zero_on_empty_input",
+                "message": "ValueError: range() arg 3 must not be zero"
+              },
+              {
+                "test": "test_chunks_negative_raises_value_error[-1]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_chunks_negative_raises_value_error[-3]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              }
+            ],
+            "seconds": 0.239,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-a00f57df874198e95243",
+            "junit": "ar-dbdc6f2277f474d10d49"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "fd8f34170a2f266db6299d6802bf933c0809b06920427f977c09f5ed5ce3e8b9",
+            "failure_details": [
+              {
+                "test": "test_chunks_zero_returns_empty_list",
+                "message": "ValueError: range() arg 3 must not be zero"
+              },
+              {
+                "test": "test_chunks_zero_on_empty_input",
+                "message": "ValueError: range() arg 3 must not be zero"
+              },
+              {
+                "test": "test_chunks_negative_raises_value_error[-1]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              },
+              {
+                "test": "test_chunks_negative_raises_value_error[-3]",
+                "message": "Failed: DID NOT RAISE ValueError"
+              }
+            ],
+            "seconds": 0.242,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-a00f57df874198e95243",
+            "junit": "ar-da3f9bab7f97b46c8bc7"
+          },
+          {
+            "kind": "passed",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.236,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-4ec83dc8390b7be2bbc0",
+            "junit": "ar-dc2ef9910e9e5836846c"
+          },
+          {
+            "kind": "passed",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.228,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-4ec83dc8390b7be2bbc0",
+            "junit": "ar-a9ee52fbfb1c94870283"
+          },
+          {
+            "kind": "passed",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.231,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-4ec83dc8390b7be2bbc0",
+            "junit": "ar-8247eefb4bc1b28dddc1"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 9,
+        "input_tokens": 46046,
+        "output_tokens": 1812,
+        "estimated_cost_cny": 0.127909,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 15.477,
+      "baseline": {
+        "run_id": "40554a8d863c",
+        "status": "completed",
+        "verification": {
+          "verdict": "verified",
+          "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+          "test_sha256": "7706ada1b314150c8f212cdbe63c9d4ca984cc4411316683ef2079b52b1a22c1",
+          "validations": [
+            {
+              "kind": "target_exception",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 2,
+              "exit_code": 1,
+              "failure_signature": "bcfa9a9cfdbb93cb041ed6f6ed93e94a70ba3e82c5f042316bb525b410f2489a",
+              "failure_details": [
+                {
+                  "test": "test_chunks_zero_returns_empty_list",
+                  "message": "ValueError: range() arg 3 must not be zero"
+                },
+                {
+                  "test": "test_chunks_negative_raises_value_error",
+                  "message": "Failed: DID NOT RAISE ValueError"
+                }
+              ],
+              "seconds": 0.241,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 1,
+              "log": "ar-c02144d069681980b55c",
+              "junit": "ar-1de048cf7c7e7b6d4a24"
+            },
+            {
+              "kind": "target_exception",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 2,
+              "exit_code": 1,
+              "failure_signature": "bcfa9a9cfdbb93cb041ed6f6ed93e94a70ba3e82c5f042316bb525b410f2489a",
+              "failure_details": [
+                {
+                  "test": "test_chunks_zero_returns_empty_list",
+                  "message": "ValueError: range() arg 3 must not be zero"
+                },
+                {
+                  "test": "test_chunks_negative_raises_value_error",
+                  "message": "Failed: DID NOT RAISE ValueError"
+                }
+              ],
+              "seconds": 0.238,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 2,
+              "log": "ar-c02144d069681980b55c",
+              "junit": "ar-6d485801ad6f7bd7a6ea"
+            },
+            {
+              "kind": "target_exception",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 2,
+              "exit_code": 1,
+              "failure_signature": "bcfa9a9cfdbb93cb041ed6f6ed93e94a70ba3e82c5f042316bb525b410f2489a",
+              "failure_details": [
+                {
+                  "test": "test_chunks_zero_returns_empty_list",
+                  "message": "ValueError: range() arg 3 must not be zero"
+                },
+                {
+                  "test": "test_chunks_negative_raises_value_error",
+                  "message": "Failed: DID NOT RAISE ValueError"
+                }
+              ],
+              "seconds": 0.234,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 3,
+              "log": "ar-c02144d069681980b55c",
+              "junit": "ar-976a16fa418a20ed4538"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.235,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 1,
+              "log": "ar-7a4bfbe1e423b5d3b338",
+              "junit": "ar-c3980683eb40b20f3ede"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.242,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 2,
+              "log": "ar-bcd13931f4bb287db80f",
+              "junit": "ar-14a6db63a7bc7d858cb9"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.26,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 3,
+              "log": "ar-bcd13931f4bb287db80f",
+              "junit": "ar-95f0214930190fe57bec"
+            }
+          ]
+        },
+        "statistics": {
+          "model_calls": 1,
+          "input_tokens": 415,
+          "output_tokens": 140,
+          "estimated_cost_cny": 0.00234,
+          "global_accounted_cny": 4.665886,
+          "global_unconfirmed_calls": 0,
+          "price_date": "2026-11-13",
+          "input_cny_per_million": 2.4,
+          "output_cny_per_million": 9.6,
+          "usd_conversion": 8
+        },
+        "information_access": "同模型、原始问题及至多12 KB相关源码，一次生成，无工具反馈",
+        "elapsed_seconds": 0.0,
+        "experiments": 0,
+        "skills": [],
+        "tool_errors": 0,
+        "repeated_experiments": 0
+      },
+      "skills": [
+        "boundary-analysis"
+      ],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "decimal-money",
+      "variant": "full",
+      "run_id": "649f9c8f0622",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "82a1446c92208a33f80533d7ee7721218636cc19dc5ccc6787e2cfee426cd20f",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "77bc2009c1d6d326afa28b31c66af1c4b6024c1b90c5de9cec93c08a6e129ee6",
+            "failure_details": [
+              {
+                "test": "test_money_rounds_half_up_to_two_places[2.675-expected4]",
+                "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')"
+              },
+              {
+                "test": "test_money_rounds_half_up_to_two_places[-2.675-expected5]",
+                "message": "AssertionError: assert Decimal('-2.67') == Decimal('-2.68')"
+              }
+            ],
+            "seconds": 0.253,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-2565177e9961d47f2c08",
+            "junit": "ar-d81ca290017f66b68c8d"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "77bc2009c1d6d326afa28b31c66af1c4b6024c1b90c5de9cec93c08a6e129ee6",
+            "failure_details": [
+              {
+                "test": "test_money_rounds_half_up_to_two_places[2.675-expected4]",
+                "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')"
+              },
+              {
+                "test": "test_money_rounds_half_up_to_two_places[-2.675-expected5]",
+                "message": "AssertionError: assert Decimal('-2.67') == Decimal('-2.68')"
+              }
+            ],
+            "seconds": 0.262,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-2565177e9961d47f2c08",
+            "junit": "ar-37ff6ffc826bd61b6cf4"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "77bc2009c1d6d326afa28b31c66af1c4b6024c1b90c5de9cec93c08a6e129ee6",
+            "failure_details": [
+              {
+                "test": "test_money_rounds_half_up_to_two_places[2.675-expected4]",
+                "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')"
+              },
+              {
+                "test": "test_money_rounds_half_up_to_two_places[-2.675-expected5]",
+                "message": "AssertionError: assert Decimal('-2.67') == Decimal('-2.68')"
+              }
+            ],
+            "seconds": 0.248,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-2565177e9961d47f2c08",
+            "junit": "ar-f401f4fd6e7d0789f4eb"
+          },
+          {
+            "kind": "passed",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.294,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-44178ab1921cea90da50",
+            "junit": "ar-f2e33feebf4d9de458bf"
+          },
+          {
+            "kind": "passed",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.267,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-44178ab1921cea90da50",
+            "junit": "ar-b7525983f8b652cdbbac"
+          },
+          {
+            "kind": "passed",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.268,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-44178ab1921cea90da50",
+            "junit": "ar-fc34c405c0b057719252"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 9,
+        "input_tokens": 46569,
+        "output_tokens": 1767,
+        "estimated_cost_cny": 0.128732,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 15.742,
+      "baseline": {
+        "run_id": "98851c0cba1d",
+        "status": "completed",
+        "verification": {
+          "verdict": "verified",
+          "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+          "test_sha256": "d9e8731bf436515b5401ba7af688bc1de26682d97f85473db26df7d811e8f7a3",
+          "validations": [
+            {
+              "kind": "assertion_failure",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "0b586f40d752ebcdbfd602e6e7f6e1e85a2cf992d065befefe8579f14574c306",
+              "failure_details": [
+                {
+                  "test": "test_money_rounds_half_up",
+                  "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')\n +  where Decimal('2.67') = money('2.675')\n +  and   Decimal('2.68') = Decimal('2.68')"
+                }
+              ],
+              "seconds": 0.283,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 1,
+              "log": "ar-65301cec36b063bf3c50",
+              "junit": "ar-b1e55b08e5c9657a272a"
+            },
+            {
+              "kind": "assertion_failure",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "0b586f40d752ebcdbfd602e6e7f6e1e85a2cf992d065befefe8579f14574c306",
+              "failure_details": [
+                {
+                  "test": "test_money_rounds_half_up",
+                  "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')\n +  where Decimal('2.67') = money('2.675')\n +  and   Decimal('2.68') = Decimal('2.68')"
+                }
+              ],
+              "seconds": 0.269,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 2,
+              "log": "ar-65301cec36b063bf3c50",
+              "junit": "ar-2a458c625bf9537ceba1"
+            },
+            {
+              "kind": "assertion_failure",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "0b586f40d752ebcdbfd602e6e7f6e1e85a2cf992d065befefe8579f14574c306",
+              "failure_details": [
+                {
+                  "test": "test_money_rounds_half_up",
+                  "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')\n +  where Decimal('2.67') = money('2.675')\n +  and   Decimal('2.68') = Decimal('2.68')"
+                }
+              ],
+              "seconds": 0.276,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 3,
+              "log": "ar-65301cec36b063bf3c50",
+              "junit": "ar-03e6b24a8d8b49f57757"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.262,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 1,
+              "log": "ar-4345ce69385b70e05c50",
+              "junit": "ar-65465e7036f2d2c0daa4"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.262,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 2,
+              "log": "ar-4345ce69385b70e05c50",
+              "junit": "ar-c19e22ccb8e5c6803e8f"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.257,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 3,
+              "log": "ar-4345ce69385b70e05c50",
+              "junit": "ar-a95b08b91739518f5908"
+            }
+          ]
+        },
+        "statistics": {
+          "model_calls": 1,
+          "input_tokens": 418,
+          "output_tokens": 97,
+          "estimated_cost_cny": 0.001935,
+          "global_accounted_cny": 4.665886,
+          "global_unconfirmed_calls": 0,
+          "price_date": "2026-11-13",
+          "input_cny_per_million": 2.4,
+          "output_cny_per_million": 9.6,
+          "usd_conversion": 8
+        },
+        "information_access": "同模型、原始问题及至多12 KB相关源码，一次生成，无工具反馈",
+        "elapsed_seconds": 0.0,
+        "experiments": 0,
+        "skills": [],
+        "tool_errors": 0,
+        "repeated_experiments": 0
+      },
+      "skills": [
+        "boundary-analysis"
+      ],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "chunked-even",
+      "variant": "full",
+      "run_id": "0e56a62a0d0b",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "4593758fb1157f3f5df0bb2e398c8c1d17b67f34715ccc081333e5fa9c355395",
+        "validations": [
+          {
+            "kind": "target_exception",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "1641e31326c1a4cb689b4057f78c6045349d7f142c1b3049e4d926844a2caab4",
+            "failure_details": [
+              {
+                "test": "test_n_zero_returns_empty_and_does_not_consume",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              },
+              {
+                "test": "test_negative_n_raises_value_error_and_does_not_consume[-1]",
+                "message": "AssertionError: n=-1 consumed 6 item(s) from the input\nassert 6 == 0\n +  where 6 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_negative_n_raises_value_error_and_does_not_consume[-2]",
+                "message": "AssertionError: n=-2 consumed 7 item(s) from the input\nassert 7 == 0\n +  where 7 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_negative_n_raises_value_error_and_does_not_consume[-5]",
+                "message": "AssertionError: n=-5 consumed 7 item(s) from the input\nassert 7 == 0\n +  where 7 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              }
+            ],
+            "seconds": 0.316,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-057434f831de2e75ab74",
+            "junit": "ar-cd64e4ba53f962d43ba9"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "1641e31326c1a4cb689b4057f78c6045349d7f142c1b3049e4d926844a2caab4",
+            "failure_details": [
+              {
+                "test": "test_n_zero_returns_empty_and_does_not_consume",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              },
+              {
+                "test": "test_negative_n_raises_value_error_and_does_not_consume[-1]",
+                "message": "AssertionError: n=-1 consumed 6 item(s) from the input\nassert 6 == 0\n +  where 6 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_negative_n_raises_value_error_and_does_not_consume[-2]",
+                "message": "AssertionError: n=-2 consumed 7 item(s) from the input\nassert 7 == 0\n +  where 7 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_negative_n_raises_value_error_and_does_not_consume[-5]",
+                "message": "AssertionError: n=-5 consumed 7 item(s) from the input\nassert 7 == 0\n +  where 7 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              }
+            ],
+            "seconds": 0.282,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-4411cbf04402f43eae3d",
+            "junit": "ar-e390fd3cc70052110db2"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "1641e31326c1a4cb689b4057f78c6045349d7f142c1b3049e4d926844a2caab4",
+            "failure_details": [
+              {
+                "test": "test_n_zero_returns_empty_and_does_not_consume",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              },
+              {
+                "test": "test_negative_n_raises_value_error_and_does_not_consume[-1]",
+                "message": "AssertionError: n=-1 consumed 6 item(s) from the input\nassert 6 == 0\n +  where 6 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_negative_n_raises_value_error_and_does_not_consume[-2]",
+                "message": "AssertionError: n=-2 consumed 7 item(s) from the input\nassert 7 == 0\n +  where 7 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_negative_n_raises_value_error_and_does_not_consume[-5]",
+                "message": "AssertionError: n=-5 consumed 7 item(s) from the input\nassert 7 == 0\n +  where 7 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              }
+            ],
+            "seconds": 0.283,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-90aafc279c34fa361a4d",
+            "junit": "ar-eeb8afe39b4b258f69f3"
+          },
+          {
+            "kind": "passed",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.297,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-f97d1c2d85f452efb574",
+            "junit": "ar-0a20e501733beefc64d0"
+          },
+          {
+            "kind": "passed",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.267,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-f97d1c2d85f452efb574",
+            "junit": "ar-429f9fb57f045173bd4d"
+          },
+          {
+            "kind": "passed",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.255,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-f97d1c2d85f452efb574",
+            "junit": "ar-aa967a94debd5f0ca4a7"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 9,
+        "input_tokens": 72067,
+        "output_tokens": 2301,
+        "estimated_cost_cny": 0.195055,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 18.591,
+      "baseline": {
+        "run_id": "91d2caae0f70",
+        "status": "completed",
+        "verification": {
+          "verdict": "verified",
+          "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+          "test_sha256": "6f08b2f74d37dd26e2c8f437038bfc910918a16d40936bed297c78c2b31d5b5c",
+          "validations": [
+            {
+              "kind": "target_exception",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 2,
+              "exit_code": 1,
+              "failure_signature": "b4a44659666e7e61a23a543b366753963a38dbf97a64d0f244c2ffbad9cb05df",
+              "failure_details": [
+                {
+                  "test": "test_chunked_even_n_zero_returns_empty_without_consuming",
+                  "message": "ValueError: Step for islice() must be a positive integer or None."
+                },
+                {
+                  "test": "test_chunked_even_n_negative_raises_without_consuming",
+                  "message": "assert 5 == 0\n +  where 5 = <tests.test_reproducer.TrackingIterator object at 0xADDRESS>.consumed"
+                }
+              ],
+              "seconds": 0.321,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 1,
+              "log": "ar-70923fcb836608d8b2ef",
+              "junit": "ar-e1e9f989aa24810ee117"
+            },
+            {
+              "kind": "target_exception",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 2,
+              "exit_code": 1,
+              "failure_signature": "b4a44659666e7e61a23a543b366753963a38dbf97a64d0f244c2ffbad9cb05df",
+              "failure_details": [
+                {
+                  "test": "test_chunked_even_n_zero_returns_empty_without_consuming",
+                  "message": "ValueError: Step for islice() must be a positive integer or None."
+                },
+                {
+                  "test": "test_chunked_even_n_negative_raises_without_consuming",
+                  "message": "assert 5 == 0\n +  where 5 = <tests.test_reproducer.TrackingIterator object at 0xADDRESS>.consumed"
+                }
+              ],
+              "seconds": 0.313,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 2,
+              "log": "ar-24f041d65d77a58d3056",
+              "junit": "ar-8de74a7ab265639632c9"
+            },
+            {
+              "kind": "target_exception",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 2,
+              "exit_code": 1,
+              "failure_signature": "b4a44659666e7e61a23a543b366753963a38dbf97a64d0f244c2ffbad9cb05df",
+              "failure_details": [
+                {
+                  "test": "test_chunked_even_n_zero_returns_empty_without_consuming",
+                  "message": "ValueError: Step for islice() must be a positive integer or None."
+                },
+                {
+                  "test": "test_chunked_even_n_negative_raises_without_consuming",
+                  "message": "assert 5 == 0\n +  where 5 = <tests.test_reproducer.TrackingIterator object at 0xADDRESS>.consumed"
+                }
+              ],
+              "seconds": 0.318,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 3,
+              "log": "ar-0ae1fed2f18615154322",
+              "junit": "ar-91cf9e39f14742c340bd"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.293,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 1,
+              "log": "ar-425d71e8cdf0361c1fac",
+              "junit": "ar-309f97ee72afa0946ff3"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.289,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 2,
+              "log": "ar-425d71e8cdf0361c1fac",
+              "junit": "ar-92ca882f1e466f1c7958"
+            },
+            {
+              "kind": "passed",
+              "collected": 2,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.283,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 3,
+              "log": "ar-ae67159ef7243c223102",
+              "junit": "ar-a3a215530cd32e81b675"
+            }
+          ]
+        },
+        "statistics": {
+          "model_calls": 1,
+          "input_tokens": 3711,
+          "output_tokens": 305,
+          "estimated_cost_cny": 0.011835,
+          "global_accounted_cny": 4.665886,
+          "global_unconfirmed_calls": 0,
+          "price_date": "2026-11-13",
+          "input_cny_per_million": 2.4,
+          "output_cny_per_million": 9.6,
+          "usd_conversion": 8
+        },
+        "information_access": "同模型、原始问题及至多12 KB相关源码，一次生成，无工具反馈",
+        "elapsed_seconds": 0.0,
+        "experiments": 0,
+        "skills": [],
+        "tool_errors": 0,
+        "repeated_experiments": 0
+      },
+      "skills": [
+        "boundary-analysis",
+        "iterator-state"
+      ],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "numeric-range",
+      "variant": "full",
+      "run_id": "09c0a152402a",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "956be75f0fec991b91573feb1bdbf835a08ffa3ff41c4bd64116ce7d7d4dc35f",
+        "validations": [
+          {
+            "kind": "target_exception",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+            "failure_details": [
+              {
+                "test": "test_huge_range_equality_does_not_overflow",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              },
+              {
+                "test": "test_huge_range_inequality_does_not_overflow",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              },
+              {
+                "test": "test_huge_range_hash_does_not_overflow",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              },
+              {
+                "test": "test_huge_range_usable_as_dict_key",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              }
+            ],
+            "seconds": 0.361,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-ffb554e7b3dd4c301493",
+            "junit": "ar-b65f3a3ffe128f568fe0"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+            "failure_details": [
+              {
+                "test": "test_huge_range_equality_does_not_overflow",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              },
+              {
+                "test": "test_huge_range_inequality_does_not_overflow",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              },
+              {
+                "test": "test_huge_range_hash_does_not_overflow",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              },
+              {
+                "test": "test_huge_range_usable_as_dict_key",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              }
+            ],
+            "seconds": 0.357,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-ffb554e7b3dd4c301493",
+            "junit": "ar-a930560c4e8df18612c2"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "75be33e474bdbda68d9109e0ba338d2a5b45d241ad0b63390d463a3bdbf8d166",
+            "failure_details": [
+              {
+                "test": "test_huge_range_equality_does_not_overflow",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              },
+              {
+                "test": "test_huge_range_inequality_does_not_overflow",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              },
+              {
+                "test": "test_huge_range_hash_does_not_overflow",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              },
+              {
+                "test": "test_huge_range_usable_as_dict_key",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              }
+            ],
+            "seconds": 0.335,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-7086711bc306a81ba997",
+            "junit": "ar-b6b8390ff62521ff9c00"
+          },
+          {
+            "kind": "passed",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.254,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-f03796438cb3308bbe9d",
+            "junit": "ar-0f38d2ddb27afcfa5daf"
+          },
+          {
+            "kind": "passed",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.251,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-f03796438cb3308bbe9d",
+            "junit": "ar-26a18a3a639bffaac048"
+          },
+          {
+            "kind": "passed",
+            "collected": 6,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.256,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-528c6bf44ea38a24176d",
+            "junit": "ar-84c97dc08d11ca93c9fa"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 21,
+        "input_tokens": 228227,
+        "output_tokens": 4086,
+        "estimated_cost_cny": 0.58698,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 2,
+      "elapsed_seconds": 43.871,
+      "baseline": {
+        "run_id": "28c799b4fdb9",
+        "status": "completed",
+        "verification": {
+          "verdict": "verified",
+          "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+          "test_sha256": "a73bf1f5c3ad1c45b87820981f10a4c2939c75f132343b070bac305068057a88",
+          "validations": [
+            {
+              "kind": "target_exception",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "9f0f6ae6e613615dbfa565b170f051624c23293a21ac8b281b0ab3a4d76b5b03",
+              "failure_details": [
+                {
+                  "test": "test_numeric_range_eq_and_hash_beyond_maxsize",
+                  "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+                }
+              ],
+              "seconds": 0.27,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 1,
+              "log": "ar-cb12c5edb31f324b378a",
+              "junit": "ar-21fd7038e4216d208624"
+            },
+            {
+              "kind": "target_exception",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "9f0f6ae6e613615dbfa565b170f051624c23293a21ac8b281b0ab3a4d76b5b03",
+              "failure_details": [
+                {
+                  "test": "test_numeric_range_eq_and_hash_beyond_maxsize",
+                  "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+                }
+              ],
+              "seconds": 0.284,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 2,
+              "log": "ar-cb12c5edb31f324b378a",
+              "junit": "ar-4aecce81d31e22d8520b"
+            },
+            {
+              "kind": "target_exception",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 1,
+              "exit_code": 1,
+              "failure_signature": "9f0f6ae6e613615dbfa565b170f051624c23293a21ac8b281b0ab3a4d76b5b03",
+              "failure_details": [
+                {
+                  "test": "test_numeric_range_eq_and_hash_beyond_maxsize",
+                  "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+                }
+              ],
+              "seconds": 0.265,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "buggy",
+              "attempt": 3,
+              "log": "ar-cb12c5edb31f324b378a",
+              "junit": "ar-df93dd23c24f7727f5e2"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.257,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 1,
+              "log": "ar-7b6aa87b4446035d14b0",
+              "junit": "ar-e6f5a6d24e30bdc8e95f"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.243,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 2,
+              "log": "ar-7b6aa87b4446035d14b0",
+              "junit": "ar-2bf8c67acf083e16cb39"
+            },
+            {
+              "kind": "passed",
+              "collected": 1,
+              "skipped": 0,
+              "failed": 0,
+              "exit_code": 0,
+              "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "failure_details": [],
+              "seconds": 0.241,
+              "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+              "variant": "fixed",
+              "attempt": 3,
+              "log": "ar-7b6aa87b4446035d14b0",
+              "junit": "ar-5007802956f5821dc886"
+            }
+          ]
+        },
+        "statistics": {
+          "model_calls": 1,
+          "input_tokens": 3670,
+          "output_tokens": 205,
+          "estimated_cost_cny": 0.010776,
+          "global_accounted_cny": 4.665886,
+          "global_unconfirmed_calls": 0,
+          "price_date": "2026-11-13",
+          "input_cny_per_million": 2.4,
+          "output_cny_per_million": 9.6,
+          "usd_conversion": 8
+        },
+        "information_access": "同模型、原始问题及至多12 KB相关源码，一次生成，无工具反馈",
+        "elapsed_seconds": 0.0,
+        "experiments": 0,
+        "skills": [],
+        "tool_errors": 0,
+        "repeated_experiments": 0
+      },
+      "skills": [
+        "boundary-analysis",
+        "pytest-reproduction"
+      ],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    }
+  ],
+  "mode": "live",
+  "note": "offline_synthetic 使用预设测试，仅验证执行协议。真实任务与基线信息访问方式存在差异。",
+  "validation_revision": "signature-v5; Docker image identity pinned; numeric-range resumed with buggy-only call-signature feedback"
+}

@@ -1,0 +1,4 @@
+1: class Bucket:
+2:     items = []
+3:     def add(self, value):
+4:         self.items.append(value)

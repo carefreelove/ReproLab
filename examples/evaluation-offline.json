@@ -1,0 +1,1062 @@
+{
+  "results": [
+    {
+      "case": "empty-mean",
+      "variant": "full",
+      "run_id": "a273b2308d47",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "69aae7573d88b191c531b90658d533bef1cac741ddc74fc8527ad74005ff79e5",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+            "failure_details": [
+              {
+                "test": "test_empty",
+                "message": "ZeroDivisionError: division by zero"
+              }
+            ],
+            "seconds": 0.298,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-15ae0e7ad75eae3209b4",
+            "junit": "ar-dbff40d3d1217f6f246a"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+            "failure_details": [
+              {
+                "test": "test_empty",
+                "message": "ZeroDivisionError: division by zero"
+              }
+            ],
+            "seconds": 0.292,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-15ae0e7ad75eae3209b4",
+            "junit": "ar-283f745eb5d41bf52b7c"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+            "failure_details": [
+              {
+                "test": "test_empty",
+                "message": "ZeroDivisionError: division by zero"
+              }
+            ],
+            "seconds": 0.298,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-15ae0e7ad75eae3209b4",
+            "junit": "ar-5a8458e5429d70010c89"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.267,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-c93011566da7453a1516"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.284,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-0745c5495e8a53bb7780"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.28,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-aa850a5d4dc3250f02fb"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny": 0.0,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 2.993
+    },
+    {
+      "case": "inclusive-window",
+      "variant": "full",
+      "run_id": "9eb0d759b21d",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "e836a03dc0217dee422e62b895bd0e8e6c0abe1f10cd98954b2d8ed9121caf7d",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "f818a0c9b8e59fa37d72b1648da4fca591dca77bcfdde0b5686450614ce0e8ff",
+            "failure_details": [
+              {
+                "test": "test_end",
+                "message": "assert False is True\n +  where False = in_window(20, 10, 20)"
+              }
+            ],
+            "seconds": 0.421,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-6b18cd863563a3cae6b5",
+            "junit": "ar-e9dd109549b95d3c78a6"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "f818a0c9b8e59fa37d72b1648da4fca591dca77bcfdde0b5686450614ce0e8ff",
+            "failure_details": [
+              {
+                "test": "test_end",
+                "message": "assert False is True\n +  where False = in_window(20, 10, 20)"
+              }
+            ],
+            "seconds": 0.313,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-6affce10204ec8160baa",
+            "junit": "ar-f85e89a2615a38544d34"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "f818a0c9b8e59fa37d72b1648da4fca591dca77bcfdde0b5686450614ce0e8ff",
+            "failure_details": [
+              {
+                "test": "test_end",
+                "message": "assert False is True\n +  where False = in_window(20, 10, 20)"
+              }
+            ],
+            "seconds": 0.293,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-6affce10204ec8160baa",
+            "junit": "ar-2a663585793f5612a3f1"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.291,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-da2b17edb7284fd7c13e"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.282,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-bf931f41b02bae1b0584"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.279,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-5f6400291e78da436d76"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny": 0.0,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 3.121
+    },
+    {
+      "case": "shared-state",
+      "variant": "full",
+      "run_id": "8de8cf7f423b",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "535d0225ce87f7b4d83a670e2430ecb60a55db044b94cd4f032d7b6eaa9dbed3",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "2913b9aa0ba849586014310ba6a63061da837f3bc3bf7a7b57d50adf7cdd846b",
+            "failure_details": [
+              {
+                "test": "test_independent",
+                "message": "AssertionError: assert ['a'] == []\n  \n  Left contains one more item: 'a'\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.284,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-7513294b853884e1314c",
+            "junit": "ar-2d231f2fd74a0d389a4d"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "2913b9aa0ba849586014310ba6a63061da837f3bc3bf7a7b57d50adf7cdd846b",
+            "failure_details": [
+              {
+                "test": "test_independent",
+                "message": "AssertionError: assert ['a'] == []\n  \n  Left contains one more item: 'a'\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.283,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-7513294b853884e1314c",
+            "junit": "ar-83f192c57caad2251da3"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "2913b9aa0ba849586014310ba6a63061da837f3bc3bf7a7b57d50adf7cdd846b",
+            "failure_details": [
+              {
+                "test": "test_independent",
+                "message": "AssertionError: assert ['a'] == []\n  \n  Left contains one more item: 'a'\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.303,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-ad4a32f0249c00844a3c",
+            "junit": "ar-2550d9bdf0fc4bb47fcc"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.301,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-34df01c43fa3e09e24ba"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.298,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-1cf650a0248646f3a0d5"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.574,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-03c3f110e475034b4d6e"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny": 0.0,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 3.268
+    },
+    {
+      "case": "negative-offset",
+      "variant": "full",
+      "run_id": "b2dfcd9bd573",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "092c17ea3862446cc2d99b78cfba0fa9e144b71c451b743550f481b4c81ea6ab",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "075f473972aa9d8fb179c4d02a8d79056dda270bcfa09818225170ea250bb011",
+            "failure_details": [
+              {
+                "test": "test_negative",
+                "message": "Failed: DID NOT RAISE ValueError"
+              }
+            ],
+            "seconds": 0.282,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-f72259c2c66f4446be2d",
+            "junit": "ar-28f780b83127c1cfa7c6"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "075f473972aa9d8fb179c4d02a8d79056dda270bcfa09818225170ea250bb011",
+            "failure_details": [
+              {
+                "test": "test_negative",
+                "message": "Failed: DID NOT RAISE ValueError"
+              }
+            ],
+            "seconds": 0.276,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-f72259c2c66f4446be2d",
+            "junit": "ar-8710583f2f4a3ae8978b"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "075f473972aa9d8fb179c4d02a8d79056dda270bcfa09818225170ea250bb011",
+            "failure_details": [
+              {
+                "test": "test_negative",
+                "message": "Failed: DID NOT RAISE ValueError"
+              }
+            ],
+            "seconds": 0.274,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-f72259c2c66f4446be2d",
+            "junit": "ar-5e982c3a3d4c772df993"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.292,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-959344be7d797884f0ad"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.275,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-7ded3b3ec709d72190e9"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.266,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-f4058eb1412496e3ff52"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny": 0.0,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 2.904
+    },
+    {
+      "case": "zero-capacity",
+      "variant": "full",
+      "run_id": "04a8d46bb2dd",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "134a437090295dfacad554461126844fe1e8c664783782a2575f1ebe631a7fe9",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "2646513056c20646327f00b55bcdebc45aa1f54db11441001d2f2aa1c35a390a",
+            "failure_details": [
+              {
+                "test": "test_zero",
+                "message": "ValueError: range() arg 3 must not be zero"
+              }
+            ],
+            "seconds": 0.276,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-7b0f4abc8354566a72cb",
+            "junit": "ar-d79d27ae9116ca87bdea"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "2646513056c20646327f00b55bcdebc45aa1f54db11441001d2f2aa1c35a390a",
+            "failure_details": [
+              {
+                "test": "test_zero",
+                "message": "ValueError: range() arg 3 must not be zero"
+              }
+            ],
+            "seconds": 0.28,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-7b0f4abc8354566a72cb",
+            "junit": "ar-da97ac354bf4cd6d24c8"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "2646513056c20646327f00b55bcdebc45aa1f54db11441001d2f2aa1c35a390a",
+            "failure_details": [
+              {
+                "test": "test_zero",
+                "message": "ValueError: range() arg 3 must not be zero"
+              }
+            ],
+            "seconds": 0.269,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-7b0f4abc8354566a72cb",
+            "junit": "ar-852fba9269aba2b30a59"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.261,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-8f4b2626698fbdfa1dd7"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.276,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-df6b6a2f6940db389fa6"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.276,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-10213c6ae38ac8a9a251"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny": 0.0,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 2.779
+    },
+    {
+      "case": "decimal-money",
+      "variant": "full",
+      "run_id": "b75e82cf20dd",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "8040abc4c414fc8d7cae43c7c802a990de84a6e65c7e9174faaaa753bee489c7",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "0b586f40d752ebcdbfd602e6e7f6e1e85a2cf992d065befefe8579f14574c306",
+            "failure_details": [
+              {
+                "test": "test_rounding",
+                "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')\n +  where Decimal('2.67') = money('2.675')\n +  and   Decimal('2.68') = Decimal('2.68')"
+              }
+            ],
+            "seconds": 0.269,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-eb44daf09643f8c4b91d",
+            "junit": "ar-b9e1a0794b4e59c3c43e"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "0b586f40d752ebcdbfd602e6e7f6e1e85a2cf992d065befefe8579f14574c306",
+            "failure_details": [
+              {
+                "test": "test_rounding",
+                "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')\n +  where Decimal('2.67') = money('2.675')\n +  and   Decimal('2.68') = Decimal('2.68')"
+              }
+            ],
+            "seconds": 0.264,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-41955808a84ba4c5386f",
+            "junit": "ar-52e154521c5b6428af3e"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "0b586f40d752ebcdbfd602e6e7f6e1e85a2cf992d065befefe8579f14574c306",
+            "failure_details": [
+              {
+                "test": "test_rounding",
+                "message": "AssertionError: assert Decimal('2.67') == Decimal('2.68')\n +  where Decimal('2.67') = money('2.675')\n +  and   Decimal('2.68') = Decimal('2.68')"
+              }
+            ],
+            "seconds": 0.265,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-eb44daf09643f8c4b91d",
+            "junit": "ar-b050d9364cc10a887ffc"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.28,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-a9f68509198f62a364c7"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.277,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-0de6c573e8745aec11a4"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.277,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-4345ce69385b70e05c50",
+            "junit": "ar-25e2cfdcf0fd8f68f85a"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny": 0.0,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 2.785
+    },
+    {
+      "case": "chunked-even",
+      "variant": "full",
+      "run_id": "9f7e666d3333",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "2cd29ee1c212f6bf0dd545cc6fd7802a05e7b6906b18148dad14213e3119f759",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "f1e04708b2d3669503b155a05bfc42011485bd434a66272d731b9041cc0b0be9",
+            "failure_details": [
+              {
+                "test": "test_zero",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              }
+            ],
+            "seconds": 0.336,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-68e353cb6e91c10c7a59",
+            "junit": "ar-462d4888d370893e1f1d"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "f1e04708b2d3669503b155a05bfc42011485bd434a66272d731b9041cc0b0be9",
+            "failure_details": [
+              {
+                "test": "test_zero",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              }
+            ],
+            "seconds": 0.301,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-8f99edc32d126bfaf861",
+            "junit": "ar-c0b8cef4c4e30f10a0a9"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "f1e04708b2d3669503b155a05bfc42011485bd434a66272d731b9041cc0b0be9",
+            "failure_details": [
+              {
+                "test": "test_zero",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              }
+            ],
+            "seconds": 0.307,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-3518dc493d997eed7457",
+            "junit": "ar-b9c1f58bda71f828ab80"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.284,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-a9308693b6c3c1369b5d",
+            "junit": "ar-4691cdf0bd8a0a3aacbe"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.287,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-7b6aa87b4446035d14b0",
+            "junit": "ar-716c85ea09b076066d89"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.273,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-7b6aa87b4446035d14b0",
+            "junit": "ar-8791bce7111673a0442c"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny": 0.0,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 3.074
+    },
+    {
+      "case": "numeric-range",
+      "variant": "full",
+      "run_id": "e7fe9cae062b",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "0987a38c16eed5c755338bc6326a3d1123e2bea5ee47df92de52ad795b4149e5",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "9f0f6ae6e613615dbfa565b170f051624c23293a21ac8b281b0ab3a4d76b5b03",
+            "failure_details": [
+              {
+                "test": "test_large_range",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              }
+            ],
+            "seconds": 0.301,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-b885e16bcf8fadab66ac",
+            "junit": "ar-86c65a5501a5defc9099"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "9f0f6ae6e613615dbfa565b170f051624c23293a21ac8b281b0ab3a4d76b5b03",
+            "failure_details": [
+              {
+                "test": "test_large_range",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              }
+            ],
+            "seconds": 0.307,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-b885e16bcf8fadab66ac",
+            "junit": "ar-fed0c7553a2c738de9fb"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 1,
+            "exit_code": 1,
+            "failure_signature": "9f0f6ae6e613615dbfa565b170f051624c23293a21ac8b281b0ab3a4d76b5b03",
+            "failure_details": [
+              {
+                "test": "test_large_range",
+                "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+              }
+            ],
+            "seconds": 0.315,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-b885e16bcf8fadab66ac",
+            "junit": "ar-358310772b3d652652b5"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.295,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-a9308693b6c3c1369b5d",
+            "junit": "ar-38116beb0934359f5b88"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.29,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-a9308693b6c3c1369b5d",
+            "junit": "ar-6f018bb25bd2563eee5c"
+          },
+          {
+            "kind": "passed",
+            "collected": 1,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.299,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-7b6aa87b4446035d14b0",
+            "junit": "ar-5f531246623def67c77b"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny": 0.0,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 3.079
+    }
+  ],
+  "mode": "offline_synthetic",
+  "note": "offline_synthetic 使用预设测试，仅验证执行协议。真实任务与基线信息访问方式存在差异。"
+}

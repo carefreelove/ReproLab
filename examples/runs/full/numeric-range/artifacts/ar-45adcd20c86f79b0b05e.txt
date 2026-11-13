@@ -1,0 +1,26 @@
+2450:             # the count against the items themselves.
+2451:             while n and not self._before_stop(n - 1):
+2452:                 n -= 1
+2453:             while self._before_stop(n):
+2454:                 n += 1
+2455:             return n
+2456: 
+2457:     def _before_stop(self, i):
+2458:         value = self._start + i * self._step
+2459:         return value < self._stop if self._growing else value > self._stop
+2460: 
+2461:     def __reduce__(self):
+2462:         return numeric_range, (self._start, self._stop, self._step)
+2463: 
+2464:     def __repr__(self):
+2465:         if self._step == 1:
+2466:             return f"numeric_range({self._start!r}, {self._stop!r})"
+2467:         return (
+2468:             f"numeric_range({self._start!r}, {self._stop!r}, {self._step!r})"
+2469:         )
+2470: 
+2471:     def __reversed__(self):
+2472:         start = self._start
+2473:         step = self._step
+2474:         for i in reversed(range(self._len)):
+2475:             yield start + i * step

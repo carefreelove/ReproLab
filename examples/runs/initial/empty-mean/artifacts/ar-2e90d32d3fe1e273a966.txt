@@ -1,0 +1,23 @@
+F......                                                                  [100%]
+=================================== FAILURES ===================================
+______________________ test_mean_empty_list_returns_zero _______________________
+
+    def test_mean_empty_list_returns_zero():
+        """契约：空输入应返回 0，而不是抛异常。"""
+>       assert mean([]) == 0
+               ^^^^^^^^
+
+/tests/test_mean_boundary.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+values = []
+
+    def mean(values):
+>       return sum(values) / len(values)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ZeroDivisionError: division by zero
+
+/workspace/source.py:2: ZeroDivisionError
+=========================== short test summary info ============================
+FAILED test_mean_boundary.py::test_mean_empty_list_returns_zero - ZeroDivisio...
+1 failed, 6 passed in 0.01s

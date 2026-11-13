@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="0.013" timestamp="2026-11-13T15:29:16.362770+00:00" hostname="cdf524587af7"><testcase classname="test_bucket_isolation" name="test_instances_have_independent_items" time="0.000"><failure message="AssertionError: b2.items 被 b1.add 污染: ['a']&#10;assert ['a'] == []&#10;  &#10;  Left contains one more item: 'a'&#10;  Use -v to get more diff">def test_instances_have_independent_items():
+        b1 = Bucket()
+        b2 = Bucket()
+    
+        b1.add("a")
+    
+        assert b1.items == ["a"]
+&gt;       assert b2.items == [], f"b2.items 被 b1.add 污染: {b2.items!r}"
+E       AssertionError: b2.items 被 b1.add 污染: ['a']
+E       assert ['a'] == []
+E         
+E         Left contains one more item: 'a'
+E         Use -v to get more diff
+
+/tests/test_bucket_isolation.py:11: AssertionError</failure></testcase><testcase classname="test_bucket_isolation" name="test_second_instance_add_does_not_affect_first" time="0.000"><failure message="AssertionError: assert ['a', 1, 2] == [1, 2]&#10;  &#10;  At index 0 diff: 'a' != 1&#10;  Left contains one more item: 2&#10;  Use -v to get more diff">def test_second_instance_add_does_not_affect_first():
+        b1 = Bucket()
+        b2 = Bucket()
+    
+        b2.add(1)
+        b2.add(2)
+    
+&gt;       assert b2.items == [1, 2]
+E       AssertionError: assert ['a', 1, 2] == [1, 2]
+E         
+E         At index 0 diff: 'a' != 1
+E         Left contains one more item: 2
+E         Use -v to get more diff
+
+/tests/test_bucket_isolation.py:21: AssertionError</failure></testcase></testsuite></testsuites>

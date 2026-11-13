@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="0.013" timestamp="2026-11-13T15:37:48.191857+00:00" hostname="5dd2d4bfddff"><testcase classname="test_reproducer" name="test_in_window_includes_end_boundary" time="0.000"><failure message="AssertionError: end 端点应包含在窗口内&#10;assert False is True&#10; +  where False = in_window(10, 5, 10)">def test_in_window_includes_end_boundary():
+        # 时间窗口应包含两个端点：start 和 end 都应被视为在窗口内
+        assert in_window(5, 5, 10) is True, "start 端点应包含在窗口内"
+&gt;       assert in_window(10, 5, 10) is True, "end 端点应包含在窗口内"
+E       AssertionError: end 端点应包含在窗口内
+E       assert False is True
+E        +  where False = in_window(10, 5, 10)
+
+/tests/test_reproducer.py:9: AssertionError</failure></testcase><testcase classname="test_reproducer" name="test_in_window_interior_and_outside" time="0.000" /></testsuite></testsuites>

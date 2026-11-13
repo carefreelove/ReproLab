@@ -1,0 +1,101 @@
+4600: 
+4601:         >>> iterable = map(str, range(10))
+4602:         >>> it = countable(iterable)
+4603:         >>> it.items_seen
+4604:         0
+4605:         >>> next(it), next(it)
+4606:         ('0', '1')
+4607:         >>> list(it)
+4608:         ['2', '3', '4', '5', '6', '7', '8', '9']
+4609:         >>> it.items_seen
+4610:         10
+4611:     """
+4612: 
+4613:     def __init__(self, iterable):
+4614:         self._iterator = iter(iterable)
+4615:         self.items_seen = 0
+4616: 
+4617:     def __iter__(self):
+4618:         return self
+4619: 
+4620:     def __next__(self):
+4621:         item = next(self._iterator)
+4622:         self.items_seen += 1
+4623: 
+4624:         return item
+4625: 
+4626: 
+4627: def chunked_even(iterable, n):
+4628:     """Break *iterable* into lists of approximately length *n*.
+4629:     Items are distributed such the lengths of the lists differ by at most
+4630:     1 item.
+4631: 
+4632:     >>> iterable = [1, 2, 3, 4, 5, 6, 7]
+4633:     >>> n = 3
+4634:     >>> list(chunked_even(iterable, n))  # List lengths: 3, 2, 2
+4635:     [[1, 2, 3], [4, 5], [6, 7]]
+4636:     >>> list(chunked(iterable, n))  # List lengths: 3, 3, 1
+4637:     [[1, 2, 3], [4, 5, 6], [7]]
+4638: 
+4639:     """
+4640:     iterator = iter(iterable)
+4641: 
+4642:     # Initialize a buffer to process the chunks while keeping
+4643:     # some back to fill any underfilled chunks
+4644:     min_buffer = (n - 1) * (n - 2)
+4645:     buffer = list(islice(iterator, min_buffer))
+4646: 
+4647:     # Append items until we have a completed chunk
+4648:     for _ in islice(map(buffer.append, iterator), n, None, n):
+4649:         yield buffer[:n]
+4650:         del buffer[:n]
+4651: 
+4652:     # Check if any chunks need addition processing
+4653:     if not buffer:
+4654:         return
+4655:     length = len(buffer)
+4656: 
+4657:     # Chunks are either size `full_size <= n` or `partial_size = full_size - 1`
+4658:     q, r = divmod(length, n)
+4659:     num_lists = q + (1 if r > 0 else 0)
+4660:     q, r = divmod(length, num_lists)
+4661:     full_size = q + (1 if r > 0 else 0)
+4662:     partial_size = full_size - 1
+4663:     num_full = length - partial_size * num_lists
+4664: 
+4665:     # Yield chunks of full size
+4666:     partial_start_idx = num_full * full_size
+4667:     if full_size > 0:
+4668:         for i in range(0, partial_start_idx, full_size):
+4669:             yield buffer[i : i + full_size]
+4670: 
+4671:     # Yield chunks of partial size
+4672:     if partial_size > 0:
+4673:         for i in range(partial_start_idx, length, partial_size):
+4674:             yield buffer[i : i + partial_size]
+4675: 
+4676: 
+4677: def zip_broadcast(*objects, scalar_types=(str, bytes), strict=False):
+4678:     """A version of :func:`zip` that "broadcasts" any scalar
+4679:     (i.e., non-iterable) items into output tuples.
+4680: 
+4681:     >>> iterable_1 = [1, 2, 3]
+4682:     >>> iterable_2 = ['a', 'b', 'c']
+4683:     >>> scalar = '_'
+4684:     >>> list(zip_broadcast(iterable_1, iterable_2, scalar))
+4685:     [(1, 'a', '_'), (2, 'b', '_'), (3, 'c', '_')]
+4686: 
+4687:     The *scalar_types* keyword argument determines what types are considered
+4688:     scalar. It is set to ``(str, bytes)`` by default. Set it to ``None`` to
+4689:     treat strings and byte strings as iterable:
+4690: 
+4691:     >>> list(zip_broadcast('abc', 0, 'xyz', scalar_types=None))
+4692:     [('a', 0, 'x'), ('b', 0, 'y'), ('c', 0, 'z')]
+4693: 
+4694:     If the *strict* keyword argument is ``True``, then
+4695:     ``ValueError`` will be raised if any of the iterables have
+4696:     different lengths.
+4697:     """
+4698: 
+4699:     def get_iterator(obj):
+4700:         if scalar_types and isinstance(obj, scalar_types):

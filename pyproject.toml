@@ -1,0 +1,39 @@
+[project]
+name = "reprolab-agent"
+version = "0.1.0"
+description = "Hypothesis-driven bug reproduction with skills, MCP and isolated verification"
+requires-python = ">=3.12,<3.14"
+license = "MIT"
+readme = "README.md"
+dependencies = [
+  "mini-swe-agent==2.4.6",
+  "mcp==2.3.0",
+  "openai==3.50.0",
+  "fastapi==0.162.6",
+  "uvicorn==0.54.0",
+  "pydantic>=2.14,<3",
+  "typer>=0.29,<1",
+  "rich>=15,<16",
+  "pyyaml>=6,<7",
+  "python-dotenv>=1.2,<2",
+  "jinja2>=3.1.6,<4",
+]
+[project.scripts]
+reprolab = "reprolab.cli:app"
+[dependency-groups]
+dev = ["pytest==9.2.0", "pytest-asyncio>=1.3,<2", "ruff>=0.17,<1", "httpx>=0.28,<1"]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[tool.hatch.build.targets.wheel]
+packages = ["src/reprolab"]
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+markers = ["docker: requires the ReproLab Docker image"]

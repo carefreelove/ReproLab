@@ -1,0 +1,22 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_bucket_instances_have_independent_items _________________
+
+    def test_bucket_instances_have_independent_items():
+        a = Bucket()
+        b = Bucket()
+    
+        a.add("x")
+    
+        assert a.items == ["x"]
+>       assert b.items == [], "Bucket instances must not share the class-level items list"
+E       AssertionError: Bucket instances must not share the class-level items list
+E       assert ['x'] == []
+E         
+E         Left contains one more item: 'x'
+E         Use -v to get more diff
+
+/tests/test_reproducer.py:11: AssertionError
+=========================== short test summary info ============================
+FAILED test_reproducer.py::test_bucket_instances_have_independent_items - Ass...
+1 failed in 0.01s

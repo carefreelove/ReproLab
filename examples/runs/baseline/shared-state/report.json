@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "case": "shared-state",
+  "run_id": "f1f2d6902788",
+  "generated_at": "2026-11-13T15:37:52.836920+00:00",
+  "status": "completed",
+  "mode": "live_baseline",
+  "configuration": {
+    "mode": "live_baseline",
+    "namespace": "eval-8f9cd9fa0936499cbf19b457e2e3a70d:baseline:shared-state",
+    "skills": false
+  },
+  "request": "source.Bucket 的不同实例应拥有独立的 items 列表。调用 add(value) 后另一个实例也出现了数据。",
+  "repository": "fixture/shared-state",
+  "buggy_commit": "76bd021083c1d479ddea1694a62cb2fd82fa4433",
+  "fixed_commit": "fd9adfe6843405e6b6a8e59204702f2bfa71d233",
+  "source": "self_authored_fixture",
+  "stop_reason": "",
+  "elapsed_seconds": 0.0,
+  "plan": [],
+  "test_changes": [],
+  "prior_verifications": [],
+  "hypotheses": [],
+  "skills": [],
+  "experiments": [],
+  "submission": {
+    "summary": "单次生成对照",
+    "test_sha256": "d4c24898818185c57d441f081e6153dab301a65508635853b81b732a2af831d8",
+    "experiment": "baseline"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "d4c24898818185c57d441f081e6153dab301a65508635853b81b732a2af831d8",
+    "validations": [
+      {
+        "kind": "assertion_failure",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "b6643559d5e243c8aab98ec1c27e8415159fd39ab18a38465223700c178fc49e",
+        "failure_details": [
+          {
+            "test": "test_bucket_instances_have_independent_items",
+            "message": "AssertionError: Bucket instances must not share the class-level items list\nassert ['x'] == []\n  \n  Left contains one more item: 'x'\n  Use -v to get more diff"
+          }
+        ],
+        "seconds": 0.236,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-8dad259de5cd474eab47",
+        "junit": "ar-44e0e8b7690d488a18dd"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "b6643559d5e243c8aab98ec1c27e8415159fd39ab18a38465223700c178fc49e",
+        "failure_details": [
+          {
+            "test": "test_bucket_instances_have_independent_items",
+            "message": "AssertionError: Bucket instances must not share the class-level items list\nassert ['x'] == []\n  \n  Left contains one more item: 'x'\n  Use -v to get more diff"
+          }
+        ],
+        "seconds": 0.234,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-8dad259de5cd474eab47",
+        "junit": "ar-ca780032f7614cbcab5f"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "b6643559d5e243c8aab98ec1c27e8415159fd39ab18a38465223700c178fc49e",
+        "failure_details": [
+          {
+            "test": "test_bucket_instances_have_independent_items",
+            "message": "AssertionError: Bucket instances must not share the class-level items list\nassert ['x'] == []\n  \n  Left contains one more item: 'x'\n  Use -v to get more diff"
+          }
+        ],
+        "seconds": 0.236,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-8dad259de5cd474eab47",
+        "junit": "ar-0e2c5a9af170699a3f61"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.224,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-4345ce69385b70e05c50",
+        "junit": "ar-5993f9b632523f483c9c"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.239,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-4345ce69385b70e05c50",
+        "junit": "ar-b75f9192cb16c43cede9"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.235,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-4345ce69385b70e05c50",
+        "junit": "ar-586c4a74f4b36b4a5392"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-0e2c5a9af170699a3f61",
+      "category": "validation_junit",
+      "sha256": "4120e36b0e436aceb0e6f416c5345ca024bd4c3e2a549c0d6420a6cba24baeb1",
+      "bytes": 1057
+    },
+    {
+      "id": "ar-2ad63deacf02f8688a0e",
+      "category": "validation_junit",
+      "sha256": "2ad63deacf02f8688a0e2efbdcf64906e8c89ed0deb2c299b9f211aa2bfa6074",
+      "bytes": 1057
+    },
+    {
+      "id": "ar-2b7fb943a4b451df8a1c",
+      "category": "validation_junit",
+      "sha256": "8ca015724307b9f123a7b40d2bb4f7fcefaaff0e43361834d7f4233fd15827bb",
+      "bytes": 1057
+    },
+    {
+      "id": "ar-4345ce69385b70e05c50",
+      "category": "private_validation_log",
+      "sha256": "4bcefcc9f6c645923b9993ccf73ad92e6b400ca25458ea14e095857fc2131342",
+      "bytes": 98
+    },
+    {
+      "id": "ar-44e0e8b7690d488a18dd",
+      "category": "validation_junit",
+      "sha256": "440d64d4d523fbf7cff6fde9a580e09fe0817c5035d7be3487a1888f0dd76011",
+      "bytes": 1057
+    },
+    {
+      "id": "ar-44e1e373282236049dd5",
+      "category": "validation_junit",
+      "sha256": "44e1e373282236049dd587675e629c5b6b31d79cf8c208218eca46546ac98287",
+      "bytes": 353
+    },
+    {
+      "id": "ar-4bcefcc9f6c645923b99",
+      "category": "validation_log",
+      "sha256": "4bcefcc9f6c645923b9993ccf73ad92e6b400ca25458ea14e095857fc2131342",
+      "bytes": 98
+    },
+    {
+      "id": "ar-4e6be4883e6cca2261f5",
+      "category": "validation_junit",
+      "sha256": "4e6be4883e6cca2261f5841ff81c969758cd85a7be42620604c68f7c33e58d9a",
+      "bytes": 353
+    },
+    {
+      "id": "ar-586c4a74f4b36b4a5392",
+      "category": "private_validation_junit",
+      "sha256": "f2c275e713d1c628018d0c60ebf1f84ecab5864f11790d28a3da0350e303d753",
+      "bytes": 353
+    },
+    {
+      "id": "ar-5993f9b632523f483c9c",
+      "category": "private_validation_junit",
+      "sha256": "d9e523d2f7377564e6c2732e3e243cfebafcd2ee13af2ddc4aafc0ce6679fe43",
+      "bytes": 353
+    },
+    {
+      "id": "ar-607498de0c40855f059d",
+      "category": "validation_junit",
+      "sha256": "607498de0c40855f059d7154c8c362a84850dd28f4e349eb1bcfb8036e70a283",
+      "bytes": 1057
+    },
+    {
+      "id": "ar-7bffc9c56481abf28769",
+      "category": "validation_junit",
+      "sha256": "126755c95481031eeccdb63e8e32a4be2029f049c1ccde010c33f97aca804b6d",
+      "bytes": 1057
+    },
+    {
+      "id": "ar-7f42c31a127099b7d671",
+      "category": "validation_log",
+      "sha256": "7f42c31a127099b7d6710cf6fe98bc28724fe3525e352966c5df11685981f682",
+      "bytes": 917
+    },
+    {
+      "id": "ar-82ec3a3860f60e458f8b",
+      "category": "validation_junit",
+      "sha256": "f5e7dcf94e23d4c8c281ed83b1e454afc4bf24bae8d98f600c8b0030f1156d18",
+      "bytes": 1057
+    },
+    {
+      "id": "ar-8dad259de5cd474eab47",
+      "category": "validation_log",
+      "sha256": "7f42c31a127099b7d6710cf6fe98bc28724fe3525e352966c5df11685981f682",
+      "bytes": 917
+    },
+    {
+      "id": "ar-a9b4438dbff1c623b411",
+      "category": "private_validation_junit",
+      "sha256": "9525e8fa0b8b27cb54c736a59619fff1ce2cf53d659c45dea372956f62008b27",
+      "bytes": 353
+    },
+    {
+      "id": "ar-b4acf074bdccf06cfc5f",
+      "category": "validation_junit",
+      "sha256": "b4acf074bdccf06cfc5fe986fd9a6a908c8a71f135dcc39d9679c7cb94a69025",
+      "bytes": 1057
+    },
+    {
+      "id": "ar-b75f9192cb16c43cede9",
+      "category": "private_validation_junit",
+      "sha256": "072ee2b4fcda951a983718337f58c78552e46c214d366da45430cfadf8d1847f",
+      "bytes": 353
+    },
+    {
+      "id": "ar-c5ab75f5dfcc1c796043",
+      "category": "validation_junit",
+      "sha256": "c5ab75f5dfcc1c796043aaf0be194af70337fc408714ef0e69b9795db1dcd8e1",
+      "bytes": 353
+    },
+    {
+      "id": "ar-ca780032f7614cbcab5f",
+      "category": "validation_junit",
+      "sha256": "85e7856163635f0bd475a08ba7eebd3f190a429952bb81a33f0770bdc9dfec8a",
+      "bytes": 1057
+    },
+    {
+      "id": "ar-dee02139b1724f10b7b6",
+      "category": "private_validation_junit",
+      "sha256": "023426d7fc1cb893f46b0179f83c7cbc5e2ba7e150762d8bc49405a31112e78d",
+      "bytes": 353
+    },
+    {
+      "id": "ar-f2d1b6476fdf73cacb8f",
+      "category": "private_validation_junit",
+      "sha256": "b7189cbf515566182c85bf53f3b96b1d7644513a2f44477625b2b4cd0974cbcf",
+      "bytes": 353
+    }
+  ],
+  "statistics": {
+    "model_calls": 1,
+    "input_tokens": 400,
+    "output_tokens": 100,
+    "estimated_cost_cny": 0.00192,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

@@ -1,0 +1,636 @@
+{
+  "results": [
+    {
+      "case": "shared-state",
+      "variant": "no_skills",
+      "run_id": "62af73fb0a05",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "9660940e7161eb33c9f0898e0ec0f04c94273b3fda7ac35facceea16fdb8fab1",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "c24cc244de5297de9f690fd5ab8c804f44c4589d6603f6a36cf84acdea9c9604",
+            "failure_details": [
+              {
+                "test": "test_instances_have_independent_items",
+                "message": "assert [1, 2] == [1]\n  \n  Left contains one more item: 2\n  Use -v to get more diff"
+              },
+              {
+                "test": "test_new_instance_starts_empty_after_other_instance_add",
+                "message": "AssertionError: assert [1, 2, 'x'] == []\n  \n  Left contains 3 more items, first extra item: 1\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.243,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-38dcfe85a48cacb8548b",
+            "junit": "ar-8c8bd6c5ecf07e0e024b"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "c24cc244de5297de9f690fd5ab8c804f44c4589d6603f6a36cf84acdea9c9604",
+            "failure_details": [
+              {
+                "test": "test_instances_have_independent_items",
+                "message": "assert [1, 2] == [1]\n  \n  Left contains one more item: 2\n  Use -v to get more diff"
+              },
+              {
+                "test": "test_new_instance_starts_empty_after_other_instance_add",
+                "message": "AssertionError: assert [1, 2, 'x'] == []\n  \n  Left contains 3 more items, first extra item: 1\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.233,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-38dcfe85a48cacb8548b",
+            "junit": "ar-31c0e4a1a5676d6ef607"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "c24cc244de5297de9f690fd5ab8c804f44c4589d6603f6a36cf84acdea9c9604",
+            "failure_details": [
+              {
+                "test": "test_instances_have_independent_items",
+                "message": "assert [1, 2] == [1]\n  \n  Left contains one more item: 2\n  Use -v to get more diff"
+              },
+              {
+                "test": "test_new_instance_starts_empty_after_other_instance_add",
+                "message": "AssertionError: assert [1, 2, 'x'] == []\n  \n  Left contains 3 more items, first extra item: 1\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.229,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-38dcfe85a48cacb8548b",
+            "junit": "ar-e3f800d41a40f4296ad3"
+          },
+          {
+            "kind": "passed",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.232,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-bcd13931f4bb287db80f",
+            "junit": "ar-47ec389e736ae87e14e5"
+          },
+          {
+            "kind": "passed",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.234,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-bcd13931f4bb287db80f",
+            "junit": "ar-44423cec6c4fbcf83dd5"
+          },
+          {
+            "kind": "passed",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.232,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-bcd13931f4bb287db80f",
+            "junit": "ar-96277b1fc4dc093f3e7d"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 7,
+        "input_tokens": 27087,
+        "output_tokens": 1390,
+        "estimated_cost_cny": 0.078356,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 12.571,
+      "skills": [],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "chunked-even",
+      "variant": "no_skills",
+      "run_id": "291573a1fc5d",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "1ef1be789bee44334406f68836112c04b184f51df31207464e89e0ce56fa3c54",
+        "validations": [
+          {
+            "kind": "target_exception",
+            "collected": 3,
+            "skipped": 0,
+            "failed": 3,
+            "exit_code": 1,
+            "failure_signature": "5aaa04b2d005bbc1cbb462db657f15c708c5e438fe460529bd7a1073fa332047",
+            "failure_details": [
+              {
+                "test": "test_chunked_even_zero_returns_empty_without_consuming",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              },
+              {
+                "test": "test_chunked_even_negative_raises_value_error_without_consuming",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+              },
+              {
+                "test": "test_chunked_even_negative_two_raises_value_error_without_consuming",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+              }
+            ],
+            "seconds": 0.277,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-099891b8da978d11d8aa",
+            "junit": "ar-d2bf96a134f3bbec2918"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 3,
+            "skipped": 0,
+            "failed": 3,
+            "exit_code": 1,
+            "failure_signature": "5aaa04b2d005bbc1cbb462db657f15c708c5e438fe460529bd7a1073fa332047",
+            "failure_details": [
+              {
+                "test": "test_chunked_even_zero_returns_empty_without_consuming",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              },
+              {
+                "test": "test_chunked_even_negative_raises_value_error_without_consuming",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+              },
+              {
+                "test": "test_chunked_even_negative_two_raises_value_error_without_consuming",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+              }
+            ],
+            "seconds": 0.279,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-c17dc42cf82b4f4ed6ea",
+            "junit": "ar-24d4f3a0fba662ec0775"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 3,
+            "skipped": 0,
+            "failed": 3,
+            "exit_code": 1,
+            "failure_signature": "5aaa04b2d005bbc1cbb462db657f15c708c5e438fe460529bd7a1073fa332047",
+            "failure_details": [
+              {
+                "test": "test_chunked_even_zero_returns_empty_without_consuming",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              },
+              {
+                "test": "test_chunked_even_negative_raises_value_error_without_consuming",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+              },
+              {
+                "test": "test_chunked_even_negative_two_raises_value_error_without_consuming",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+              }
+            ],
+            "seconds": 0.278,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-58f4193d0b0cef19b4d3",
+            "junit": "ar-196abc42e0327cb2ddee"
+          },
+          {
+            "kind": "passed",
+            "collected": 3,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.25,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-bb2eb3b4930023ed2b7a",
+            "junit": "ar-15330a2850a95c2089c5"
+          },
+          {
+            "kind": "passed",
+            "collected": 3,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.246,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-bb2eb3b4930023ed2b7a",
+            "junit": "ar-22762efafdb795e5ba72"
+          },
+          {
+            "kind": "passed",
+            "collected": 3,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.25,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-bb2eb3b4930023ed2b7a",
+            "junit": "ar-710064d0ae5e9b78f48a"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 9,
+        "input_tokens": 59967,
+        "output_tokens": 1810,
+        "estimated_cost_cny": 0.1613,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 16.594,
+      "skills": [],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "shared-state",
+      "variant": "no_explicit_reflection",
+      "run_id": "120d19458e27",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "9859084651fa35e72bc8894867c4d68ca322219f66c1c7812708ac9d68475c2d",
+        "validations": [
+          {
+            "kind": "assertion_failure",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "98802bda5a05db4f4491ebe60b36544919776bc257114b2b092ffbf495e08244",
+            "failure_details": [
+              {
+                "test": "test_instances_have_independent_items",
+                "message": "AssertionError: b2.items 被 b1.add 污染: ['a']\nassert ['a'] == []\n  \n  Left contains one more item: 'a'\n  Use -v to get more diff"
+              },
+              {
+                "test": "test_second_instance_add_does_not_affect_first",
+                "message": "AssertionError: assert ['a', 1, 2] == [1, 2]\n  \n  At index 0 diff: 'a' != 1\n  Left contains one more item: 2\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.239,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-e4b57b118ad9185ddace",
+            "junit": "ar-86923a5049bbf32fe244"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "98802bda5a05db4f4491ebe60b36544919776bc257114b2b092ffbf495e08244",
+            "failure_details": [
+              {
+                "test": "test_instances_have_independent_items",
+                "message": "AssertionError: b2.items 被 b1.add 污染: ['a']\nassert ['a'] == []\n  \n  Left contains one more item: 'a'\n  Use -v to get more diff"
+              },
+              {
+                "test": "test_second_instance_add_does_not_affect_first",
+                "message": "AssertionError: assert ['a', 1, 2] == [1, 2]\n  \n  At index 0 diff: 'a' != 1\n  Left contains one more item: 2\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.242,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-e4b57b118ad9185ddace",
+            "junit": "ar-96b136af4904d392c045"
+          },
+          {
+            "kind": "assertion_failure",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 2,
+            "exit_code": 1,
+            "failure_signature": "98802bda5a05db4f4491ebe60b36544919776bc257114b2b092ffbf495e08244",
+            "failure_details": [
+              {
+                "test": "test_instances_have_independent_items",
+                "message": "AssertionError: b2.items 被 b1.add 污染: ['a']\nassert ['a'] == []\n  \n  Left contains one more item: 'a'\n  Use -v to get more diff"
+              },
+              {
+                "test": "test_second_instance_add_does_not_affect_first",
+                "message": "AssertionError: assert ['a', 1, 2] == [1, 2]\n  \n  At index 0 diff: 'a' != 1\n  Left contains one more item: 2\n  Use -v to get more diff"
+              }
+            ],
+            "seconds": 0.232,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-e4b57b118ad9185ddace",
+            "junit": "ar-08cdd265500ccc8da9bf"
+          },
+          {
+            "kind": "passed",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.236,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-bcd13931f4bb287db80f",
+            "junit": "ar-19f3362aa3009fb85118"
+          },
+          {
+            "kind": "passed",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.233,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-bcd13931f4bb287db80f",
+            "junit": "ar-5ff53cb1875d851423fe"
+          },
+          {
+            "kind": "passed",
+            "collected": 2,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.241,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-bcd13931f4bb287db80f",
+            "junit": "ar-1a7c679673a63eaa0256"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 8,
+        "input_tokens": 34874,
+        "output_tokens": 1240,
+        "estimated_cost_cny": 0.095604,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 13.722,
+      "skills": [
+        "iterator-state"
+      ],
+      "tool_errors": 0,
+      "repeated_experiments": 0
+    },
+    {
+      "case": "chunked-even",
+      "variant": "no_explicit_reflection",
+      "run_id": "e3c9fd453b5c",
+      "status": "completed",
+      "verification": {
+        "verdict": "verified",
+        "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+        "test_sha256": "1d88b32412512378276a202d1bdc4114914e1a5a35228c96b847db678856fd70",
+        "validations": [
+          {
+            "kind": "target_exception",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "bba7efef6413512c1aea76b15d3c5327620877cdcb23b4e799b09cc780b8ad75",
+            "failure_details": [
+              {
+                "test": "test_n_zero_returns_empty_and_does_not_consume",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              },
+              {
+                "test": "test_n_negative_raises_value_error_without_consuming[-1]",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_n_negative_raises_value_error_without_consuming[-2]",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_n_negative_raises_value_error_without_consuming[-5]",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              }
+            ],
+            "seconds": 0.281,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 1,
+            "log": "ar-b7b652f2701d9b87bd89",
+            "junit": "ar-4b9fed53e385b3840e1e"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "bba7efef6413512c1aea76b15d3c5327620877cdcb23b4e799b09cc780b8ad75",
+            "failure_details": [
+              {
+                "test": "test_n_zero_returns_empty_and_does_not_consume",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              },
+              {
+                "test": "test_n_negative_raises_value_error_without_consuming[-1]",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_n_negative_raises_value_error_without_consuming[-2]",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_n_negative_raises_value_error_without_consuming[-5]",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              }
+            ],
+            "seconds": 0.272,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 2,
+            "log": "ar-10597d832f056b17729f",
+            "junit": "ar-8b79e1bf3a97fe269a40"
+          },
+          {
+            "kind": "target_exception",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 4,
+            "exit_code": 1,
+            "failure_signature": "bba7efef6413512c1aea76b15d3c5327620877cdcb23b4e799b09cc780b8ad75",
+            "failure_details": [
+              {
+                "test": "test_n_zero_returns_empty_and_does_not_consume",
+                "message": "ValueError: Step for islice() must be a positive integer or None."
+              },
+              {
+                "test": "test_n_negative_raises_value_error_without_consuming[-1]",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_n_negative_raises_value_error_without_consuming[-2]",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              },
+              {
+                "test": "test_n_negative_raises_value_error_without_consuming[-5]",
+                "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xADDRESS>.consumed"
+              }
+            ],
+            "seconds": 0.27,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "buggy",
+            "attempt": 3,
+            "log": "ar-1844199c1843875db711",
+            "junit": "ar-09f7fc90f0872526a29c"
+          },
+          {
+            "kind": "passed",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.254,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 1,
+            "log": "ar-f97d1c2d85f452efb574",
+            "junit": "ar-20217df1e303974d6775"
+          },
+          {
+            "kind": "passed",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.253,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 2,
+            "log": "ar-f97d1c2d85f452efb574",
+            "junit": "ar-5a9eb657395bc67875e5"
+          },
+          {
+            "kind": "passed",
+            "collected": 5,
+            "skipped": 0,
+            "failed": 0,
+            "exit_code": 0,
+            "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "failure_details": [],
+            "seconds": 0.251,
+            "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+            "variant": "fixed",
+            "attempt": 3,
+            "log": "ar-f97d1c2d85f452efb574",
+            "junit": "ar-501b9c23cdcd7464fb0f"
+          }
+        ]
+      },
+      "statistics": {
+        "model_calls": 10,
+        "input_tokens": 79594,
+        "output_tokens": 3071,
+        "estimated_cost_cny": 0.22051,
+        "global_accounted_cny": 4.665886,
+        "global_unconfirmed_calls": 0,
+        "price_date": "2026-11-13",
+        "input_cny_per_million": 2.4,
+        "output_cny_per_million": 9.6,
+        "usd_conversion": 8
+      },
+      "experiments": 1,
+      "elapsed_seconds": 22.536,
+      "skills": [
+        "boundary-analysis",
+        "iterator-state"
+      ],
+      "tool_errors": 2,
+      "repeated_experiments": 0
+    }
+  ],
+  "mode": "live",
+  "note": "offline_synthetic 使用预设测试，仅验证执行协议。真实任务与基线信息访问方式存在差异。",
+  "validation_revision": "signature-v5; Docker image identity pinned; numeric-range resumed with buggy-only call-signature feedback"
+}

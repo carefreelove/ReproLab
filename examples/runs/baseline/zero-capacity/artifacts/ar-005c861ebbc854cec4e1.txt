@@ -1,0 +1,33 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_____________________ test_chunks_zero_returns_empty_list ______________________
+
+    def test_chunks_zero_returns_empty_list():
+        # 约定：n=0 应返回空列表，而不是抛出异常
+>       assert chunks([1, 2, 3], 0) == []
+               ^^^^^^^^^^^^^^^^^^^^
+
+/tests/test_reproducer.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+items = [1, 2, 3], n = 0
+
+    def chunks(items, n):
+>       return [items[i:i+n] for i in range(0, len(items), n)]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: range() arg 3 must not be zero
+
+/workspace/source.py:2: ValueError
+___________________ test_chunks_negative_raises_value_error ____________________
+
+    def test_chunks_negative_raises_value_error():
+        # 约定：n<0 应抛出 ValueError
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_reproducer.py:13: Failed
+=========================== short test summary info ============================
+FAILED test_reproducer.py::test_chunks_zero_returns_empty_list - ValueError: ...
+FAILED test_reproducer.py::test_chunks_negative_raises_value_error - Failed: ...
+2 failed in 0.02s

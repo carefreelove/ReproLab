@@ -1,0 +1,2 @@
+1: def in_window(value, start, end):
+2:     return start <= value < end

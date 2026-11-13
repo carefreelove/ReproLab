@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="5" time="0.015" timestamp="2026-11-13T15:37:56.913702+00:00" hostname="1b294c175166"><testcase classname="test_chunks_boundary" name="test_chunks_normal" time="0.000" /><testcase classname="test_chunks_boundary" name="test_chunks_zero_returns_empty_list" time="0.000"><failure message="ValueError: range() arg 3 must not be zero">def test_chunks_zero_returns_empty_list():
+        # 契约：n=0 返回空列表
+&gt;       assert chunks([1, 2, 3], 0) == []
+               ^^^^^^^^^^^^^^^^^^^^
+
+/tests/test_chunks_boundary.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+items = [1, 2, 3], n = 0
+
+    def chunks(items, n):
+&gt;       return [items[i:i+n] for i in range(0, len(items), n)]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: range() arg 3 must not be zero
+
+/workspace/source.py:2: ValueError</failure></testcase><testcase classname="test_chunks_boundary" name="test_chunks_zero_on_empty_input" time="0.000"><failure message="ValueError: range() arg 3 must not be zero">def test_chunks_zero_on_empty_input():
+&gt;       assert chunks([], 0) == []
+               ^^^^^^^^^^^^^
+
+/tests/test_chunks_boundary.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+items = [], n = 0
+
+    def chunks(items, n):
+&gt;       return [items[i:i+n] for i in range(0, len(items), n)]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: range() arg 3 must not be zero
+
+/workspace/source.py:2: ValueError</failure></testcase><testcase classname="test_chunks_boundary" name="test_chunks_negative_raises_value_error[-1]" time="0.000"><failure message="Failed: DID NOT RAISE ValueError">n = -1
+
+    @pytest.mark.parametrize("n", [-1, -3])
+    def test_chunks_negative_raises_value_error(n):
+        # 契约：n&lt;0 抛出 ValueError
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_chunks_boundary.py:22: Failed</failure></testcase><testcase classname="test_chunks_boundary" name="test_chunks_negative_raises_value_error[-3]" time="0.000"><failure message="Failed: DID NOT RAISE ValueError">n = -3
+
+    @pytest.mark.parametrize("n", [-1, -3])
+    def test_chunks_negative_raises_value_error(n):
+        # 契约：n&lt;0 抛出 ValueError
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_chunks_boundary.py:22: Failed</failure></testcase></testsuite></testsuites>

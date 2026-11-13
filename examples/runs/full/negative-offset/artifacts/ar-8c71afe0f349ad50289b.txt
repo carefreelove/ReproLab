@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="6" time="0.014" timestamp="2026-11-13T15:20:24.214682+00:00" hostname="e559a804a0cf"><testcase classname="test_paginate_negative_offset" name="test_paginate_rejects_negative_offset[-1]" time="0.000"><failure message="Failed: DID NOT RAISE ValueError">offset = -1
+
+    @pytest.mark.parametrize("offset", [-1, -2, -3, -100])
+    def test_paginate_rejects_negative_offset(offset):
+        """契约：负 offset 非法，必须抛 ValueError，而不是按切片规则返回元素。"""
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_paginate_negative_offset.py:9: Failed</failure></testcase><testcase classname="test_paginate_negative_offset" name="test_paginate_rejects_negative_offset[-2]" time="0.000"><failure message="Failed: DID NOT RAISE ValueError">offset = -2
+
+    @pytest.mark.parametrize("offset", [-1, -2, -3, -100])
+    def test_paginate_rejects_negative_offset(offset):
+        """契约：负 offset 非法，必须抛 ValueError，而不是按切片规则返回元素。"""
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_paginate_negative_offset.py:9: Failed</failure></testcase><testcase classname="test_paginate_negative_offset" name="test_paginate_rejects_negative_offset[-3]" time="0.000"><failure message="Failed: DID NOT RAISE ValueError">offset = -3
+
+    @pytest.mark.parametrize("offset", [-1, -2, -3, -100])
+    def test_paginate_rejects_negative_offset(offset):
+        """契约：负 offset 非法，必须抛 ValueError，而不是按切片规则返回元素。"""
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_paginate_negative_offset.py:9: Failed</failure></testcase><testcase classname="test_paginate_negative_offset" name="test_paginate_rejects_negative_offset[-100]" time="0.000"><failure message="Failed: DID NOT RAISE ValueError">offset = -100
+
+    @pytest.mark.parametrize("offset", [-1, -2, -3, -100])
+    def test_paginate_rejects_negative_offset(offset):
+        """契约：负 offset 非法，必须抛 ValueError，而不是按切片规则返回元素。"""
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_paginate_negative_offset.py:9: Failed</failure></testcase><testcase classname="test_paginate_negative_offset" name="test_paginate_zero_offset_is_valid" time="0.000" /><testcase classname="test_paginate_negative_offset" name="test_paginate_positive_offset_is_valid" time="0.000" /></testsuite></testsuites>

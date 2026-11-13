@@ -1,0 +1,22 @@
+F.                                                                       [100%]
+=================================== FAILURES ===================================
+______________________ test_mean_empty_list_returns_zero _______________________
+
+    def test_mean_empty_list_returns_zero():
+>       assert mean([]) == 0
+               ^^^^^^^^
+
+/tests/test_reproducer.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+values = []
+
+    def mean(values):
+>       return sum(values) / len(values)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ZeroDivisionError: division by zero
+
+/workspace/source.py:2: ZeroDivisionError
+=========================== short test summary info ============================
+FAILED test_reproducer.py::test_mean_empty_list_returns_zero - ZeroDivisionEr...
+1 failed, 1 passed in 0.01s

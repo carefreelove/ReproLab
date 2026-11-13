@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="10" time="0.090" timestamp="2026-11-13T14:47:15.415024+00:00" hostname="194a1ca19469"><testcase classname="test_numeric_range_huge_len" name="test_huge_numeric_range_equality_does_not_overflow" time="0.000"><failure message="OverflowError: cannot fit 'int' into an index-sized integer">def test_huge_numeric_range_equality_does_not_overflow():
+        a = numeric_range(HUGE)
+        b = numeric_range(HUGE)
+&gt;       assert a == b
+               ^^^^^^
+
+/tests/test_numeric_range_huge_len.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = numeric_range(0, 1000000000000000000000000000000)
+other = numeric_range(0, 1000000000000000000000000000000)
+
+    def __eq__(self, other):
+        # numeric_range object equality is intended to mirror the built-in range
+        # object's equality.
+        # https://github.com/python/cpython/blob/f5c4880151b609e0a0a0b05c292d36b18038c061/Objects/rangeobject.c#L499
+        if not isinstance(other, numeric_range):
+            return False
+    
+        if self is other:
+            return True
+    
+&gt;       len_self = len(self)
+                   ^^^^^^^^^
+E       OverflowError: cannot fit 'int' into an index-sized integer
+
+/workspace/more_itertools/more.py:2379: OverflowError</failure></testcase><testcase classname="test_numeric_range_huge_len" name="test_huge_numeric_range_equality_with_different_step" time="0.000"><failure message="OverflowError: cannot fit 'int' into an index-sized integer">def test_huge_numeric_range_equality_with_different_step():
+&gt;       assert numeric_range(HUGE) != numeric_range(0, HUGE, 2)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/test_numeric_range_huge_len.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = numeric_range(0, 1000000000000000000000000000000)
+other = numeric_range(0, 1000000000000000000000000000000, 2)
+
+    def __eq__(self, other):
+        # numeric_range object equality is intended to mirror the built-in range
+        # object's equality.
+        # https://github.com/python/cpython/blob/f5c4880151b609e0a0a0b05c292d36b18038c061/Objects/rangeobject.c#L499
+        if not isinstance(other, numeric_range):
+            return False
+    
+        if self is other:
+            return True
+    
+&gt;       len_self = len(self)
+                   ^^^^^^^^^
+E       OverflowError: cannot fit 'int' into an index-sized integer
+
+/workspace/more_itertools/more.py:2379: OverflowError</failure></testcase><testcase classname="test_numeric_range_huge_len" name="test_huge_numeric_range_hash_matches_builtin_range" time="0.000"><failure message="OverflowError: cannot fit 'int' into an index-sized integer">def test_huge_numeric_range_hash_matches_builtin_range():
+&gt;       assert hash(numeric_range(HUGE)) == hash(range(HUGE))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/test_numeric_range_huge_len.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = numeric_range(0, 1000000000000000000000000000000)
+
+    def __hash__(self):
+        # numeric_range hashing is intended to mirror the built-in range object's
+        # hashing.
+        # https://github.com/python/cpython/blob/f5c4880151b609e0a0a0b05c292d36b18038c061/Objects/rangeobject.c#L570
+&gt;       len_self = len(self)
+                   ^^^^^^^^^
+E       OverflowError: cannot fit 'int' into an index-sized integer
+
+/workspace/more_itertools/more.py:2414: OverflowError</failure></testcase><testcase classname="test_numeric_range_huge_len" name="test_huge_numeric_range_hash_usable_in_set_and_dict" time="0.000"><failure message="OverflowError: cannot fit 'int' into an index-sized integer">def test_huge_numeric_range_hash_usable_in_set_and_dict():
+&gt;       assert len({numeric_range(HUGE), numeric_range(HUGE)}) == 1
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/test_numeric_range_huge_len.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = numeric_range(0, 1000000000000000000000000000000)
+
+    def __hash__(self):
+        # numeric_range hashing is intended to mirror the built-in range object's
+        # hashing.
+        # https://github.com/python/cpython/blob/f5c4880151b609e0a0a0b05c292d36b18038c061/Objects/rangeobject.c#L570
+&gt;       len_self = len(self)
+                   ^^^^^^^^^
+E       OverflowError: cannot fit 'int' into an index-sized integer
+
+/workspace/more_itertools/more.py:2414: OverflowError</failure></testcase><testcase classname="test_numeric_range_huge_len" name="test_huge_numeric_range_len_still_overflows" time="0.000" /><testcase classname="test_numeric_range_huge_len" name="test_normal_sized_numeric_range_still_consistent[0]" time="0.000" /><testcase classname="test_numeric_range_huge_len" name="test_normal_sized_numeric_range_still_consistent[1]" time="0.000" /><testcase classname="test_numeric_range_huge_len" name="test_normal_sized_numeric_range_still_consistent[2]" time="0.000" /><testcase classname="test_numeric_range_huge_len" name="test_normal_sized_numeric_range_still_consistent[10]" time="0.000" /><testcase classname="test_numeric_range_huge_len" name="test_normal_sized_numeric_range_still_consistent[4611686018427387904]" time="0.000" /></testsuite></testsuites>

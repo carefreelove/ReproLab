@@ -1,0 +1,28 @@
+{
+  "content": "",
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_00_EFLdwn0XQXk4XRtMLLML2913",
+      "function": {
+        "arguments": "{\"content\": \"import sys\\n\\nimport pytest\\n\\nfrom more_itertools import numeric_range\\n\\n\\ndef test_numeric_range_eq_and_hash_beyond_maxsize():\\n    # A range whose length exceeds sys.maxsize is still a valid range.\\n    # Equality and hashing must work like the built-in range, which does not\\n    # raise OverflowError for such ranges.\\n    big = 10**30\\n    a = numeric_range(big)\\n    b = numeric_range(big)\\n\\n    # Equality should not raise and should report equal ranges as equal.\\n    assert a == b\\n\\n    # Hashing should not raise and equal ranges should hash equally.\\n    assert hash(a) == hash(b)\\n\\n    # Sanity: explicit len() is still allowed to raise OverflowError.\\n    with pytest.raises(OverflowError):\\n        len(a)\\n\"}",
+        "name": "deliver_test"
+      },
+      "type": "function",
+      "index": 0
+    }
+  ],
+  "extra": {
+    "actions": [
+      {
+        "id": "call_00_EFLdwn0XQXk4XRtMLLML2913",
+        "name": "deliver_test",
+        "arguments": {
+          "content": "import sys\n\nimport pytest\n\nfrom more_itertools import numeric_range\n\n\ndef test_numeric_range_eq_and_hash_beyond_maxsize():\n    # A range whose length exceeds sys.maxsize is still a valid range.\n    # Equality and hashing must work like the built-in range, which does not\n    # raise OverflowError for such ranges.\n    big = 10**30\n    a = numeric_range(big)\n    b = numeric_range(big)\n\n    # Equality should not raise and should report equal ranges as equal.\n    assert a == b\n\n    # Hashing should not raise and equal ranges should hash equally.\n    assert hash(a) == hash(b)\n\n    # Sanity: explicit len() is still allowed to raise OverflowError.\n    with pytest.raises(OverflowError):\n        len(a)\n"
+        }
+      }
+    ],
+    "cost": 0.001347,
+    "ticket": "77d0134819914dd5a2d6874036eb04ae"
+  }
+}

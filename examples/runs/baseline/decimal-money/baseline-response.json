@@ -1,0 +1,28 @@
+{
+  "content": "",
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_00_5G5zX5vL7D5oHZ5BRfNw5363",
+      "function": {
+        "arguments": "{\"content\": \"from decimal import Decimal\\n\\nfrom source import money\\n\\n\\ndef test_money_rounds_half_up():\\n    # 2.675 按 ROUND_HALF_UP 保留两位应为 2.68\\n    assert money(\\\"2.675\\\") == Decimal(\\\"2.68\\\")\\n\"}",
+        "name": "deliver_test"
+      },
+      "type": "function",
+      "index": 0
+    }
+  ],
+  "extra": {
+    "actions": [
+      {
+        "id": "call_00_5G5zX5vL7D5oHZ5BRfNw5363",
+        "name": "deliver_test",
+        "arguments": {
+          "content": "from decimal import Decimal\n\nfrom source import money\n\n\ndef test_money_rounds_half_up():\n    # 2.675 按 ROUND_HALF_UP 保留两位应为 2.68\n    assert money(\"2.675\") == Decimal(\"2.68\")\n"
+        }
+      }
+    ],
+    "cost": 0.0002418,
+    "ticket": "0976975772ad4fa9bce283bd034237b5"
+  }
+}

@@ -1,0 +1,2 @@
+1: def mean(values):
+2:     return sum(values) / len(values)

@@ -1,0 +1,2 @@
+1: def paginate(items, offset, limit):
+2:     return items[offset:offset + limit]

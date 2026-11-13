@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.042" timestamp="2026-11-13T15:38:09.907959+00:00" hostname="cc3f54f89498"><testcase classname="test_reproducer" name="test_numeric_range_eq_and_hash_beyond_maxsize" time="0.000"><failure message="OverflowError: cannot fit 'int' into an index-sized integer">def test_numeric_range_eq_and_hash_beyond_maxsize():
+        # A range whose length exceeds sys.maxsize is still a valid range.
+        # Equality and hashing must work like the built-in range, which does not
+        # raise OverflowError for such ranges.
+        big = 10**30
+        a = numeric_range(big)
+        b = numeric_range(big)
+    
+        # Equality should not raise and should report equal ranges as equal.
+&gt;       assert a == b
+               ^^^^^^
+
+/tests/test_reproducer.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = numeric_range(0, 1000000000000000000000000000000)
+other = numeric_range(0, 1000000000000000000000000000000)
+
+    def __eq__(self, other):
+        # numeric_range object equality is intended to mirror the built-in range
+        # object's equality.
+        # https://github.com/python/cpython/blob/f5c4880151b609e0a0a0b05c292d36b18038c061/Objects/rangeobject.c#L499
+        if not isinstance(other, numeric_range):
+            return False
+    
+        if self is other:
+            return True
+    
+&gt;       len_self = len(self)
+                   ^^^^^^^^^
+E       OverflowError: cannot fit 'int' into an index-sized integer
+
+/workspace/more_itertools/more.py:2379: OverflowError</failure></testcase></testsuite></testsuites>

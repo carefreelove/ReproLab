@@ -1,0 +1,14 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________________ test_paginate_rejects_negative_offset _____________________
+
+    def test_paginate_rejects_negative_offset():
+        items = [1, 2, 3, 4, 5]
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_reproducer.py:8: Failed
+=========================== short test summary info ============================
+FAILED test_reproducer.py::test_paginate_rejects_negative_offset - Failed: DI...
+1 failed in 0.01s

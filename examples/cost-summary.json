@@ -1,0 +1,354 @@
+{
+  "currency": "CNY",
+  "ceiling": 20,
+  "accounting": "Conservative peak/cache-miss estimate, USD converted at 8 CNY/USD; actual supplier bill may differ.",
+  "price_date": "2026-11-13",
+  "input_cny_per_million": 2.4,
+  "output_cny_per_million": 9.6,
+  "all_runs": [
+    {
+      "run_id": "6ae5fcbc805e",
+      "model": "deepseek-flash",
+      "calls": 11,
+      "input_tokens": 57932,
+      "output_tokens": 1975,
+      "estimated_cost_cny": 0.158002,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "dbceb84fdb6b",
+      "model": "deepseek-flash",
+      "calls": 11,
+      "input_tokens": 60453,
+      "output_tokens": 2232,
+      "estimated_cost_cny": 0.166517,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "53cbce16c2c3",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 394,
+      "output_tokens": 130,
+      "estimated_cost_cny": 0.002194,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "259c0f2d97d0",
+      "model": "deepseek-flash",
+      "calls": 12,
+      "input_tokens": 75140,
+      "output_tokens": 2426,
+      "estimated_cost_cny": 0.20363,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "01fc5d9e2714",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 400,
+      "output_tokens": 165,
+      "estimated_cost_cny": 0.002544,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "cff084199699",
+      "model": "deepseek-flash",
+      "calls": 12,
+      "input_tokens": 66751,
+      "output_tokens": 2164,
+      "estimated_cost_cny": 0.180981,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "f2d11b129ca2",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 400,
+      "output_tokens": 100,
+      "estimated_cost_cny": 0.00192,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "5c7b2cc1befb",
+      "model": "deepseek-flash",
+      "calls": 15,
+      "input_tokens": 92578,
+      "output_tokens": 2700,
+      "estimated_cost_cny": 0.248113,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "2b2ffce393a9",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 402,
+      "output_tokens": 96,
+      "estimated_cost_cny": 0.001887,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "ff0646d9e43c",
+      "model": "deepseek-flash",
+      "calls": 10,
+      "input_tokens": 60651,
+      "output_tokens": 2323,
+      "estimated_cost_cny": 0.167868,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "c8a6c5c5f82c",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 415,
+      "output_tokens": 144,
+      "estimated_cost_cny": 0.002379,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "6617399f723e",
+      "model": "deepseek-flash",
+      "calls": 12,
+      "input_tokens": 78477,
+      "output_tokens": 2466,
+      "estimated_cost_cny": 0.212023,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "af779a7f5db2",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 418,
+      "output_tokens": 124,
+      "estimated_cost_cny": 0.002194,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "eafad98a30b9",
+      "model": "deepseek-flash",
+      "calls": 12,
+      "input_tokens": 118445,
+      "output_tokens": 3164,
+      "estimated_cost_cny": 0.314646,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "494a94b29a84",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 3711,
+      "output_tokens": 305,
+      "estimated_cost_cny": 0.011835,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "270017ef2e8d",
+      "model": "deepseek-flash",
+      "calls": 25,
+      "input_tokens": 273317,
+      "output_tokens": 5234,
+      "estimated_cost_cny": 0.706216,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "ddb1cdb1a497",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 3670,
+      "output_tokens": 228,
+      "estimated_cost_cny": 0.010997,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "e75c14b1a885",
+      "model": "deepseek-flash",
+      "calls": 9,
+      "input_tokens": 44163,
+      "output_tokens": 1547,
+      "estimated_cost_cny": 0.120845,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "b50f31f7f80e",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 394,
+      "output_tokens": 113,
+      "estimated_cost_cny": 0.002031,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "33e1cc1835fd",
+      "model": "deepseek-flash",
+      "calls": 9,
+      "input_tokens": 49565,
+      "output_tokens": 1922,
+      "estimated_cost_cny": 0.13741,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "4d830923189f",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 400,
+      "output_tokens": 187,
+      "estimated_cost_cny": 0.002756,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "92f2557cd43c",
+      "model": "deepseek-flash",
+      "calls": 9,
+      "input_tokens": 45480,
+      "output_tokens": 1698,
+      "estimated_cost_cny": 0.125455,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "f1f2d6902788",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 400,
+      "output_tokens": 100,
+      "estimated_cost_cny": 0.00192,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "41cf6076a730",
+      "model": "deepseek-flash",
+      "calls": 9,
+      "input_tokens": 44480,
+      "output_tokens": 1502,
+      "estimated_cost_cny": 0.121174,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "56f1b60a5bdd",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 402,
+      "output_tokens": 96,
+      "estimated_cost_cny": 0.001887,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "49b0c3a63102",
+      "model": "deepseek-flash",
+      "calls": 9,
+      "input_tokens": 46046,
+      "output_tokens": 1812,
+      "estimated_cost_cny": 0.127909,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "40554a8d863c",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 415,
+      "output_tokens": 140,
+      "estimated_cost_cny": 0.00234,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "649f9c8f0622",
+      "model": "deepseek-flash",
+      "calls": 9,
+      "input_tokens": 46569,
+      "output_tokens": 1767,
+      "estimated_cost_cny": 0.128732,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "98851c0cba1d",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 418,
+      "output_tokens": 97,
+      "estimated_cost_cny": 0.001935,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "0e56a62a0d0b",
+      "model": "deepseek-flash",
+      "calls": 9,
+      "input_tokens": 72067,
+      "output_tokens": 2301,
+      "estimated_cost_cny": 0.195055,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "91d2caae0f70",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 3711,
+      "output_tokens": 305,
+      "estimated_cost_cny": 0.011835,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "09c0a152402a",
+      "model": "deepseek-flash",
+      "calls": 21,
+      "input_tokens": 228227,
+      "output_tokens": 4086,
+      "estimated_cost_cny": 0.58698,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "28c799b4fdb9",
+      "model": "deepseek-flash",
+      "calls": 1,
+      "input_tokens": 3670,
+      "output_tokens": 205,
+      "estimated_cost_cny": 0.010776,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "62af73fb0a05",
+      "model": "deepseek-flash",
+      "calls": 7,
+      "input_tokens": 27087,
+      "output_tokens": 1390,
+      "estimated_cost_cny": 0.078356,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "291573a1fc5d",
+      "model": "deepseek-flash",
+      "calls": 9,
+      "input_tokens": 59967,
+      "output_tokens": 1810,
+      "estimated_cost_cny": 0.1613,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "120d19458e27",
+      "model": "deepseek-flash",
+      "calls": 8,
+      "input_tokens": 34874,
+      "output_tokens": 1240,
+      "estimated_cost_cny": 0.095604,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "e3c9fd453b5c",
+      "model": "deepseek-flash",
+      "calls": 10,
+      "input_tokens": 79594,
+      "output_tokens": 3071,
+      "estimated_cost_cny": 0.22051,
+      "unconfirmed_calls": 0
+    },
+    {
+      "run_id": "818e7c767f8f",
+      "model": "deepseek-flash",
+      "calls": 9,
+      "input_tokens": 50188,
+      "output_tokens": 1737,
+      "estimated_cost_cny": 0.13713,
+      "unconfirmed_calls": 0
+    }
+  ],
+  "global_accounted_cny": 4.665886,
+  "unconfirmed_calls": 0
+}

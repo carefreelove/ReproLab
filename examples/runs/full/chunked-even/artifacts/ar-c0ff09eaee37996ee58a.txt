@@ -1,0 +1,66 @@
+5575:         self.assertEqual(it.items_seen, 0)
+5576:         self.assertEqual(next(it), '0')
+5577:         self.assertEqual(it.items_seen, 1)
+5578:         self.assertEqual(''.join(it), '123456789')
+5579:         self.assertEqual(it.items_seen, 10)
+5580: 
+5581: 
+5582: class ChunkedEvenTests(TestCase):
+5583:     """Tests for ``chunked_even()``"""
+5584: 
+5585:     def test_0(self):
+5586:         self._test_finite('', 3, [])
+5587: 
+5588:     def test_1(self):
+5589:         self._test_finite('A', 1, [['A']])
+5590: 
+5591:     def test_4(self):
+5592:         self._test_finite('ABCD', 3, [['A', 'B'], ['C', 'D']])
+5593: 
+5594:     def test_5(self):
+5595:         self._test_finite('ABCDE', 3, [['A', 'B', 'C'], ['D', 'E']])
+5596: 
+5597:     def test_6(self):
+5598:         self._test_finite('ABCDEF', 3, [['A', 'B', 'C'], ['D', 'E', 'F']])
+5599: 
+5600:     def test_7(self):
+5601:         self._test_finite(
+5602:             'ABCDEFG', 3, [['A', 'B', 'C'], ['D', 'E'], ['F', 'G']]
+5603:         )
+5604: 
+5605:     def _test_finite(self, seq, n, expected):
+5606:         # Check with and without `len()`
+5607:         self.assertEqual(list(mi.chunked_even(seq, n)), expected)
+5608:         self.assertEqual(list(mi.chunked_even(iter(seq), n)), expected)
+5609: 
+5610:     def test_infinite(self):
+5611:         for n in range(1, 5):
+5612:             k = 0
+5613: 
+5614:             def count_with_assert():
+5615:                 for i in count():
+5616:                     # Look-ahead should be less than n^2
+5617:                     self.assertLessEqual(i, n * k + n * n)
+5618:                     yield i
+5619: 
+5620:             ls = mi.chunked_even(count_with_assert(), n)
+5621:             while k < 2:
+5622:                 self.assertEqual(next(ls), list(range(k * n, (k + 1) * n)))
+5623:                 k += 1
+5624: 
+5625:     def test_evenness(self):
+5626:         for N in range(1, 50):
+5627:             for n in range(1, N + 2):
+5628:                 lengths = []
+5629:                 items = []
+5630:                 for l in mi.chunked_even(range(N), n):
+5631:                     L = len(l)
+5632:                     self.assertLessEqual(L, n)
+5633:                     self.assertGreaterEqual(L, 1)
+5634:                     lengths.append(L)
+5635:                     items.extend(l)
+5636:                 self.assertEqual(items, list(range(N)))
+5637:                 self.assertLessEqual(max(lengths) - min(lengths), 1)
+5638: 
+5639: 
+5640: class ZipBroadcastTests(TestCase):

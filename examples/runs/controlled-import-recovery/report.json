@@ -1,0 +1,368 @@
+{
+  "schema_version": "1.0",
+  "case": "empty-mean",
+  "run_id": "818e7c767f8f",
+  "generated_at": "2026-11-13T15:38:17.984705+00:00",
+  "status": "completed",
+  "mode": "live",
+  "configuration": {
+    "mode": "live",
+    "namespace": "controlled-demo",
+    "purpose": "seeded_import_error"
+  },
+  "request": "source.mean([]) 应返回 0，非空输入返回算术平均值。当前空列表会失败，请生成测试。\n这是受控恢复演示：已有 test_reproducer.py 被人为注入导入错误。请先使用 failure-triage 的 scripts/summarize.py 归纳已有日志，再覆盖同名测试文件，完成真实缺陷复现。",
+  "repository": "fixture/empty-mean",
+  "buggy_commit": "0bb06820d5dbd4aeeba094a435744772a2a76f51",
+  "fixed_commit": "50a825ee574abf95dd1ba5bb3a70bbb55a7fd307",
+  "source": "self_authored_fixture",
+  "stop_reason": "",
+  "elapsed_seconds": 14.938,
+  "plan": [
+    {
+      "task": "归纳已有导入错误日志（failure-triage scripts/summarize.py）",
+      "status": "done",
+      "evidence": [
+        "ar-55244c48e65b8effc7d0",
+        "ar-5e719ebba4efd4717004"
+      ]
+    },
+    {
+      "task": "定位 source.mean 真实实现与包导入路径",
+      "status": "done",
+      "evidence": [
+        "ar-fb3288d78f1cf6580224"
+      ]
+    },
+    {
+      "task": "覆盖 test_reproducer.py 编写空列表与非空列表断言",
+      "status": "done",
+      "evidence": [
+        "ar-ec548d548586ef0c11e8"
+      ]
+    },
+    {
+      "task": "运行测试确认目标缺陷复现并提交",
+      "status": "done",
+      "evidence": [
+        "ar-ec548d548586ef0c11e8",
+        "ar-b5411099d96b6ab94852"
+      ]
+    }
+  ],
+  "test_changes": [
+    {
+      "path": "test_reproducer.py",
+      "at": "2026-11-13T15:32:24.538100+00:00",
+      "diff": "--- before/test_reproducer.py\n+++ after/test_reproducer.py\n@@ -0,0 +1,4 @@\n+from source import average\n+\n+def test_empty():\n+    assert average([]) == 0\n"
+    },
+    {
+      "path": "test_reproducer.py",
+      "at": "2026-11-13T15:32:32.279980+00:00",
+      "diff": "--- before/test_reproducer.py\n+++ after/test_reproducer.py\n@@ -1,4 +1,22 @@\n-from source import average\n+import pytest\n \n-def test_empty():\n-    assert average([]) == 0\n+from source import mean\n+\n+\n+def test_mean_empty_list_returns_zero():\n+    \"\"\"契约：空输入应返回 0，而不是抛异常。\"\"\"\n+    assert mean([]) == 0\n+\n+\n+@pytest.mark.parametrize(\n+    \"values, expected\",\n+    [\n+        ([1, 2, 3], 2),\n+        ([5], 5),\n+        ([-1, 1], 0),\n+        ([1.5, 2.5], 2.0),\n+    ],\n+)\n+def test_mean_non_empty_returns_arithmetic_mean(values, expected):\n+    \"\"\"契约：非空输入返回算术平均值。\"\"\"\n+    assert mean(values) == expected\n"
+    }
+  ],
+  "prior_verifications": [],
+  "hypotheses": [
+    {
+      "id": "h1",
+      "claim": "source.py 只定义 mean(values)，旧测试导入 average 导致收集期 ImportError；改为 from source import mean 后，空列表会因 sum([])/len([]) 抛 ZeroDivisionError，违反“空输入返回 0”契约。",
+      "expected": "空列表断言 mean([]) == 0 失败（ZeroDivisionError）；非空列表 mean([1,2,3]) == 2 通过。",
+      "status": "supported",
+      "evidence": [
+        "ar-55244c48e65b8effc7d0",
+        "ar-fb3288d78f1cf6580224",
+        "ar-ec548d548586ef0c11e8",
+        "ar-b5411099d96b6ab94852"
+      ],
+      "next_action": "目标行为已复现（1 failed / 4 passed，失败为 source.py:2 ZeroDivisionError），提交复现测试。"
+    },
+    {
+      "id": "initial",
+      "claim": "初始测试导入可能不正确",
+      "expected": "观察导入错误并定位正确函数",
+      "status": "active",
+      "evidence": [],
+      "next_action": "运行已有测试"
+    }
+  ],
+  "skills": [
+    {
+      "name": "failure-triage",
+      "description": "在 pytest 收集、导入、运行环境、断言或超时失败后进行错误分类并调整调查路径。",
+      "sha256": "0054d049cb53fab292aef2cadb078f1970e1240b8093ac6eca2d8e1408237936",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "83262ad95c21f9fcd20eb8c84d6b390777a5c5c07610cd69ee5b9dbc62fa3d4b"
+        },
+        {
+          "path": "scripts/__pycache__/summarize.cpython-312.pyc",
+          "sha256": "43ce8cfc8ff50ea6252727edcaef3b24199ce6c9446b8db0a71add1e2583a17a"
+        },
+        {
+          "path": "scripts/summarize.py",
+          "sha256": "7fbb75396140872389f60dfd08bec4f422e41cfc38fa29a9f49d35de4bbf26e3"
+        }
+      ],
+      "reason": "已有测试存在人为注入的导入错误，需先分类归纳日志"
+    }
+  ],
+  "experiments": [
+    {
+      "operation_id": "seed-3",
+      "id": "ex-a8daaf59e1f5",
+      "hypothesis": "initial",
+      "test_sha256": "b6faf1356570a28af67b947233345f8d3abc9c23d1c7334dd7189e5bcf3587f8",
+      "status": "completed",
+      "result": {
+        "kind": "import_error",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 2,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.36
+      },
+      "log": "ar-55244c48e65b8effc7d0",
+      "junit": "ar-5365dc0de6fa1f53922f"
+    },
+    {
+      "operation_id": "call_00_O95YcysPKbrBtaY0quo47725",
+      "id": "ex-fb979a1d7748",
+      "hypothesis": "h1",
+      "test_sha256": "247ffc4974931ff0fc44d9e7bbb3b03e99bf63c9a67e4ca9da257c0d367a5f9d",
+      "status": "completed",
+      "result": {
+        "kind": "assertion_failure",
+        "collected": 5,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+        "failure_details": [
+          {
+            "test": "test_mean_empty_list_returns_zero",
+            "message": "ZeroDivisionError: division by zero"
+          }
+        ],
+        "seconds": 0.292
+      },
+      "log": "ar-ec548d548586ef0c11e8",
+      "junit": "ar-b5411099d96b6ab94852"
+    }
+  ],
+  "submission": {
+    "summary": "覆盖了被人为注入导入错误的 test_reproducer.py：原文件 `from source import average` 导致收集期 ImportError（summarize.py 对该日志未提取到信号，人工判读为导入名错误，非业务缺陷）。改为 `from source import mean` 后，按用户契约断言：空列表 mean([]) == 0，非空列表返回算术平均值（参数化 [1,2,3]->2、[5]->5、[-1,1]->0、[1.5,2.5]->2.0）。运行结果 1 failed / 4 passed：test_mean_empty_list_returns_zero 在 source.py:2 抛 ZeroDivisionError（sum([])/len([])），非空用例全部通过，说明缺陷仅存在于空输入边界。剩余不确定性：未验证其他可迭代类型（生成器、元组）的空输入行为，但契约仅要求空列表返回 0。",
+    "test_sha256": "247ffc4974931ff0fc44d9e7bbb3b03e99bf63c9a67e4ca9da257c0d367a5f9d",
+    "experiment": "ex-fb979a1d7748"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "247ffc4974931ff0fc44d9e7bbb3b03e99bf63c9a67e4ca9da257c0d367a5f9d",
+    "validations": [
+      {
+        "kind": "assertion_failure",
+        "collected": 5,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+        "failure_details": [
+          {
+            "test": "test_mean_empty_list_returns_zero",
+            "message": "ZeroDivisionError: division by zero"
+          }
+        ],
+        "seconds": 0.28,
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-605db05eabb45d863390",
+        "junit": "ar-0fd2d740f6f7a5aa454d"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 5,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+        "failure_details": [
+          {
+            "test": "test_mean_empty_list_returns_zero",
+            "message": "ZeroDivisionError: division by zero"
+          }
+        ],
+        "seconds": 0.242,
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-605db05eabb45d863390",
+        "junit": "ar-aae6fd1017aae5eb85b8"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 5,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "07b4542e0090a1ca780130609254df2a7369c21541d707540550f98aecfa03e5",
+        "failure_details": [
+          {
+            "test": "test_mean_empty_list_returns_zero",
+            "message": "ZeroDivisionError: division by zero"
+          }
+        ],
+        "seconds": 0.245,
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-605db05eabb45d863390",
+        "junit": "ar-a354753a078e881bfd25"
+      },
+      {
+        "kind": "passed",
+        "collected": 5,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.251,
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-4ec83dc8390b7be2bbc0",
+        "junit": "ar-1fdc89edf942cf5001b4"
+      },
+      {
+        "kind": "passed",
+        "collected": 5,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.243,
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-4ec83dc8390b7be2bbc0",
+        "junit": "ar-0fe316f39f204d5fed6e"
+      },
+      {
+        "kind": "passed",
+        "collected": 5,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.257,
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-4ec83dc8390b7be2bbc0",
+        "junit": "ar-de224598be9a3adab250"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-0fd2d740f6f7a5aa454d",
+      "category": "validation_junit",
+      "sha256": "551c1ccbc9a4eddf5f4b819ee8491bc77e6a5f73b411f33e374a2d859e6b7dba",
+      "bytes": 1362
+    },
+    {
+      "id": "ar-0fe316f39f204d5fed6e",
+      "category": "private_validation_junit",
+      "sha256": "75f6ba31803bb97c4169be1ccf0936dd10917e72ecb933bec038cb1f7b02917f",
+      "bytes": 804
+    },
+    {
+      "id": "ar-1fdc89edf942cf5001b4",
+      "category": "private_validation_junit",
+      "sha256": "9337217612a540e092962d62e4b800affcd6e0d546870a31918a8971be2000be",
+      "bytes": 804
+    },
+    {
+      "id": "ar-4ec83dc8390b7be2bbc0",
+      "category": "private_validation_log",
+      "sha256": "9310d484212a1fe2c33b4b8accdf50a2639f09ba039354f8448f8aa8d173e1ff",
+      "bytes": 98
+    },
+    {
+      "id": "ar-5365dc0de6fa1f53922f",
+      "category": "junit",
+      "sha256": "9a022f523db68435d163bd3d2b8aa4c41f0883afee14aaa2951a359159f6abcf",
+      "bytes": 670
+    },
+    {
+      "id": "ar-55244c48e65b8effc7d0",
+      "category": "test_log",
+      "sha256": "48f05c33b47ff25d3300dbee18b2792e1eaff8348d9c5c5e7746ec04844afce6",
+      "bytes": 670
+    },
+    {
+      "id": "ar-5e719ebba4efd4717004",
+      "category": "skill_script",
+      "sha256": "049609b662edcdef5362ead7fe818591ed2fd1e3658c607897f248b756ba7199",
+      "bytes": 16
+    },
+    {
+      "id": "ar-605db05eabb45d863390",
+      "category": "validation_log",
+      "sha256": "da59e45f28458e7ce3b15cbe9d45aa8b1f8573ed7476a09be10f37325926010f",
+      "bytes": 916
+    },
+    {
+      "id": "ar-a354753a078e881bfd25",
+      "category": "validation_junit",
+      "sha256": "bdba7da2cd2407f450a8a6b0687a761d883eacce0f2810f63490ce42cc361e06",
+      "bytes": 1362
+    },
+    {
+      "id": "ar-aae6fd1017aae5eb85b8",
+      "category": "validation_junit",
+      "sha256": "9447f9537313e72a56cc68ef46143448d93d41da2615002c22ebe0752de13094",
+      "bytes": 1362
+    },
+    {
+      "id": "ar-b5411099d96b6ab94852",
+      "category": "junit",
+      "sha256": "3c753b18911f0e25d82f0b14cf18dff004cebeedb8f74114a12e819056628398",
+      "bytes": 1362
+    },
+    {
+      "id": "ar-de224598be9a3adab250",
+      "category": "private_validation_junit",
+      "sha256": "797becbbcd8ffc9d1bede14076d14dd1019a5125efeda1d03b0393b7f36dcdd8",
+      "bytes": 804
+    },
+    {
+      "id": "ar-ec548d548586ef0c11e8",
+      "category": "test_log",
+      "sha256": "da59e45f28458e7ce3b15cbe9d45aa8b1f8573ed7476a09be10f37325926010f",
+      "bytes": 916
+    },
+    {
+      "id": "ar-fb3288d78f1cf6580224",
+      "category": "source",
+      "sha256": "32de8499db8aaf3b757fe023862411e735e01cff04b8351e7adec4b25867bcd1",
+      "bytes": 60
+    }
+  ],
+  "statistics": {
+    "model_calls": 9,
+    "input_tokens": 50188,
+    "output_tokens": 1737,
+    "estimated_cost_cny": 0.13713,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

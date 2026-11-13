@@ -1,0 +1,56 @@
+FFFF..                                                                   [100%]
+=================================== FAILURES ===================================
+__________________ test_paginate_rejects_negative_offset[-1] ___________________
+
+offset = -1
+
+    @pytest.mark.parametrize("offset", [-1, -2, -3, -100])
+    def test_paginate_rejects_negative_offset(offset):
+        """契约：负 offset 非法，必须抛 ValueError，而不是按切片规则返回元素。"""
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_paginate_negative_offset.py:9: Failed
+__________________ test_paginate_rejects_negative_offset[-2] ___________________
+
+offset = -2
+
+    @pytest.mark.parametrize("offset", [-1, -2, -3, -100])
+    def test_paginate_rejects_negative_offset(offset):
+        """契约：负 offset 非法，必须抛 ValueError，而不是按切片规则返回元素。"""
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_paginate_negative_offset.py:9: Failed
+__________________ test_paginate_rejects_negative_offset[-3] ___________________
+
+offset = -3
+
+    @pytest.mark.parametrize("offset", [-1, -2, -3, -100])
+    def test_paginate_rejects_negative_offset(offset):
+        """契约：负 offset 非法，必须抛 ValueError，而不是按切片规则返回元素。"""
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_paginate_negative_offset.py:9: Failed
+_________________ test_paginate_rejects_negative_offset[-100] __________________
+
+offset = -100
+
+    @pytest.mark.parametrize("offset", [-1, -2, -3, -100])
+    def test_paginate_rejects_negative_offset(offset):
+        """契约：负 offset 非法，必须抛 ValueError，而不是按切片规则返回元素。"""
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_paginate_negative_offset.py:9: Failed
+=========================== short test summary info ============================
+FAILED test_paginate_negative_offset.py::test_paginate_rejects_negative_offset[-1]
+FAILED test_paginate_negative_offset.py::test_paginate_rejects_negative_offset[-2]
+FAILED test_paginate_negative_offset.py::test_paginate_rejects_negative_offset[-3]
+FAILED test_paginate_negative_offset.py::test_paginate_rejects_negative_offset[-100]
+4 failed, 2 passed in 0.01s

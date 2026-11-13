@@ -1,0 +1,92 @@
+.FFFF                                                                    [100%]
+=================================== FAILURES ===================================
+________________ test_n_zero_returns_empty_and_does_not_consume ________________
+
+    def test_n_zero_returns_empty_and_does_not_consume():
+        it = TracingIterator(DATA)
+>       result = list(mi.chunked_even(it, 0))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/test_chunked_even_boundary.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+iterable = <tests.test_chunked_even_boundary.TracingIterator object at 0xffff80c34680>
+n = 0
+
+    def chunked_even(iterable, n):
+        """Break *iterable* into lists of approximately length *n*.
+        Items are distributed such the lengths of the lists differ by at most
+        1 item.
+    
+        >>> iterable = [1, 2, 3, 4, 5, 6, 7]
+        >>> n = 3
+        >>> list(chunked_even(iterable, n))  # List lengths: 3, 2, 2
+        [[1, 2, 3], [4, 5], [6, 7]]
+        >>> list(chunked(iterable, n))  # List lengths: 3, 3, 1
+        [[1, 2, 3], [4, 5, 6], [7]]
+    
+        """
+        iterator = iter(iterable)
+    
+        # Initialize a buffer to process the chunks while keeping
+        # some back to fill any underfilled chunks
+        min_buffer = (n - 1) * (n - 2)
+        buffer = list(islice(iterator, min_buffer))
+    
+        # Append items until we have a completed chunk
+>       for _ in islice(map(buffer.append, iterator), n, None, n):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: Step for islice() must be a positive integer or None.
+
+/workspace/more_itertools/more.py:4648: ValueError
+_________ test_negative_n_raises_value_error_and_does_not_consume[-1] __________
+
+n = -1
+
+    @pytest.mark.parametrize("n", [-1, -2, -5])
+    def test_negative_n_raises_value_error_and_does_not_consume(n):
+        it = TracingIterator(DATA)
+        with pytest.raises(ValueError):
+            list(mi.chunked_even(it, n))
+>       assert it.consumed == 0, f"n={n} consumed {it.consumed} item(s) from the input"
+E       AssertionError: n=-1 consumed 6 item(s) from the input
+E       assert 6 == 0
+E        +  where 6 = <tests.test_chunked_even_boundary.TracingIterator object at 0xffff80c369c0>.consumed
+
+/tests/test_chunked_even_boundary.py:49: AssertionError
+_________ test_negative_n_raises_value_error_and_does_not_consume[-2] __________
+
+n = -2
+
+    @pytest.mark.parametrize("n", [-1, -2, -5])
+    def test_negative_n_raises_value_error_and_does_not_consume(n):
+        it = TracingIterator(DATA)
+        with pytest.raises(ValueError):
+            list(mi.chunked_even(it, n))
+>       assert it.consumed == 0, f"n={n} consumed {it.consumed} item(s) from the input"
+E       AssertionError: n=-2 consumed 7 item(s) from the input
+E       assert 7 == 0
+E        +  where 7 = <tests.test_chunked_even_boundary.TracingIterator object at 0xffff80c37770>.consumed
+
+/tests/test_chunked_even_boundary.py:49: AssertionError
+_________ test_negative_n_raises_value_error_and_does_not_consume[-5] __________
+
+n = -5
+
+    @pytest.mark.parametrize("n", [-1, -2, -5])
+    def test_negative_n_raises_value_error_and_does_not_consume(n):
+        it = TracingIterator(DATA)
+        with pytest.raises(ValueError):
+            list(mi.chunked_even(it, n))
+>       assert it.consumed == 0, f"n={n} consumed {it.consumed} item(s) from the input"
+E       AssertionError: n=-5 consumed 7 item(s) from the input
+E       assert 7 == 0
+E        +  where 7 = <tests.test_chunked_even_boundary.TracingIterator object at 0xffff80c36a20>.consumed
+
+/tests/test_chunked_even_boundary.py:49: AssertionError
+=========================== short test summary info ============================
+FAILED test_chunked_even_boundary.py::test_n_zero_returns_empty_and_does_not_consume
+FAILED test_chunked_even_boundary.py::test_negative_n_raises_value_error_and_does_not_consume[-1]
+FAILED test_chunked_even_boundary.py::test_negative_n_raises_value_error_and_does_not_consume[-2]
+FAILED test_chunked_even_boundary.py::test_negative_n_raises_value_error_and_does_not_consume[-5]
+4 failed, 1 passed in 0.06s

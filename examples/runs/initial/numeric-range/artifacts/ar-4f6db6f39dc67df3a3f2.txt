@@ -1,0 +1,81 @@
+2420: 
+2421:     def __iter__(self):
+2422:         values = (self._start + (n * self._step) for n in count())
+2423:         if self._growing:
+2424:             return takewhile(partial(gt, self._stop), values)
+2425:         else:
+2426:             return takewhile(partial(lt, self._stop), values)
+2427: 
+2428:     def __len__(self):
+2429:         return self._len
+2430: 
+2431:     @cached_property
+2432:     def _len(self):
+2433:         if self._growing:
+2434:             start = self._start
+2435:             stop = self._stop
+2436:             step = self._step
+2437:         else:
+2438:             start = self._stop
+2439:             stop = self._start
+2440:             step = -self._step
+2441:         distance = stop - start
+2442:         if distance <= self._zero:
+2443:             return 0
+2444:         else:  # distance > 0 and step > 0: regular euclidean division
+2445:             q, r = divmod(distance, step)
+2446:             n = int(q) + int(r != self._zero)
+2447:             # The division above measures the distance to cover, but the items
+2448:             # are produced by repeated multiplication (see `__iter__`). With
+2449:             # inexact arithmetic the two disagree at the boundary, so settle
+2450:             # the count against the items themselves.
+2451:             while n and not self._before_stop(n - 1):
+2452:                 n -= 1
+2453:             while self._before_stop(n):
+2454:                 n += 1
+2455:             return n
+2456: 
+2457:     def _before_stop(self, i):
+2458:         value = self._start + i * self._step
+2459:         return value < self._stop if self._growing else value > self._stop
+2460: 
+2461:     def __reduce__(self):
+2462:         return numeric_range, (self._start, self._stop, self._step)
+2463: 
+2464:     def __repr__(self):
+2465:         if self._step == 1:
+2466:             return f"numeric_range({self._start!r}, {self._stop!r})"
+2467:         return (
+2468:             f"numeric_range({self._start!r}, {self._stop!r}, {self._step!r})"
+2469:         )
+2470: 
+2471:     def __reversed__(self):
+2472:         start = self._start
+2473:         step = self._step
+2474:         for i in reversed(range(self._len)):
+2475:             yield start + i * step
+2476: 
+2477:     def count(self, value):
+2478:         return int(value in self)
+2479: 
+2480:     def index(self, value):
+2481:         if self._growing:
+2482:             if self._start <= value < self._stop:
+2483:                 q, _ = divmod(value - self._start, self._step)
+2484:                 return self._index_near(int(q), value)
+2485:         else:
+2486:             if self._start >= value > self._stop:
+2487:                 q, _ = divmod(self._start - value, -self._step)
+2488:                 return self._index_near(int(q), value)
+2489: 
+2490:         raise ValueError(f"{value} is not in numeric range")
+2491: 
+2492:     def _index_near(self, i, value):
+2493:         # `i` is the quotient of the division of `value` by the step, which
+2494:         # locates the value on the grid of items this range produces. For
+2495:         # exact types that quotient is the index. For inexact ones (floats)
+2496:         # it can land one short, and the remainder of the division is not a
+2497:         # reliable membership test either: `numeric_range(0.0, 1.0, 0.1)`
+2498:         # yields 0.30000000000000004, which leaves a non-zero remainder.
+2499:         # So compare against the item the range actually produces there.
+2500:         for candidate in (i, i + 1):

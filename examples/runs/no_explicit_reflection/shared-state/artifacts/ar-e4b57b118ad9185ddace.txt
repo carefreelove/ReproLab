@@ -1,0 +1,40 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+____________________ test_instances_have_independent_items _____________________
+
+    def test_instances_have_independent_items():
+        b1 = Bucket()
+        b2 = Bucket()
+    
+        b1.add("a")
+    
+        assert b1.items == ["a"]
+>       assert b2.items == [], f"b2.items 被 b1.add 污染: {b2.items!r}"
+E       AssertionError: b2.items 被 b1.add 污染: ['a']
+E       assert ['a'] == []
+E         
+E         Left contains one more item: 'a'
+E         Use -v to get more diff
+
+/tests/test_bucket_isolation.py:11: AssertionError
+________________ test_second_instance_add_does_not_affect_first ________________
+
+    def test_second_instance_add_does_not_affect_first():
+        b1 = Bucket()
+        b2 = Bucket()
+    
+        b2.add(1)
+        b2.add(2)
+    
+>       assert b2.items == [1, 2]
+E       AssertionError: assert ['a', 1, 2] == [1, 2]
+E         
+E         At index 0 diff: 'a' != 1
+E         Left contains one more item: 2
+E         Use -v to get more diff
+
+/tests/test_bucket_isolation.py:21: AssertionError
+=========================== short test summary info ============================
+FAILED test_bucket_isolation.py::test_instances_have_independent_items - Asse...
+FAILED test_bucket_isolation.py::test_second_instance_add_does_not_affect_first
+2 failed in 0.01s

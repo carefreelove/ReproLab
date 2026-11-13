@@ -1,0 +1,28 @@
+{
+  "content": "",
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_00_DNqGcopezphwSkqAF6ri5701",
+      "function": {
+        "arguments": "{\"content\": \"import pytest\\n\\nfrom more_itertools import chunked_even\\n\\n\\nclass TrackingIterator:\\n    \\\"\\\"\\\"Iterator that records how many items have been consumed.\\\"\\\"\\\"\\n\\n    def __init__(self, data):\\n        self._data = list(data)\\n        self._index = 0\\n        self.consumed = 0\\n\\n    def __iter__(self):\\n        return self\\n\\n    def __next__(self):\\n        if self._index >= len(self._data):\\n            raise StopIteration\\n        item = self._data[self._index]\\n        self._index += 1\\n        self.consumed += 1\\n        return item\\n\\n\\ndef test_chunked_even_n_zero_returns_empty_without_consuming():\\n    it = TrackingIterator([1, 2, 3, 4, 5])\\n    result = list(chunked_even(it, 0))\\n    assert result == []\\n    assert it.consumed == 0\\n\\n\\ndef test_chunked_even_n_negative_raises_without_consuming():\\n    it = TrackingIterator([1, 2, 3, 4, 5])\\n    with pytest.raises(ValueError):\\n        list(chunked_even(it, -1))\\n    assert it.consumed == 0\\n\"}",
+        "name": "deliver_test"
+      },
+      "type": "function",
+      "index": 0
+    }
+  ],
+  "extra": {
+    "actions": [
+      {
+        "id": "call_00_DNqGcopezphwSkqAF6ri5701",
+        "name": "deliver_test",
+        "arguments": {
+          "content": "import pytest\n\nfrom more_itertools import chunked_even\n\n\nclass TrackingIterator:\n    \"\"\"Iterator that records how many items have been consumed.\"\"\"\n\n    def __init__(self, data):\n        self._data = list(data)\n        self._index = 0\n        self.consumed = 0\n\n    def __iter__(self):\n        return self\n\n    def __next__(self):\n        if self._index >= len(self._data):\n            raise StopIteration\n        item = self._data[self._index]\n        self._index += 1\n        self.consumed += 1\n        return item\n\n\ndef test_chunked_even_n_zero_returns_empty_without_consuming():\n    it = TrackingIterator([1, 2, 3, 4, 5])\n    result = list(chunked_even(it, 0))\n    assert result == []\n    assert it.consumed == 0\n\n\ndef test_chunked_even_n_negative_raises_without_consuming():\n    it = TrackingIterator([1, 2, 3, 4, 5])\n    with pytest.raises(ValueError):\n        list(chunked_even(it, -1))\n    assert it.consumed == 0\n"
+        }
+      }
+    ],
+    "cost": 0.0014793,
+    "ticket": "2fcecd285f2f48b7b2e6a05278e82a6a"
+  }
+}

@@ -1,0 +1,40 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+__________________ test_new_instance_starts_with_empty_items ___________________
+
+    def test_new_instance_starts_with_empty_items():
+        """新建实例的 items 应为空，不受其他实例 add 影响。"""
+        a = Bucket()
+        a.add(1)
+    
+        b = Bucket()
+        assert a.items == [1]
+>       assert b.items == []
+E       assert [1] == []
+E         
+E         Left contains one more item: 1
+E         Use -v to get more diff
+
+/tests/test_bucket_isolation.py:11: AssertionError
+__________________ test_two_instances_keep_independent_items ___________________
+
+    def test_two_instances_keep_independent_items():
+        """两个实例各自 add 后，items 应互不干扰。"""
+        a = Bucket()
+        b = Bucket()
+    
+        a.add("x")
+        b.add("y")
+    
+>       assert a.items == ["x"]
+E       AssertionError: assert [1, 'x', 'y'] == ['x']
+E         
+E         At index 0 diff: 1 != 'x'
+E         Left contains 2 more items, first extra item: 'x'
+E         Use -v to get more diff
+
+/tests/test_bucket_isolation.py:22: AssertionError
+=========================== short test summary info ============================
+FAILED test_bucket_isolation.py::test_new_instance_starts_with_empty_items - ...
+FAILED test_bucket_isolation.py::test_two_instances_keep_independent_items - ...
+2 failed in 0.01s

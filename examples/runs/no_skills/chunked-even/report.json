@@ -1,0 +1,458 @@
+{
+  "schema_version": "1.0",
+  "case": "chunked-even",
+  "run_id": "291573a1fc5d",
+  "generated_at": "2026-11-13T15:38:14.408429+00:00",
+  "status": "completed",
+  "mode": "live",
+  "configuration": {
+    "mode": "live",
+    "namespace": "eval-579d76338f214986b4fd1d7f4ee9e78a:no_skills:chunked-even",
+    "skills": false,
+    "reflection": true,
+    "variant": "no_skills"
+  },
+  "request": "more_itertools.chunked_even(iterable, n) 在 n=0 时应得到空结果且不消耗输入迭代器；n<0 时应抛出 ValueError 且不消耗输入。请验证边界及迭代器状态。",
+  "repository": "more-itertools/more-itertools",
+  "buggy_commit": "20c4ee5c63f8f8c35a37aee3b69d95cd2450c09a",
+  "fixed_commit": "08dca284ba5446a026afdc34067b658f9da989eb",
+  "source": "https://github.com/more-itertools/more-itertools/pull/1342",
+  "stop_reason": "",
+  "elapsed_seconds": 16.594,
+  "plan": [
+    {
+      "task": "定位 more_itertools.chunked_even 实现与相关测试",
+      "status": "done",
+      "evidence": [
+        "ar-b8b6f302f4e3ae08fc24",
+        "ar-da0301c61bc6b2013616"
+      ]
+    },
+    {
+      "task": "分析 n=0 / n<0 边界行为与迭代器消耗情况",
+      "status": "done",
+      "evidence": [
+        "ar-9bf8ba7e07ca7cdbcde9"
+      ]
+    },
+    {
+      "task": "编写复现测试并运行，验证真实错误类别",
+      "status": "done",
+      "evidence": [
+        "ar-9bf8ba7e07ca7cdbcde9",
+        "ar-68aa0c2564bbf33170c4"
+      ]
+    },
+    {
+      "task": "提交复现结果",
+      "status": "in_progress",
+      "evidence": []
+    }
+  ],
+  "test_changes": [
+    {
+      "path": "test_chunked_even_boundary.py",
+      "at": "2026-11-13T15:28:54.025693+00:00",
+      "diff": "--- before/test_chunked_even_boundary.py\n+++ after/test_chunked_even_boundary.py\n@@ -0,0 +1,46 @@\n+\"\"\"Reproduce chunked_even boundary handling for n <= 0.\n+\n+Expected (per issue):\n+  * n == 0 -> empty result, input iterator not consumed\n+  * n < 0  -> ValueError, input iterator not consumed\n+\"\"\"\n+\n+import pytest\n+\n+import more_itertools as mi\n+\n+\n+class CountingIterator:\n+    \"\"\"Iterator that records how many items were pulled from it.\"\"\"\n+\n+    def __init__(self, data):\n+        self._data = iter(data)\n+        self.items_seen = 0\n+\n+    def __iter__(self):\n+        return self\n+\n+    def __next__(self):\n+        item = next(self._data)\n+        self.items_seen += 1\n+        return item\n+\n+\n+def test_chunked_even_zero_returns_empty_without_consuming():\n+    it = CountingIterator([1, 2, 3, 4, 5])\n+    assert list(mi.chunked_even(it, 0)) == []\n+    assert it.items_seen == 0\n+\n+\n+def test_chunked_even_negative_raises_value_error_without_consuming():\n+    it = CountingIterator([1, 2, 3, 4, 5])\n+    with pytest.raises(ValueError):\n+        list(mi.chunked_even(it, -1))\n+    assert it.items_seen == 0\n+\n+\n+def test_chunked_even_negative_two_raises_value_error_without_consuming():\n+    it = CountingIterator([1, 2, 3, 4, 5])\n+    with pytest.raises(ValueError):\n+        list(mi.chunked_even(it, -2))\n+    assert it.items_seen == 0\n"
+    }
+  ],
+  "prior_verifications": [],
+  "hypotheses": [
+    {
+      "id": "h1",
+      "claim": "chunked_even 缺少 n<=0 校验：n=0 时 min_buffer=2 预取 2 个元素，随后 islice(..., 0, None, 0) 抛 ValueError（step 必须为正）；n<0 时 min_buffer 为正数，预取全部 5 个元素，且不抛 ValueError（无异常，返回空）。",
+      "expected": "n=0 应返回 [] 且 items_seen==0；n=-1/-2 应抛 ValueError 且 items_seen==0。实测：n=0 抛 ValueError（islice step），n<0 无异常且 items_seen==5。",
+      "status": "supported",
+      "evidence": [
+        "ar-9bf8ba7e07ca7cdbcde9"
+      ],
+      "next_action": "假设已支持（三个测试均因边界未校验而失败），提交复现。"
+    }
+  ],
+  "skills": [],
+  "experiments": [
+    {
+      "operation_id": "call_00_pj3E7vM3Os1GzYM3ozMd3405",
+      "id": "ex-3e6223171695",
+      "hypothesis": "h1",
+      "test_sha256": "1ef1be789bee44334406f68836112c04b184f51df31207464e89e0ce56fa3c54",
+      "status": "completed",
+      "result": {
+        "kind": "assertion_failure",
+        "collected": 3,
+        "skipped": 0,
+        "failed": 3,
+        "exit_code": 1,
+        "failure_signature": "5aaa04b2d005bbc1cbb462db657f15c708c5e438fe460529bd7a1073fa332047",
+        "failure_details": [
+          {
+            "test": "test_chunked_even_zero_returns_empty_without_consuming",
+            "message": "ValueError: Step for islice() must be a positive integer or None."
+          },
+          {
+            "test": "test_chunked_even_negative_raises_value_error_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+          },
+          {
+            "test": "test_chunked_even_negative_two_raises_value_error_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+          }
+        ],
+        "seconds": 0.339
+      },
+      "log": "ar-9bf8ba7e07ca7cdbcde9",
+      "junit": "ar-68aa0c2564bbf33170c4"
+    }
+  ],
+  "submission": {
+    "summary": "复现 more_itertools.chunked_even 对 n<=0 缺少校验的缺陷（more.py:4640-4648）。\n\n测试用记录消耗次数的 CountingIterator 验证两个边界：\n1) n=0：期望返回 [] 且 items_seen==0；实际在 list(islice(map(buffer.append, iterator), 0, None, 0)) 处抛 ValueError: Step for islice() must be a positive integer or None（min_buffer=(0-1)*(0-2)=2 已先预取 2 个元素）。\n2) n=-1 / n=-2：期望抛 ValueError 且 items_seen==0；实际不抛异常（返回空结果），且因 min_buffer 为正数把 5 个元素全部消耗（items_seen==5）。\n\n3 个测试全部失败，失败原因均为边界未校验导致的真实行为差异，非导入/收集/签名错误。剩余不确定性：n=0 时具体异常类型取决于实现路径（islice step 校验先于 divmod 除零），若修复方式不同（如提前 return 或 raise ValueError），断言仍以“空结果 + 零消耗”和“ValueError + 零消耗”为准。",
+    "test_sha256": "1ef1be789bee44334406f68836112c04b184f51df31207464e89e0ce56fa3c54",
+    "experiment": "ex-3e6223171695"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "1ef1be789bee44334406f68836112c04b184f51df31207464e89e0ce56fa3c54",
+    "validations": [
+      {
+        "kind": "target_exception",
+        "collected": 3,
+        "skipped": 0,
+        "failed": 3,
+        "exit_code": 1,
+        "failure_signature": "5aaa04b2d005bbc1cbb462db657f15c708c5e438fe460529bd7a1073fa332047",
+        "failure_details": [
+          {
+            "test": "test_chunked_even_zero_returns_empty_without_consuming",
+            "message": "ValueError: Step for islice() must be a positive integer or None."
+          },
+          {
+            "test": "test_chunked_even_negative_raises_value_error_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+          },
+          {
+            "test": "test_chunked_even_negative_two_raises_value_error_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+          }
+        ],
+        "seconds": 0.277,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-099891b8da978d11d8aa",
+        "junit": "ar-d2bf96a134f3bbec2918"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 3,
+        "skipped": 0,
+        "failed": 3,
+        "exit_code": 1,
+        "failure_signature": "5aaa04b2d005bbc1cbb462db657f15c708c5e438fe460529bd7a1073fa332047",
+        "failure_details": [
+          {
+            "test": "test_chunked_even_zero_returns_empty_without_consuming",
+            "message": "ValueError: Step for islice() must be a positive integer or None."
+          },
+          {
+            "test": "test_chunked_even_negative_raises_value_error_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+          },
+          {
+            "test": "test_chunked_even_negative_two_raises_value_error_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+          }
+        ],
+        "seconds": 0.279,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-c17dc42cf82b4f4ed6ea",
+        "junit": "ar-24d4f3a0fba662ec0775"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 3,
+        "skipped": 0,
+        "failed": 3,
+        "exit_code": 1,
+        "failure_signature": "5aaa04b2d005bbc1cbb462db657f15c708c5e438fe460529bd7a1073fa332047",
+        "failure_details": [
+          {
+            "test": "test_chunked_even_zero_returns_empty_without_consuming",
+            "message": "ValueError: Step for islice() must be a positive integer or None."
+          },
+          {
+            "test": "test_chunked_even_negative_raises_value_error_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+          },
+          {
+            "test": "test_chunked_even_negative_two_raises_value_error_without_consuming",
+            "message": "assert 5 == 0\n +  where 5 = <tests.test_chunked_even_boundary.CountingIterator object at 0xADDRESS>.items_seen"
+          }
+        ],
+        "seconds": 0.278,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-58f4193d0b0cef19b4d3",
+        "junit": "ar-196abc42e0327cb2ddee"
+      },
+      {
+        "kind": "passed",
+        "collected": 3,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.25,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-bb2eb3b4930023ed2b7a",
+        "junit": "ar-15330a2850a95c2089c5"
+      },
+      {
+        "kind": "passed",
+        "collected": 3,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.246,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-bb2eb3b4930023ed2b7a",
+        "junit": "ar-22762efafdb795e5ba72"
+      },
+      {
+        "kind": "passed",
+        "collected": 3,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.25,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-bb2eb3b4930023ed2b7a",
+        "junit": "ar-710064d0ae5e9b78f48a"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-01ffee7670deaa32e5f1",
+      "category": "validation_log",
+      "sha256": "fc76cac5c4f5f8c3d5369dca81528fe6be0eaf5afcd59ef4be95829de0ef6043",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-051d6e8eb33f1832c908",
+      "category": "validation_junit",
+      "sha256": "516fad8a6cab5e57eda584ff8fc775624532276222b7518d64d406e03a6ef78e",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-099891b8da978d11d8aa",
+      "category": "validation_log",
+      "sha256": "6879e15cd6f2c09b27b8d7bc9ca5dc63e13f0e7a1d57e53083847376c5339b12",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-0ff60ca61ca8bb681896",
+      "category": "private_validation_junit",
+      "sha256": "1e8f89e3d0a92c42edec0d9ea4749cd14b89cacc9a8271ce634494c1b467c1e5",
+      "bytes": 648
+    },
+    {
+      "id": "ar-15330a2850a95c2089c5",
+      "category": "private_validation_junit",
+      "sha256": "fe6980dbd8fd1ead9b44dbaf9484a7cb46f66a1cb092c2088d663790b8ff891e",
+      "bytes": 648
+    },
+    {
+      "id": "ar-196abc42e0327cb2ddee",
+      "category": "validation_junit",
+      "sha256": "4cc275f469d547bdefa5433a1e9b5e3b7464793149daa14bf0f050675c7655b6",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-21802b19b7ee1a75cf46",
+      "category": "validation_junit",
+      "sha256": "aa1744db20708c7d5b552f80896aae3f6af2f2f040c27dce2376fb87ed7f5751",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-22762efafdb795e5ba72",
+      "category": "private_validation_junit",
+      "sha256": "6d004137eed39c980f197c44e1d57539ec46a3a62fd3fcbde30584b07ba24adc",
+      "bytes": 648
+    },
+    {
+      "id": "ar-24d4f3a0fba662ec0775",
+      "category": "validation_junit",
+      "sha256": "4aa03b79fa4b7cf25a84ff818ffe163dfa8df62dbac9d5cb76b728b724e0b721",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-264a68610be00389cbd8",
+      "category": "validation_junit",
+      "sha256": "66c45ead4f20130688ed214e7596f1461994b1050143f6a02ff2038ee25e5e1b",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-2731591706d7e016dca4",
+      "category": "validation_log",
+      "sha256": "21eabf6e6d264d734527e304458d934ccc1c5b08cff59df2628b90695087ce5c",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-3b921e2ababaa2597618",
+      "category": "private_validation_junit",
+      "sha256": "997a356784fe792a774d2927d270604985fcde2399a5732d383a2d7392a50bc8",
+      "bytes": 648
+    },
+    {
+      "id": "ar-3c09f1896b288d39c7d7",
+      "category": "private_validation_junit",
+      "sha256": "c3ddcda580acebf952143a6d8720d11aaa2ba796df0a69391df4a75475fe091b",
+      "bytes": 648
+    },
+    {
+      "id": "ar-43ed244eda3e74fdb19f",
+      "category": "validation_log",
+      "sha256": "b2e2e7f4ecd0d5f95231f6e8d8eacef613e989c789540a955e9a8bbfb7b48ef0",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-463817d38ea4cf8d0cc9",
+      "category": "validation_junit",
+      "sha256": "e94674d7cd59199990dff61faa8c986ff35d761b8e8274d69abfec5bc2ae36cd",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-58f4193d0b0cef19b4d3",
+      "category": "validation_log",
+      "sha256": "975f45b7d98c90bd539efffe3dd65d16f573bbe3bc835b8019830fdb335a21f4",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-68aa0c2564bbf33170c4",
+      "category": "junit",
+      "sha256": "39db1a35cbbaa32257a66aff42904d53ad78b2dc1819754efcb140a729f08484",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-710064d0ae5e9b78f48a",
+      "category": "private_validation_junit",
+      "sha256": "b2184b777a27e21d6cf17c301590b636ec4e1b0b1556f2ac877f02ae4093bfc6",
+      "bytes": 648
+    },
+    {
+      "id": "ar-78127f69c95a620a20e1",
+      "category": "validation_log",
+      "sha256": "0311a3f621f897590af7bf9769105f805e6653a364861256f2ed8c44187a7273",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-882b4d4a1069ea1e7cd0",
+      "category": "validation_log",
+      "sha256": "5cf5a9d5ea2dfe25777225d7eace2023f088bc765828f57023601d3824279372",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-8e4b32e268cc99da03b7",
+      "category": "validation_log",
+      "sha256": "618a98fedd3ee53eeddceab2630f1f4af3330a7da27917ff5ad407858f2dc741",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-9bf8ba7e07ca7cdbcde9",
+      "category": "test_log",
+      "sha256": "f02ffad098e3461d215562aca65ae8a0c17d0fab8e5d639c8041d5b3ee851934",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-a419d219819caa896c1d",
+      "category": "validation_junit",
+      "sha256": "8c8d95fbd3e351497711268b6654501597010e4ed1e76cad82bfd4824ff1b4d2",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-b8b6f302f4e3ae08fc24",
+      "category": "source",
+      "sha256": "60f3db2cd01206e8289a01193849cf1323600b96d523c9f02fc28a006f78742e",
+      "bytes": 3150
+    },
+    {
+      "id": "ar-bb2eb3b4930023ed2b7a",
+      "category": "private_validation_log",
+      "sha256": "bf22e88f0e3a0e89eddb09d252b1661a48c9dfc4bd5aa177b5efca41f2700a18",
+      "bytes": 98
+    },
+    {
+      "id": "ar-c17dc42cf82b4f4ed6ea",
+      "category": "validation_log",
+      "sha256": "947d05c0048a3ac56759dca845f62c4898e6129d48ea60c0597d2c28d80a5a3d",
+      "bytes": 3145
+    },
+    {
+      "id": "ar-c6de6fe67685ee30736b",
+      "category": "private_validation_junit",
+      "sha256": "bc6a9a1cce762bbd65f862810493eb833904d511b0825976da42afa5dc008fb9",
+      "bytes": 648
+    },
+    {
+      "id": "ar-d2bf96a134f3bbec2918",
+      "category": "validation_junit",
+      "sha256": "20b32b40e4adb8e1ee9f53790985bb04ba0e83af28ac7966eb87ad26c09f7511",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-da0301c61bc6b2013616",
+      "category": "source",
+      "sha256": "c0ff09eaee37996ee58af366fe665df34780b50d2d51dafed7c1bbd75b584e79",
+      "bytes": 2497
+    },
+    {
+      "id": "ar-df54d8960a44dbe4ce71",
+      "category": "private_validation_junit",
+      "sha256": "ef509d88519e5a146f2046e69551906b02c4c634c6c8c7950444ebf454c91786",
+      "bytes": 648
+    },
+    {
+      "id": "ar-e9cfaa38f6a84bd65ef0",
+      "category": "validation_junit",
+      "sha256": "09622f4a73ae4b0fbf10e1e730b116674949de01b14844bc1791ddbac36805e9",
+      "bytes": 3469
+    },
+    {
+      "id": "ar-ee1f5e70ca8f9bd2ee84",
+      "category": "private_validation_junit",
+      "sha256": "1ad7946478b1543a18c5e7506f1824ea64f9e7ec5d81ed27be19834dbe71339f",
+      "bytes": 648
+    }
+  ],
+  "statistics": {
+    "model_calls": 9,
+    "input_tokens": 59967,
+    "output_tokens": 1810,
+    "estimated_cost_cny": 0.1613,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="0.013" timestamp="2026-11-13T15:37:58.527862+00:00" hostname="956611e26a31"><testcase classname="test_reproducer" name="test_chunks_zero_returns_empty_list" time="0.000"><failure message="ValueError: range() arg 3 must not be zero">def test_chunks_zero_returns_empty_list():
+        # 约定：n=0 应返回空列表，而不是抛出异常
+&gt;       assert chunks([1, 2, 3], 0) == []
+               ^^^^^^^^^^^^^^^^^^^^
+
+/tests/test_reproducer.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+items = [1, 2, 3], n = 0
+
+    def chunks(items, n):
+&gt;       return [items[i:i+n] for i in range(0, len(items), n)]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: range() arg 3 must not be zero
+
+/workspace/source.py:2: ValueError</failure></testcase><testcase classname="test_reproducer" name="test_chunks_negative_raises_value_error" time="0.000"><failure message="Failed: DID NOT RAISE ValueError">def test_chunks_negative_raises_value_error():
+        # 约定：n&lt;0 应抛出 ValueError
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+/tests/test_reproducer.py:13: Failed</failure></testcase></testsuite></testsuites>

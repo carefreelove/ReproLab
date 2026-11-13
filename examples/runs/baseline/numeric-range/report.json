@@ -1,0 +1,299 @@
+{
+  "schema_version": "1.0",
+  "case": "numeric-range",
+  "run_id": "28c799b4fdb9",
+  "generated_at": "2026-11-13T15:38:10.896590+00:00",
+  "status": "completed",
+  "mode": "live_baseline",
+  "configuration": {
+    "mode": "live_baseline",
+    "namespace": "eval-8f9cd9fa0936499cbf19b457e2e3a70d:baseline:numeric-range",
+    "skills": false
+  },
+  "request": "more_itertools.numeric_range 的等值比较和 hash 应支持元素数量超过 sys.maxsize 的有效范围，与内置 range 行为一致。numeric_range(10**30) 的比较和哈希当前抛出 OverflowError；显式 len() 仍可抛出 OverflowError。",
+  "repository": "more-itertools/more-itertools",
+  "buggy_commit": "08dca284ba5446a026afdc34067b658f9da989eb",
+  "fixed_commit": "f42daddf205f335fea6e200dad46049f33e71221",
+  "source": "https://github.com/more-itertools/more-itertools/pull/1345",
+  "stop_reason": "",
+  "elapsed_seconds": 0.0,
+  "plan": [],
+  "test_changes": [],
+  "prior_verifications": [],
+  "hypotheses": [],
+  "skills": [],
+  "experiments": [],
+  "submission": {
+    "summary": "单次生成对照",
+    "test_sha256": "a73bf1f5c3ad1c45b87820981f10a4c2939c75f132343b070bac305068057a88",
+    "experiment": "baseline"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "a73bf1f5c3ad1c45b87820981f10a4c2939c75f132343b070bac305068057a88",
+    "validations": [
+      {
+        "kind": "target_exception",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "9f0f6ae6e613615dbfa565b170f051624c23293a21ac8b281b0ab3a4d76b5b03",
+        "failure_details": [
+          {
+            "test": "test_numeric_range_eq_and_hash_beyond_maxsize",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          }
+        ],
+        "seconds": 0.27,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-cb12c5edb31f324b378a",
+        "junit": "ar-21fd7038e4216d208624"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "9f0f6ae6e613615dbfa565b170f051624c23293a21ac8b281b0ab3a4d76b5b03",
+        "failure_details": [
+          {
+            "test": "test_numeric_range_eq_and_hash_beyond_maxsize",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          }
+        ],
+        "seconds": 0.284,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-cb12c5edb31f324b378a",
+        "junit": "ar-4aecce81d31e22d8520b"
+      },
+      {
+        "kind": "target_exception",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "9f0f6ae6e613615dbfa565b170f051624c23293a21ac8b281b0ab3a4d76b5b03",
+        "failure_details": [
+          {
+            "test": "test_numeric_range_eq_and_hash_beyond_maxsize",
+            "message": "OverflowError: cannot fit 'int' into an index-sized integer"
+          }
+        ],
+        "seconds": 0.265,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-cb12c5edb31f324b378a",
+        "junit": "ar-df93dd23c24f7727f5e2"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.257,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-7b6aa87b4446035d14b0",
+        "junit": "ar-e6f5a6d24e30bdc8e95f"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.243,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-7b6aa87b4446035d14b0",
+        "junit": "ar-2bf8c67acf083e16cb39"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.241,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-7b6aa87b4446035d14b0",
+        "junit": "ar-5007802956f5821dc886"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-1f23a57bad136d3551b2",
+      "category": "validation_junit",
+      "sha256": "1f23a57bad136d3551b2d62b133babf3988edf469e259e0e4becd2d307542be6",
+      "bytes": 354
+    },
+    {
+      "id": "ar-21fd7038e4216d208624",
+      "category": "validation_junit",
+      "sha256": "d74f396f2b17f2089bdc0f584c1456bea1478eebd264ea3ecdd48483a138477d",
+      "bytes": 1723
+    },
+    {
+      "id": "ar-2bf8c67acf083e16cb39",
+      "category": "private_validation_junit",
+      "sha256": "34fa4b7ac991094e57b850f48766ebed77e2289f52a9bce83d5bf9ab1d0d9254",
+      "bytes": 354
+    },
+    {
+      "id": "ar-4454b024bbea446de905",
+      "category": "validation_junit",
+      "sha256": "b23062b81d138c5de77a9788889c425685b6c57fcaaeeb9e7feee2f274580ae3",
+      "bytes": 1723
+    },
+    {
+      "id": "ar-4aecce81d31e22d8520b",
+      "category": "validation_junit",
+      "sha256": "b85c4b348c069dd5938adc9197d7679a9ac63800bdafb13d94e85f21cbdd302a",
+      "bytes": 1723
+    },
+    {
+      "id": "ar-4e6443d72ff317dd3837",
+      "category": "validation_log",
+      "sha256": "4e6443d72ff317dd38378ac95b7ae51d04ed17b05b955a4f51498aa40a48ff26",
+      "bytes": 1693
+    },
+    {
+      "id": "ar-5007802956f5821dc886",
+      "category": "private_validation_junit",
+      "sha256": "dc8395cc7fc1d37d3e4499f35aa168082f05ccf54ca0073173085fe11b562ad7",
+      "bytes": 354
+    },
+    {
+      "id": "ar-5173ebd15e3d13c2f7a9",
+      "category": "private_validation_junit",
+      "sha256": "1d77f851224f845a00c2cc7b79836698dbcf3b180d302e57213323d681ccde39",
+      "bytes": 354
+    },
+    {
+      "id": "ar-68022cea0ce31031139d",
+      "category": "validation_junit",
+      "sha256": "68022cea0ce31031139d4b3983c9475a6ad2070fd305537bce27369979d0c332",
+      "bytes": 1723
+    },
+    {
+      "id": "ar-79d83c18c66bf7c26ccf",
+      "category": "validation_log",
+      "sha256": "a29039022fbb3b62d18d1d0987605f28dc1ac0b86034f1cccaec7c74ae0dd666",
+      "bytes": 1693
+    },
+    {
+      "id": "ar-7b6aa87b4446035d14b0",
+      "category": "private_validation_log",
+      "sha256": "a71df3ef716cabe43ead70bd8311cda3aeadcb986bea501da0ea9262f31c3925",
+      "bytes": 98
+    },
+    {
+      "id": "ar-859cd426005529693aa9",
+      "category": "validation_junit",
+      "sha256": "859cd426005529693aa900c46e18403156116ff0696c817b2e6ece1b51b86d35",
+      "bytes": 354
+    },
+    {
+      "id": "ar-900980ede0d11e48e397",
+      "category": "validation_junit",
+      "sha256": "12db068c854bbb6ce5b021f102ac14a765bb534974050e0ac4c8859b2f07b7f4",
+      "bytes": 1723
+    },
+    {
+      "id": "ar-983c57e6d7e03362305b",
+      "category": "validation_junit",
+      "sha256": "983c57e6d7e03362305b9d12eaf4f8cc931ec098390c06ab58d6835ef094bb1c",
+      "bytes": 354
+    },
+    {
+      "id": "ar-a71df3ef716cabe43ead",
+      "category": "validation_log",
+      "sha256": "a71df3ef716cabe43ead70bd8311cda3aeadcb986bea501da0ea9262f31c3925",
+      "bytes": 98
+    },
+    {
+      "id": "ar-ac218d5427c6df505996",
+      "category": "private_validation_junit",
+      "sha256": "fd09a50a0d93d45989d0e4571197694ec9173f5ac9655e8ff90ed21e249ddc3b",
+      "bytes": 354
+    },
+    {
+      "id": "ar-c2f9d6f961684e7bbbb8",
+      "category": "validation_junit",
+      "sha256": "c2f9d6f961684e7bbbb8f56bfda3af7637804d16df1d84431d452fcdb2bbabd9",
+      "bytes": 1723
+    },
+    {
+      "id": "ar-c50112d50b9225bb0854",
+      "category": "validation_junit",
+      "sha256": "c50112d50b9225bb08545e64e63fb300c0f3448463a36ed2830aa22c3760e593",
+      "bytes": 1723
+    },
+    {
+      "id": "ar-cb12c5edb31f324b378a",
+      "category": "validation_log",
+      "sha256": "4e6443d72ff317dd38378ac95b7ae51d04ed17b05b955a4f51498aa40a48ff26",
+      "bytes": 1693
+    },
+    {
+      "id": "ar-dd862fd14983fad677e3",
+      "category": "private_validation_junit",
+      "sha256": "aa686036af630718bc7815fbd024dc47d27b8c891acc10101f7496eada8e8c51",
+      "bytes": 354
+    },
+    {
+      "id": "ar-df93dd23c24f7727f5e2",
+      "category": "validation_junit",
+      "sha256": "67febd76e5471f968a384d1b68e921b1dcd3fa64391d959af99e821c148bfbd6",
+      "bytes": 1723
+    },
+    {
+      "id": "ar-e6f5a6d24e30bdc8e95f",
+      "category": "private_validation_junit",
+      "sha256": "81cd04f375daf8df010086bf73f24cddd2e45ca3251a3e7762a52ca9b921d890",
+      "bytes": 354
+    },
+    {
+      "id": "ar-f1c73cd5fbfc3491dc92",
+      "category": "validation_junit",
+      "sha256": "401721151a18a3442132361d014fce80dc46e751f7e4e65581b962153a00b983",
+      "bytes": 1723
+    }
+  ],
+  "statistics": {
+    "model_calls": 1,
+    "input_tokens": 3670,
+    "output_tokens": 205,
+    "estimated_cost_cny": 0.010776,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}

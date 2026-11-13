@@ -1,0 +1,93 @@
+.FFFF                                                                    [100%]
+=================================== FAILURES ===================================
+________________ test_n_zero_returns_empty_and_does_not_consume ________________
+
+    def test_n_zero_returns_empty_and_does_not_consume():
+        """n=0 应得到空结果，且不消耗输入迭代器。"""
+        it = TracingIterator([1, 2, 3, 4, 5])
+>       result = list(mi.chunked_even(it, 0))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/test_chunked_even_boundary.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+iterable = <tests.test_chunked_even_boundary.TracingIterator object at 0xffffa83a4950>
+n = 0
+
+    def chunked_even(iterable, n):
+        """Break *iterable* into lists of approximately length *n*.
+        Items are distributed such the lengths of the lists differ by at most
+        1 item.
+    
+        >>> iterable = [1, 2, 3, 4, 5, 6, 7]
+        >>> n = 3
+        >>> list(chunked_even(iterable, n))  # List lengths: 3, 2, 2
+        [[1, 2, 3], [4, 5], [6, 7]]
+        >>> list(chunked(iterable, n))  # List lengths: 3, 3, 1
+        [[1, 2, 3], [4, 5, 6], [7]]
+    
+        """
+        iterator = iter(iterable)
+    
+        # Initialize a buffer to process the chunks while keeping
+        # some back to fill any underfilled chunks
+        min_buffer = (n - 1) * (n - 2)
+        buffer = list(islice(iterator, min_buffer))
+    
+        # Append items until we have a completed chunk
+>       for _ in islice(map(buffer.append, iterator), n, None, n):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: Step for islice() must be a positive integer or None.
+
+/workspace/more_itertools/more.py:4648: ValueError
+___________ test_n_negative_raises_value_error_without_consuming[-1] ___________
+
+n = -1
+
+    @pytest.mark.parametrize("n", [-1, -2, -5])
+    def test_n_negative_raises_value_error_without_consuming(n):
+        """n<0 应抛出 ValueError，且不消耗输入迭代器。"""
+        it = TracingIterator([1, 2, 3, 4, 5])
+        with pytest.raises(ValueError):
+            list(mi.chunked_even(it, n))
+>       assert it.consumed == 0
+E       assert 5 == 0
+E        +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xffffa83a6b70>.consumed
+
+/tests/test_chunked_even_boundary.py:47: AssertionError
+___________ test_n_negative_raises_value_error_without_consuming[-2] ___________
+
+n = -2
+
+    @pytest.mark.parametrize("n", [-1, -2, -5])
+    def test_n_negative_raises_value_error_without_consuming(n):
+        """n<0 应抛出 ValueError，且不消耗输入迭代器。"""
+        it = TracingIterator([1, 2, 3, 4, 5])
+        with pytest.raises(ValueError):
+            list(mi.chunked_even(it, n))
+>       assert it.consumed == 0
+E       assert 5 == 0
+E        +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xffffa83a77d0>.consumed
+
+/tests/test_chunked_even_boundary.py:47: AssertionError
+___________ test_n_negative_raises_value_error_without_consuming[-5] ___________
+
+n = -5
+
+    @pytest.mark.parametrize("n", [-1, -2, -5])
+    def test_n_negative_raises_value_error_without_consuming(n):
+        """n<0 应抛出 ValueError，且不消耗输入迭代器。"""
+        it = TracingIterator([1, 2, 3, 4, 5])
+        with pytest.raises(ValueError):
+            list(mi.chunked_even(it, n))
+>       assert it.consumed == 0
+E       assert 5 == 0
+E        +  where 5 = <tests.test_chunked_even_boundary.TracingIterator object at 0xffffa83a6f60>.consumed
+
+/tests/test_chunked_even_boundary.py:47: AssertionError
+=========================== short test summary info ============================
+FAILED test_chunked_even_boundary.py::test_n_zero_returns_empty_and_does_not_consume
+FAILED test_chunked_even_boundary.py::test_n_negative_raises_value_error_without_consuming[-1]
+FAILED test_chunked_even_boundary.py::test_n_negative_raises_value_error_without_consuming[-2]
+FAILED test_chunked_even_boundary.py::test_n_negative_raises_value_error_without_consuming[-5]
+4 failed, 1 passed in 0.04s

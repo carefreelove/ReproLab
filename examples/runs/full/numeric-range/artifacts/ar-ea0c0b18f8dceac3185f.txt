@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="6" time="0.029" timestamp="2026-11-13T15:24:59.198363+00:00" hostname="ff4af9f74a11"><testcase classname="test_numeric_range_huge_eq_hash" name="test_small_range_eq_and_hash_still_work" time="0.000" /><testcase classname="test_numeric_range_huge_eq_hash" name="test_huge_range_equality_does_not_overflow" time="0.000" /><testcase classname="test_numeric_range_huge_eq_hash" name="test_huge_range_inequality_does_not_overflow" time="0.000"><failure message="TypeError: numeric_range.__init__() got an unexpected keyword argument 'step'">def test_huge_range_inequality_does_not_overflow():
+        a = numeric_range(HUGE)
+        assert a != numeric_range(HUGE, 2 * HUGE)
+&gt;       assert a != numeric_range(HUGE, step=2)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: numeric_range.__init__() got an unexpected keyword argument 'step'
+
+/tests/test_numeric_range_huge_eq_hash.py:37: TypeError</failure></testcase><testcase classname="test_numeric_range_huge_eq_hash" name="test_huge_range_hash_does_not_overflow" time="0.000" /><testcase classname="test_numeric_range_huge_eq_hash" name="test_huge_range_len_still_raises_overflow" time="0.000" /><testcase classname="test_numeric_range_huge_eq_hash" name="test_huge_range_usable_as_dict_key" time="0.000" /></testsuite></testsuites>

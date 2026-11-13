@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.027" timestamp="2026-11-13T15:37:00.077879+00:00" hostname="08aad42d1c28"><testcase classname="test_reproducer" name="test_numeric_range_eq_and_hash_beyond_maxsize" time="0.000" /></testsuite></testsuites>

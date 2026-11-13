@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="0.045" timestamp="2026-11-13T15:38:12.781728+00:00" hostname="42fe9b225d17"><testcase classname="test_chunked_even_boundary" name="test_chunked_even_zero_returns_empty_without_consuming" time="0.000"><failure message="ValueError: Step for islice() must be a positive integer or None.">def test_chunked_even_zero_returns_empty_without_consuming():
+        it = CountingIterator([1, 2, 3, 4, 5])
+&gt;       assert list(mi.chunked_even(it, 0)) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/tests/test_chunked_even_boundary.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+iterable = &lt;tests.test_chunked_even_boundary.CountingIterator object at 0xffff9abc3a70&gt;
+n = 0
+
+    def chunked_even(iterable, n):
+        """Break *iterable* into lists of approximately length *n*.
+        Items are distributed such the lengths of the lists differ by at most
+        1 item.
+    
+        &gt;&gt;&gt; iterable = [1, 2, 3, 4, 5, 6, 7]
+        &gt;&gt;&gt; n = 3
+        &gt;&gt;&gt; list(chunked_even(iterable, n))  # List lengths: 3, 2, 2
+        [[1, 2, 3], [4, 5], [6, 7]]
+        &gt;&gt;&gt; list(chunked(iterable, n))  # List lengths: 3, 3, 1
+        [[1, 2, 3], [4, 5, 6], [7]]
+    
+        """
+        iterator = iter(iterable)
+    
+        # Initialize a buffer to process the chunks while keeping
+        # some back to fill any underfilled chunks
+        min_buffer = (n - 1) * (n - 2)
+        buffer = list(islice(iterator, min_buffer))
+    
+        # Append items until we have a completed chunk
+&gt;       for _ in islice(map(buffer.append, iterator), n, None, n):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: Step for islice() must be a positive integer or None.
+
+/workspace/more_itertools/more.py:4648: ValueError</failure></testcase><testcase classname="test_chunked_even_boundary" name="test_chunked_even_negative_raises_value_error_without_consuming" time="0.000"><failure message="assert 5 == 0&#10; +  where 5 = &lt;tests.test_chunked_even_boundary.CountingIterator object at 0xffff994064b0&gt;.items_seen">def test_chunked_even_negative_raises_value_error_without_consuming():
+        it = CountingIterator([1, 2, 3, 4, 5])
+        with pytest.raises(ValueError):
+            list(mi.chunked_even(it, -1))
+&gt;       assert it.items_seen == 0
+E       assert 5 == 0
+E        +  where 5 = &lt;tests.test_chunked_even_boundary.CountingIterator object at 0xffff994064b0&gt;.items_seen
+
+/tests/test_chunked_even_boundary.py:39: AssertionError</failure></testcase><testcase classname="test_chunked_even_boundary" name="test_chunked_even_negative_two_raises_value_error_without_consuming" time="0.000"><failure message="assert 5 == 0&#10; +  where 5 = &lt;tests.test_chunked_even_boundary.CountingIterator object at 0xffff99406c60&gt;.items_seen">def test_chunked_even_negative_two_raises_value_error_without_consuming():
+        it = CountingIterator([1, 2, 3, 4, 5])
+        with pytest.raises(ValueError):
+            list(mi.chunked_even(it, -2))
+&gt;       assert it.items_seen == 0
+E       assert 5 == 0
+E        +  where 5 = &lt;tests.test_chunked_even_boundary.CountingIterator object at 0xffff99406c60&gt;.items_seen
+
+/tests/test_chunked_even_boundary.py:46: AssertionError</failure></testcase></testsuite></testsuites>

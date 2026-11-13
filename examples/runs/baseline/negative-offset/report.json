@@ -1,0 +1,305 @@
+{
+  "schema_version": "1.0",
+  "case": "negative-offset",
+  "run_id": "56f1b60a5bdd",
+  "generated_at": "2026-11-13T15:37:56.143663+00:00",
+  "status": "completed",
+  "mode": "live_baseline",
+  "configuration": {
+    "mode": "live_baseline",
+    "namespace": "eval-8f9cd9fa0936499cbf19b457e2e3a70d:baseline:negative-offset",
+    "skills": false
+  },
+  "request": "source.paginate(items, offset, limit) 应拒绝负 offset，抛出 ValueError。当前负数会按 Python 切片规则处理。",
+  "repository": "fixture/negative-offset",
+  "buggy_commit": "7e9693919934deaea9ba339b5ceff1813c75f1b3",
+  "fixed_commit": "b887e9c2c27c831b6de542a586ce1fa022700a7e",
+  "source": "self_authored_fixture",
+  "stop_reason": "",
+  "elapsed_seconds": 0.0,
+  "plan": [],
+  "test_changes": [],
+  "prior_verifications": [],
+  "hypotheses": [],
+  "skills": [],
+  "experiments": [],
+  "submission": {
+    "summary": "单次生成对照",
+    "test_sha256": "232ed5adcd9ec2d23f6ff73f1c9e7f72cac92c368e14429799b8e727f691f354",
+    "experiment": "baseline"
+  },
+  "verification": {
+    "verdict": "verified",
+    "reason": "同一测试在缺陷版稳定失败，在修复版全部通过",
+    "test_sha256": "232ed5adcd9ec2d23f6ff73f1c9e7f72cac92c368e14429799b8e727f691f354",
+    "validations": [
+      {
+        "kind": "assertion_failure",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "075f473972aa9d8fb179c4d02a8d79056dda270bcfa09818225170ea250bb011",
+        "failure_details": [
+          {
+            "test": "test_paginate_rejects_negative_offset",
+            "message": "Failed: DID NOT RAISE ValueError"
+          }
+        ],
+        "seconds": 0.239,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 1,
+        "log": "ar-c3cc4af55505748a2c3d",
+        "junit": "ar-a10724be124f4b4b9721"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "075f473972aa9d8fb179c4d02a8d79056dda270bcfa09818225170ea250bb011",
+        "failure_details": [
+          {
+            "test": "test_paginate_rejects_negative_offset",
+            "message": "Failed: DID NOT RAISE ValueError"
+          }
+        ],
+        "seconds": 0.232,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 2,
+        "log": "ar-c3cc4af55505748a2c3d",
+        "junit": "ar-1e7189b732c943283acc"
+      },
+      {
+        "kind": "assertion_failure",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 1,
+        "exit_code": 1,
+        "failure_signature": "075f473972aa9d8fb179c4d02a8d79056dda270bcfa09818225170ea250bb011",
+        "failure_details": [
+          {
+            "test": "test_paginate_rejects_negative_offset",
+            "message": "Failed: DID NOT RAISE ValueError"
+          }
+        ],
+        "seconds": 0.234,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "buggy",
+        "attempt": 3,
+        "log": "ar-c3cc4af55505748a2c3d",
+        "junit": "ar-3081dc1acdaef12ef666"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.233,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 1,
+        "log": "ar-4345ce69385b70e05c50",
+        "junit": "ar-7c0ebb5dbd5c96b37c51"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.231,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 2,
+        "log": "ar-4345ce69385b70e05c50",
+        "junit": "ar-9db65813e9e78fc4a94f"
+      },
+      {
+        "kind": "passed",
+        "collected": 1,
+        "skipped": 0,
+        "failed": 0,
+        "exit_code": 0,
+        "failure_signature": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "failure_details": [],
+        "seconds": 0.226,
+        "image_id": "sha256:21a4d35f9ca4fee6d6aec084bad3b2a17a6e35e9568450baf706e363c8de1526",
+        "variant": "fixed",
+        "attempt": 3,
+        "log": "ar-6a1e33f60202cf3b0c2e",
+        "junit": "ar-9000dbd5e7d9facf4ea4"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "ar-14ed6b354712d17b5e96",
+      "category": "validation_junit",
+      "sha256": "337cffd848eb000d1b18a35be0a63254388539cfe62b11c29e9ddd5868a12d99",
+      "bytes": 653
+    },
+    {
+      "id": "ar-1637d390110ab543e554",
+      "category": "validation_junit",
+      "sha256": "6a74667128de05199312dc347889879758ef5a7f26fc30912ca3615fb8022e64",
+      "bytes": 653
+    },
+    {
+      "id": "ar-1e7189b732c943283acc",
+      "category": "validation_junit",
+      "sha256": "7214e021e8f845342bc75953b192f09c05ab1121c10602a7f41717ebb7bbde8c",
+      "bytes": 653
+    },
+    {
+      "id": "ar-2164ee3ffdd56d79c8c7",
+      "category": "private_validation_junit",
+      "sha256": "c7a631a7fa0dcbbec126018ed988e09901f98b3f203e49c2e64ca947f107666e",
+      "bytes": 346
+    },
+    {
+      "id": "ar-3081dc1acdaef12ef666",
+      "category": "validation_junit",
+      "sha256": "6e7c8c3bf9802b9895f7338d07959c9f2fcbc2127862e5e18c7c6e7adee5c05d",
+      "bytes": 653
+    },
+    {
+      "id": "ar-32d6020e0aed3cefbbac",
+      "category": "validation_junit",
+      "sha256": "32d6020e0aed3cefbbacc7d04607752f2478314883ee263fe95766ee40ddebc0",
+      "bytes": 346
+    },
+    {
+      "id": "ar-4345ce69385b70e05c50",
+      "category": "private_validation_log",
+      "sha256": "4bcefcc9f6c645923b9993ccf73ad92e6b400ca25458ea14e095857fc2131342",
+      "bytes": 98
+    },
+    {
+      "id": "ar-4bcefcc9f6c645923b99",
+      "category": "validation_log",
+      "sha256": "4bcefcc9f6c645923b9993ccf73ad92e6b400ca25458ea14e095857fc2131342",
+      "bytes": 98
+    },
+    {
+      "id": "ar-54e32e406b4ee6d12016",
+      "category": "private_validation_junit",
+      "sha256": "2707a4436474e4510b0199f93ea506c9801cdb500fce0abda1ecb946cc2f8496",
+      "bytes": 346
+    },
+    {
+      "id": "ar-5b90955b3df798c959f1",
+      "category": "validation_junit",
+      "sha256": "ebd610d897fdb445897f50b8b440735152a9ab531fabb2ed5b994b11872eb5e3",
+      "bytes": 653
+    },
+    {
+      "id": "ar-6a1e33f60202cf3b0c2e",
+      "category": "private_validation_log",
+      "sha256": "bea5a77cc68582c0c66ca0fc860c9b8f449e679bec8d6a9178605ee7b7dc69a3",
+      "bytes": 98
+    },
+    {
+      "id": "ar-6b48372788d3dd9aa8f7",
+      "category": "validation_log",
+      "sha256": "5ac7671ae8b61d56f6f249bd923fc0ad22635ecec86cd7997e78c33b1b50c553",
+      "bytes": 661
+    },
+    {
+      "id": "ar-6e350b3439df3b1cefe3",
+      "category": "validation_junit",
+      "sha256": "6e350b3439df3b1cefe3e0dbbaa36806e2c18ebef7685d0f883bc516afcd5b40",
+      "bytes": 653
+    },
+    {
+      "id": "ar-720af138e34bf8c4c20d",
+      "category": "validation_junit",
+      "sha256": "720af138e34bf8c4c20dedd7a55d378a5c1c1c40faf45ad0341a949c2ddc6243",
+      "bytes": 346
+    },
+    {
+      "id": "ar-7c0ebb5dbd5c96b37c51",
+      "category": "private_validation_junit",
+      "sha256": "ec02770b6c77a44296bf3f67b6f3cbf1f96d2c9224e5a7f6790246896a666b28",
+      "bytes": 346
+    },
+    {
+      "id": "ar-7f5b6f40bc153ead0a71",
+      "category": "validation_log",
+      "sha256": "7f5b6f40bc153ead0a7165be9e82719a0af26b669941e8ec8183deb1925b7680",
+      "bytes": 661
+    },
+    {
+      "id": "ar-9000dbd5e7d9facf4ea4",
+      "category": "private_validation_junit",
+      "sha256": "463916ab6477a33c82f4aa73a77d7d4f07afc047e3f41eb633380de606d3bcd9",
+      "bytes": 346
+    },
+    {
+      "id": "ar-9db65813e9e78fc4a94f",
+      "category": "private_validation_junit",
+      "sha256": "ace3a553ed0b06761ce377685ea12345fb21e90356392ba423475d8cff1791e2",
+      "bytes": 346
+    },
+    {
+      "id": "ar-a01d67bc3637afedceb8",
+      "category": "validation_junit",
+      "sha256": "a01d67bc3637afedceb879dfc44abffead3ac2b41be618ba454d02f25c8b3fdb",
+      "bytes": 653
+    },
+    {
+      "id": "ar-a10724be124f4b4b9721",
+      "category": "validation_junit",
+      "sha256": "34b4641f15bb61100e6203b26dc268dbf3ca3f96be7b51d400dde378b8e4f739",
+      "bytes": 653
+    },
+    {
+      "id": "ar-c3cc4af55505748a2c3d",
+      "category": "validation_log",
+      "sha256": "7f5b6f40bc153ead0a7165be9e82719a0af26b669941e8ec8183deb1925b7680",
+      "bytes": 661
+    },
+    {
+      "id": "ar-cfd95a7a7e79b47b53a3",
+      "category": "validation_junit",
+      "sha256": "cfd95a7a7e79b47b53a3ad1572552e4f0c8e9a4dddd40b4df848c078961f99e3",
+      "bytes": 346
+    },
+    {
+      "id": "ar-ec7920ca4b098c9d6d0b",
+      "category": "validation_junit",
+      "sha256": "ec7920ca4b098c9d6d0b03502c6bd9e52b51a3d557f7c0f748c24ce864a0cd7b",
+      "bytes": 653
+    },
+    {
+      "id": "ar-f75a90ecfe7e114958a1",
+      "category": "private_validation_junit",
+      "sha256": "bdbe736ffc579c2ff60e5febe68fb79aa0ec428848f9f240049ae25adfdaf2e1",
+      "bytes": 346
+    }
+  ],
+  "statistics": {
+    "model_calls": 1,
+    "input_tokens": 402,
+    "output_tokens": 96,
+    "estimated_cost_cny": 0.001887,
+    "global_accounted_cny": 4.665886,
+    "global_unconfirmed_calls": 0,
+    "price_date": "2026-11-13",
+    "input_cny_per_million": 2.4,
+    "output_cny_per_million": 9.6,
+    "usd_conversion": 8
+  },
+  "limitations": [
+    "双版本差异及静态规则提供复现依据，测试语义仍需结合原始问题审查。",
+    "普通容器提供受约束执行，适用范围为受控的纯 Python 项目。"
+  ]
+}
