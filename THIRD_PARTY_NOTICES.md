@@ -8,7 +8,7 @@ MCP Python SDK、OpenAI Python SDK 与 pytest 作为运行或测试依赖使用�
 
 Skills 格式与渐进加载方式参考 Agent Skills 规范。内置 Skill 的中文指令、模板及脚本由本项目编写。规范仓库代码为 Apache-2.0，文档为 CC-BY-4.0。 [Agent Skills](https://github.com/agentskills/agentskills)
 
-真实题目使用 more-itertools 的公开历史版本。运行时下载的源码保持其 MIT 许可，公开示例保存来源链接、版本与生成测试。其修复提交仅由宿主验收器读取。 [more-itertools](https://github.com/more-itertools/more-itertools) · [上游许可证](https://github.com/more-itertools/more-itertools/blob/master/LICENSE)
+真实题目使用 more-itertools 的公开历史版本。运行时下载的源码保持其 MIT 许可，公开示例保存来源链接、版本与生成测试。其修复提交仅由宿主验收器读取。 [more-itertools](https://github.com/more-itertools/more-itertools) · [随项目保存的 MIT 声明](licenses/more-itertools-MIT.txt) · [上游许可证](https://github.com/more-itertools/more-itertools/blob/master/LICENSE)
 
 双版本验收方法参考 SWE-bench 的失败转通过与回归检查思想。ReproLab 使用独立题集，测试结果描述对应本题集。 [SWE-bench](https://github.com/SWE-bench/SWE-bench)
 

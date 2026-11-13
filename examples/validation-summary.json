@@ -1,0 +1,81 @@
+{
+  "checked_code_commit": "4c5529bbdb39cdd21f76d9dabf57fb1a1b788a06",
+  "date": "2026-11-13",
+  "clean_install": "passed",
+  "python": "3.12.14",
+  "host_platform": "Darwin",
+  "host_architecture": "arm64",
+  "model_credentials_removed": true,
+  "unit_and_docker_tests": {
+    "passed": 57,
+    "failed": 0
+  },
+  "offline_protocol_cases": 8,
+  "published_bundle_replay": {
+    "case": "numeric-range",
+    "verdict": "verified",
+    "buggy_attempts": 3,
+    "fixed_attempts": 3
+  },
+  "commands": [
+    [
+      "uv",
+      "sync",
+      "--frozen"
+    ],
+    [
+      "uv",
+      "run",
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "examples/demo_recovery.py"
+    ],
+    [
+      "uv",
+      "run",
+      "ruff",
+      "format",
+      "--check",
+      "src",
+      "tests",
+      "examples/demo_recovery.py"
+    ],
+    [
+      "uv",
+      "run",
+      "pytest",
+      "-q"
+    ],
+    [
+      "uv",
+      "run",
+      "reprolab",
+      "skills",
+      "validate",
+      "src/reprolab/skills"
+    ],
+    [
+      "uv",
+      "run",
+      "reprolab",
+      "evaluate",
+      "--suite",
+      "smoke"
+    ],
+    [
+      "uv",
+      "run",
+      "reprolab",
+      "replay",
+      "examples/runs/full/numeric-range"
+    ]
+  ],
+  "secret_scan": {
+    "working_files": 932,
+    "reachable_blobs": 677,
+    "matches": 0,
+    "scope": "Configured credential values, GitHub credential and common API/token/private-key patterns; not a formal security audit."
+  }
+}
