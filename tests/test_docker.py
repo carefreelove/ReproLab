@@ -136,3 +136,23 @@ def test_reflection_gate_and_experiment_operation_replay(tmp_path):
     assert len(store.objects(run_id, "experiments")) == 1
     rejected = actions.invoke("submit_reproducer", {"summary": "premature"})
     assert rejected["error"]["code"] == "reflection_required"
+
+
+def test_cancel_and_resume_preserve_budget_and_clear_explicit_stop(tmp_path):
+    class InterruptedModel(ScriptedModel):
+        def query(self, messages, **kwargs):
+            raise KeyboardInterrupt
+
+    store = Store(Settings(home=tmp_path / "state"))
+    run_id = new_task(store, prepare_case(store.home, "empty-mean"), {"mode": "offline_synthetic"})
+    ticket = store.reserve(run_id, 10000)
+    store.settle(ticket, {"input_tokens": 100, "output_tokens": 0})
+    execute(store, run_id, InterruptedModel)
+    assert store.run(run_id)["status"] == "cancelled"
+    store.put(run_id, "runtime", "stop", "no_progress")
+    elapsed = store.run(run_id)["elapsed"]
+    execute(store, run_id, ScriptedModel)
+    assert store.run(run_id)["status"] == "completed"
+    assert store.run(run_id)["elapsed"] > elapsed
+    assert store.statistics(run_id)["model_calls"] == 1
+    assert store.statistics(run_id)["estimated_cost_cny"] == 0.00024

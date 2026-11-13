@@ -55,15 +55,20 @@ class MCPEnvironment:
         if self.store.get(self.run_id, "runtime", "stop"):
             raise LabError("no_progress", "相同动作与结果连续出现三次，已保存调查缺口")
         self.store.put(self.run_id, "runtime", "operation", action["id"])
-        result = self.portal.call(
-            functools.partial(
-                self.client.call_tool,
-                action["name"],
-                action["arguments"],
-                90.0,
-                meta={"reprolab/operation": action["id"]},
+        try:
+            result = self.portal.call(
+                functools.partial(
+                    self.client.call_tool,
+                    action["name"],
+                    action["arguments"],
+                    90.0,
+                    meta={"reprolab/operation": action["id"]},
+                )
             )
-        )
+        except Exception as exc:
+            code = "mcp_timeout" if isinstance(exc, TimeoutError) else "mcp_transport"
+            self.store.event(self.run_id, "mcp_transport_error", {"code": code, "type": type(exc).__name__})
+            raise LabError(code, "MCP 调用中断，已保存状态，可通过 resume 重试") from exc
         if result.is_error:
             detail = " ".join(block.text for block in result.content if hasattr(block, "text"))
             self.store.event(

@@ -430,3 +430,23 @@ def test_portable_bundle_checks_test_hash(task, tmp_path, monkeypatch):
 def test_traceback_assertion_line_does_not_hide_target_exception():
     xml = '<testsuites><testcase><failure message="ZeroDivisionError: division by zero">assert mean([]) == 0</failure></testcase></testsuites>'
     assert parse_result({"junit": xml, "exit_code": 1, "output": ""})["kind"] == "target_exception"
+
+
+def test_mcp_timeout_is_resumable_and_redacted(task):
+    from types import SimpleNamespace
+
+    from reprolab.bridge import MCPEnvironment
+
+    store, run_id = task
+
+    def timeout(*args):
+        raise TimeoutError("private-transport-details")
+
+    environment = MCPEnvironment.__new__(MCPEnvironment)
+    environment.store, environment.run_id = store, run_id
+    environment.portal = SimpleNamespace(call=timeout)
+    environment.client = SimpleNamespace(call_tool=lambda: None)
+    with pytest.raises(LabError) as error:
+        environment.execute({"id": "lost-call", "name": "read_file", "arguments": {"path": "source.py"}})
+    assert error.value.code == "mcp_timeout"
+    assert "private-transport-details" not in json.dumps(store.events(run_id))

@@ -165,6 +165,10 @@ def execute(store: Store, run_id: str, model_factory=None):
         run = store.run(run_id)
         if run["status"] == "completed":
             return export(store, run_id)
+        if store.get(run_id, "runtime", "stop"):
+            store.event(run_id, "resume", {"previous_stop": store.get(run_id, "runtime", "stop")})
+            store.put(run_id, "runtime", "stop", None)
+            store.put(run_id, "runtime", "progress", {})
         prepare_verification_retry(store, run_id)
         environment = None
         started = time.monotonic()

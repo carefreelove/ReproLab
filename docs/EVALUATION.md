@@ -75,7 +75,7 @@ Agent 只读取缺陷版及用户问题，通过 MCP 编写和执行测试。修
 
 ## 自动检查与复现
 
-- 55 项测试覆盖输入与路径、Skills 快照、MCP stdio、上下文裁剪、费用预留、任务恢复、产物哈希、测试分类、双版本验收及真实 Docker 约束。
+- 57 项测试覆盖输入与路径、Skills 快照、MCP stdio、上下文裁剪、费用预留、任务恢复、产物哈希、测试分类、双版本验收及真实 Docker 约束。
 - 八条 `offline_synthetic` 协议回放通过。其测试由固定夹具提供，模型调用为零，单独保存于[离线记录](../examples/evaluation-offline.json)。
 - Ruff 检查和格式检查通过。CI 在 Linux 上重新安装依赖、构建镜像，运行单元测试、Docker 测试及八条协议回放。
 
